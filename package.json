@@ -1,0 +1,19 @@
+{
+  "name": "kaoqin",
+  "version": "1.0.0",
+  "description": "vuedemo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QQ1025045812/AppCanone.git"
+  },
+  "author": "liuyy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QQ1025045812/AppCanone/issues"
+  },
+  "homepage": "https://github.com/QQ1025045812/AppCanone#readme"
+}
