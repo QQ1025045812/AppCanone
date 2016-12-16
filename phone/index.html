@@ -13,21 +13,13 @@
     </head>
     <body class="um-vp" ontouchstart>
         <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
-            <!--header开始-->
-            <div id="header" class="uh bc-text-head ub bc-head">
-                <div class="nav-btn " id="nav-left"></div>
-                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
-                <div class="nav-btn" id="nav-right">
-                    <!--按钮开始-->
-
-                    <!--按钮结束-->
-                </div>
-            </div>
-            <!--header结束--><!--content开始-->
-            <div id="content" class="ub-f1 tx-l ">
-                <app></app>
-            </div>
-            <!--content结束-->
+            
+            
+            <div id="app">
+				<router-view></router-view>
+			</div>    
+           
+            
 
         </div>
         <script src="js/appcan.js"></script>
@@ -36,10 +28,7 @@
     </body>
     <script>
         appcan.ready(function() {
-            var titHeight = $('#header').offset().height;
-            
-            
-            
+            var titHeight = $('#header').offset().height;   
             
         });
     </script>

@@ -50,12 +50,42 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
-	var _App = __webpack_require__(3);
+	var _vueRouter = __webpack_require__(3);
+
+	var _vueRouter2 = _interopRequireDefault(_vueRouter);
+
+	var _App = __webpack_require__(4);
 
 	var _App2 = _interopRequireDefault(_App);
 
+	var _First = __webpack_require__(12);
+
+	var _First2 = _interopRequireDefault(_First);
+
+	var _Second = __webpack_require__(16);
+
+	var _Second2 = _interopRequireDefault(_Second);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	_vue2.default.use(_vueRouter2.default);
+	//配置路由
+	var router = new _vueRouter2.default();
+	router.map({
+		'/App': {
+			component: _App2.default
+		},
+		'/First': {
+			component: _First2.default
+		},
+		'/Second': {
+			component: _Second2.default
+		}
+	});
+	router.start(_App2.default, '#app');
+	router.redirect({
+		'/': '/App'
+	});
 	new _vue2.default({
 		el: 'body',
 		components: {
@@ -10497,10 +10527,2729 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/*!
+	 * vue-router v0.7.13
+	 * (c) 2016 Evan You
+	 * Released under the MIT License.
+	 */
+	(function (global, factory) {
+	   true ? module.exports = factory() :
+	  typeof define === 'function' && define.amd ? define(factory) :
+	  global.VueRouter = factory();
+	}(this, function () { 'use strict';
+
+	  var babelHelpers = {};
+
+	  babelHelpers.classCallCheck = function (instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	      throw new TypeError("Cannot call a class as a function");
+	    }
+	  };
+	  function Target(path, matcher, delegate) {
+	    this.path = path;
+	    this.matcher = matcher;
+	    this.delegate = delegate;
+	  }
+
+	  Target.prototype = {
+	    to: function to(target, callback) {
+	      var delegate = this.delegate;
+
+	      if (delegate && delegate.willAddRoute) {
+	        target = delegate.willAddRoute(this.matcher.target, target);
+	      }
+
+	      this.matcher.add(this.path, target);
+
+	      if (callback) {
+	        if (callback.length === 0) {
+	          throw new Error("You must have an argument in the function passed to `to`");
+	        }
+	        this.matcher.addChild(this.path, target, callback, this.delegate);
+	      }
+	      return this;
+	    }
+	  };
+
+	  function Matcher(target) {
+	    this.routes = {};
+	    this.children = {};
+	    this.target = target;
+	  }
+
+	  Matcher.prototype = {
+	    add: function add(path, handler) {
+	      this.routes[path] = handler;
+	    },
+
+	    addChild: function addChild(path, target, callback, delegate) {
+	      var matcher = new Matcher(target);
+	      this.children[path] = matcher;
+
+	      var match = generateMatch(path, matcher, delegate);
+
+	      if (delegate && delegate.contextEntered) {
+	        delegate.contextEntered(target, match);
+	      }
+
+	      callback(match);
+	    }
+	  };
+
+	  function generateMatch(startingPath, matcher, delegate) {
+	    return function (path, nestedCallback) {
+	      var fullPath = startingPath + path;
+
+	      if (nestedCallback) {
+	        nestedCallback(generateMatch(fullPath, matcher, delegate));
+	      } else {
+	        return new Target(startingPath + path, matcher, delegate);
+	      }
+	    };
+	  }
+
+	  function addRoute(routeArray, path, handler) {
+	    var len = 0;
+	    for (var i = 0, l = routeArray.length; i < l; i++) {
+	      len += routeArray[i].path.length;
+	    }
+
+	    path = path.substr(len);
+	    var route = { path: path, handler: handler };
+	    routeArray.push(route);
+	  }
+
+	  function eachRoute(baseRoute, matcher, callback, binding) {
+	    var routes = matcher.routes;
+
+	    for (var path in routes) {
+	      if (routes.hasOwnProperty(path)) {
+	        var routeArray = baseRoute.slice();
+	        addRoute(routeArray, path, routes[path]);
+
+	        if (matcher.children[path]) {
+	          eachRoute(routeArray, matcher.children[path], callback, binding);
+	        } else {
+	          callback.call(binding, routeArray);
+	        }
+	      }
+	    }
+	  }
+
+	  function map (callback, addRouteCallback) {
+	    var matcher = new Matcher();
+
+	    callback(generateMatch("", matcher, this.delegate));
+
+	    eachRoute([], matcher, function (route) {
+	      if (addRouteCallback) {
+	        addRouteCallback(this, route);
+	      } else {
+	        this.add(route);
+	      }
+	    }, this);
+	  }
+
+	  var specials = ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\'];
+
+	  var escapeRegex = new RegExp('(\\' + specials.join('|\\') + ')', 'g');
+
+	  var noWarning = false;
+	  function warn(msg) {
+	    if (!noWarning && typeof console !== 'undefined') {
+	      console.error('[vue-router] ' + msg);
+	    }
+	  }
+
+	  function tryDecode(uri, asComponent) {
+	    try {
+	      return asComponent ? decodeURIComponent(uri) : decodeURI(uri);
+	    } catch (e) {
+	      warn('malformed URI' + (asComponent ? ' component: ' : ': ') + uri);
+	    }
+	  }
+
+	  function isArray(test) {
+	    return Object.prototype.toString.call(test) === "[object Array]";
+	  }
+
+	  // A Segment represents a segment in the original route description.
+	  // Each Segment type provides an `eachChar` and `regex` method.
+	  //
+	  // The `eachChar` method invokes the callback with one or more character
+	  // specifications. A character specification consumes one or more input
+	  // characters.
+	  //
+	  // The `regex` method returns a regex fragment for the segment. If the
+	  // segment is a dynamic of star segment, the regex fragment also includes
+	  // a capture.
+	  //
+	  // A character specification contains:
+	  //
+	  // * `validChars`: a String with a list of all valid characters, or
+	  // * `invalidChars`: a String with a list of all invalid characters
+	  // * `repeat`: true if the character specification can repeat
+
+	  function StaticSegment(string) {
+	    this.string = string;
+	  }
+	  StaticSegment.prototype = {
+	    eachChar: function eachChar(callback) {
+	      var string = this.string,
+	          ch;
+
+	      for (var i = 0, l = string.length; i < l; i++) {
+	        ch = string.charAt(i);
+	        callback({ validChars: ch });
+	      }
+	    },
+
+	    regex: function regex() {
+	      return this.string.replace(escapeRegex, '\\$1');
+	    },
+
+	    generate: function generate() {
+	      return this.string;
+	    }
+	  };
+
+	  function DynamicSegment(name) {
+	    this.name = name;
+	  }
+	  DynamicSegment.prototype = {
+	    eachChar: function eachChar(callback) {
+	      callback({ invalidChars: "/", repeat: true });
+	    },
+
+	    regex: function regex() {
+	      return "([^/]+)";
+	    },
+
+	    generate: function generate(params) {
+	      var val = params[this.name];
+	      return val == null ? ":" + this.name : val;
+	    }
+	  };
+
+	  function StarSegment(name) {
+	    this.name = name;
+	  }
+	  StarSegment.prototype = {
+	    eachChar: function eachChar(callback) {
+	      callback({ invalidChars: "", repeat: true });
+	    },
+
+	    regex: function regex() {
+	      return "(.+)";
+	    },
+
+	    generate: function generate(params) {
+	      var val = params[this.name];
+	      return val == null ? ":" + this.name : val;
+	    }
+	  };
+
+	  function EpsilonSegment() {}
+	  EpsilonSegment.prototype = {
+	    eachChar: function eachChar() {},
+	    regex: function regex() {
+	      return "";
+	    },
+	    generate: function generate() {
+	      return "";
+	    }
+	  };
+
+	  function parse(route, names, specificity) {
+	    // normalize route as not starting with a "/". Recognition will
+	    // also normalize.
+	    if (route.charAt(0) === "/") {
+	      route = route.substr(1);
+	    }
+
+	    var segments = route.split("/"),
+	        results = [];
+
+	    // A routes has specificity determined by the order that its different segments
+	    // appear in. This system mirrors how the magnitude of numbers written as strings
+	    // works.
+	    // Consider a number written as: "abc". An example would be "200". Any other number written
+	    // "xyz" will be smaller than "abc" so long as `a > z`. For instance, "199" is smaller
+	    // then "200", even though "y" and "z" (which are both 9) are larger than "0" (the value
+	    // of (`b` and `c`). This is because the leading symbol, "2", is larger than the other
+	    // leading symbol, "1".
+	    // The rule is that symbols to the left carry more weight than symbols to the right
+	    // when a number is written out as a string. In the above strings, the leading digit
+	    // represents how many 100's are in the number, and it carries more weight than the middle
+	    // number which represents how many 10's are in the number.
+	    // This system of number magnitude works well for route specificity, too. A route written as
+	    // `a/b/c` will be more specific than `x/y/z` as long as `a` is more specific than
+	    // `x`, irrespective of the other parts.
+	    // Because of this similarity, we assign each type of segment a number value written as a
+	    // string. We can find the specificity of compound routes by concatenating these strings
+	    // together, from left to right. After we have looped through all of the segments,
+	    // we convert the string to a number.
+	    specificity.val = '';
+
+	    for (var i = 0, l = segments.length; i < l; i++) {
+	      var segment = segments[i],
+	          match;
+
+	      if (match = segment.match(/^:([^\/]+)$/)) {
+	        results.push(new DynamicSegment(match[1]));
+	        names.push(match[1]);
+	        specificity.val += '3';
+	      } else if (match = segment.match(/^\*([^\/]+)$/)) {
+	        results.push(new StarSegment(match[1]));
+	        specificity.val += '2';
+	        names.push(match[1]);
+	      } else if (segment === "") {
+	        results.push(new EpsilonSegment());
+	        specificity.val += '1';
+	      } else {
+	        results.push(new StaticSegment(segment));
+	        specificity.val += '4';
+	      }
+	    }
+
+	    specificity.val = +specificity.val;
+
+	    return results;
+	  }
+
+	  // A State has a character specification and (`charSpec`) and a list of possible
+	  // subsequent states (`nextStates`).
+	  //
+	  // If a State is an accepting state, it will also have several additional
+	  // properties:
+	  //
+	  // * `regex`: A regular expression that is used to extract parameters from paths
+	  //   that reached this accepting state.
+	  // * `handlers`: Information on how to convert the list of captures into calls
+	  //   to registered handlers with the specified parameters
+	  // * `types`: How many static, dynamic or star segments in this route. Used to
+	  //   decide which route to use if multiple registered routes match a path.
+	  //
+	  // Currently, State is implemented naively by looping over `nextStates` and
+	  // comparing a character specification against a character. A more efficient
+	  // implementation would use a hash of keys pointing at one or more next states.
+
+	  function State(charSpec) {
+	    this.charSpec = charSpec;
+	    this.nextStates = [];
+	  }
+
+	  State.prototype = {
+	    get: function get(charSpec) {
+	      var nextStates = this.nextStates;
+
+	      for (var i = 0, l = nextStates.length; i < l; i++) {
+	        var child = nextStates[i];
+
+	        var isEqual = child.charSpec.validChars === charSpec.validChars;
+	        isEqual = isEqual && child.charSpec.invalidChars === charSpec.invalidChars;
+
+	        if (isEqual) {
+	          return child;
+	        }
+	      }
+	    },
+
+	    put: function put(charSpec) {
+	      var state;
+
+	      // If the character specification already exists in a child of the current
+	      // state, just return that state.
+	      if (state = this.get(charSpec)) {
+	        return state;
+	      }
+
+	      // Make a new state for the character spec
+	      state = new State(charSpec);
+
+	      // Insert the new state as a child of the current state
+	      this.nextStates.push(state);
+
+	      // If this character specification repeats, insert the new state as a child
+	      // of itself. Note that this will not trigger an infinite loop because each
+	      // transition during recognition consumes a character.
+	      if (charSpec.repeat) {
+	        state.nextStates.push(state);
+	      }
+
+	      // Return the new state
+	      return state;
+	    },
+
+	    // Find a list of child states matching the next character
+	    match: function match(ch) {
+	      // DEBUG "Processing `" + ch + "`:"
+	      var nextStates = this.nextStates,
+	          child,
+	          charSpec,
+	          chars;
+
+	      // DEBUG "  " + debugState(this)
+	      var returned = [];
+
+	      for (var i = 0, l = nextStates.length; i < l; i++) {
+	        child = nextStates[i];
+
+	        charSpec = child.charSpec;
+
+	        if (typeof (chars = charSpec.validChars) !== 'undefined') {
+	          if (chars.indexOf(ch) !== -1) {
+	            returned.push(child);
+	          }
+	        } else if (typeof (chars = charSpec.invalidChars) !== 'undefined') {
+	          if (chars.indexOf(ch) === -1) {
+	            returned.push(child);
+	          }
+	        }
+	      }
+
+	      return returned;
+	    }
+
+	    /** IF DEBUG
+	    , debug: function() {
+	      var charSpec = this.charSpec,
+	          debug = "[",
+	          chars = charSpec.validChars || charSpec.invalidChars;
+	       if (charSpec.invalidChars) { debug += "^"; }
+	      debug += chars;
+	      debug += "]";
+	       if (charSpec.repeat) { debug += "+"; }
+	       return debug;
+	    }
+	    END IF **/
+	  };
+
+	  /** IF DEBUG
+	  function debug(log) {
+	    console.log(log);
+	  }
+
+	  function debugState(state) {
+	    return state.nextStates.map(function(n) {
+	      if (n.nextStates.length === 0) { return "( " + n.debug() + " [accepting] )"; }
+	      return "( " + n.debug() + " <then> " + n.nextStates.map(function(s) { return s.debug() }).join(" or ") + " )";
+	    }).join(", ")
+	  }
+	  END IF **/
+
+	  // Sort the routes by specificity
+	  function sortSolutions(states) {
+	    return states.sort(function (a, b) {
+	      return b.specificity.val - a.specificity.val;
+	    });
+	  }
+
+	  function recognizeChar(states, ch) {
+	    var nextStates = [];
+
+	    for (var i = 0, l = states.length; i < l; i++) {
+	      var state = states[i];
+
+	      nextStates = nextStates.concat(state.match(ch));
+	    }
+
+	    return nextStates;
+	  }
+
+	  var oCreate = Object.create || function (proto) {
+	    function F() {}
+	    F.prototype = proto;
+	    return new F();
+	  };
+
+	  function RecognizeResults(queryParams) {
+	    this.queryParams = queryParams || {};
+	  }
+	  RecognizeResults.prototype = oCreate({
+	    splice: Array.prototype.splice,
+	    slice: Array.prototype.slice,
+	    push: Array.prototype.push,
+	    length: 0,
+	    queryParams: null
+	  });
+
+	  function findHandler(state, path, queryParams) {
+	    var handlers = state.handlers,
+	        regex = state.regex;
+	    var captures = path.match(regex),
+	        currentCapture = 1;
+	    var result = new RecognizeResults(queryParams);
+
+	    for (var i = 0, l = handlers.length; i < l; i++) {
+	      var handler = handlers[i],
+	          names = handler.names,
+	          params = {};
+
+	      for (var j = 0, m = names.length; j < m; j++) {
+	        params[names[j]] = captures[currentCapture++];
+	      }
+
+	      result.push({ handler: handler.handler, params: params, isDynamic: !!names.length });
+	    }
+
+	    return result;
+	  }
+
+	  function addSegment(currentState, segment) {
+	    segment.eachChar(function (ch) {
+	      var state;
+
+	      currentState = currentState.put(ch);
+	    });
+
+	    return currentState;
+	  }
+
+	  function decodeQueryParamPart(part) {
+	    // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
+	    part = part.replace(/\+/gm, '%20');
+	    return tryDecode(part, true);
+	  }
+
+	  // The main interface
+
+	  var RouteRecognizer = function RouteRecognizer() {
+	    this.rootState = new State();
+	    this.names = {};
+	  };
+
+	  RouteRecognizer.prototype = {
+	    add: function add(routes, options) {
+	      var currentState = this.rootState,
+	          regex = "^",
+	          specificity = {},
+	          handlers = [],
+	          allSegments = [],
+	          name;
+
+	      var isEmpty = true;
+
+	      for (var i = 0, l = routes.length; i < l; i++) {
+	        var route = routes[i],
+	            names = [];
+
+	        var segments = parse(route.path, names, specificity);
+
+	        allSegments = allSegments.concat(segments);
+
+	        for (var j = 0, m = segments.length; j < m; j++) {
+	          var segment = segments[j];
+
+	          if (segment instanceof EpsilonSegment) {
+	            continue;
+	          }
+
+	          isEmpty = false;
+
+	          // Add a "/" for the new segment
+	          currentState = currentState.put({ validChars: "/" });
+	          regex += "/";
+
+	          // Add a representation of the segment to the NFA and regex
+	          currentState = addSegment(currentState, segment);
+	          regex += segment.regex();
+	        }
+
+	        var handler = { handler: route.handler, names: names };
+	        handlers.push(handler);
+	      }
+
+	      if (isEmpty) {
+	        currentState = currentState.put({ validChars: "/" });
+	        regex += "/";
+	      }
+
+	      currentState.handlers = handlers;
+	      currentState.regex = new RegExp(regex + "$");
+	      currentState.specificity = specificity;
+
+	      if (name = options && options.as) {
+	        this.names[name] = {
+	          segments: allSegments,
+	          handlers: handlers
+	        };
+	      }
+	    },
+
+	    handlersFor: function handlersFor(name) {
+	      var route = this.names[name],
+	          result = [];
+	      if (!route) {
+	        throw new Error("There is no route named " + name);
+	      }
+
+	      for (var i = 0, l = route.handlers.length; i < l; i++) {
+	        result.push(route.handlers[i]);
+	      }
+
+	      return result;
+	    },
+
+	    hasRoute: function hasRoute(name) {
+	      return !!this.names[name];
+	    },
+
+	    generate: function generate(name, params) {
+	      var route = this.names[name],
+	          output = "";
+	      if (!route) {
+	        throw new Error("There is no route named " + name);
+	      }
+
+	      var segments = route.segments;
+
+	      for (var i = 0, l = segments.length; i < l; i++) {
+	        var segment = segments[i];
+
+	        if (segment instanceof EpsilonSegment) {
+	          continue;
+	        }
+
+	        output += "/";
+	        output += segment.generate(params);
+	      }
+
+	      if (output.charAt(0) !== '/') {
+	        output = '/' + output;
+	      }
+
+	      if (params && params.queryParams) {
+	        output += this.generateQueryString(params.queryParams);
+	      }
+
+	      return output;
+	    },
+
+	    generateQueryString: function generateQueryString(params) {
+	      var pairs = [];
+	      var keys = [];
+	      for (var key in params) {
+	        if (params.hasOwnProperty(key)) {
+	          keys.push(key);
+	        }
+	      }
+	      keys.sort();
+	      for (var i = 0, len = keys.length; i < len; i++) {
+	        key = keys[i];
+	        var value = params[key];
+	        if (value == null) {
+	          continue;
+	        }
+	        var pair = encodeURIComponent(key);
+	        if (isArray(value)) {
+	          for (var j = 0, l = value.length; j < l; j++) {
+	            var arrayPair = key + '[]' + '=' + encodeURIComponent(value[j]);
+	            pairs.push(arrayPair);
+	          }
+	        } else {
+	          pair += "=" + encodeURIComponent(value);
+	          pairs.push(pair);
+	        }
+	      }
+
+	      if (pairs.length === 0) {
+	        return '';
+	      }
+
+	      return "?" + pairs.join("&");
+	    },
+
+	    parseQueryString: function parseQueryString(queryString) {
+	      var pairs = queryString.split("&"),
+	          queryParams = {};
+	      for (var i = 0; i < pairs.length; i++) {
+	        var pair = pairs[i].split('='),
+	            key = decodeQueryParamPart(pair[0]),
+	            keyLength = key.length,
+	            isArray = false,
+	            value;
+	        if (pair.length === 1) {
+	          value = 'true';
+	        } else {
+	          //Handle arrays
+	          if (keyLength > 2 && key.slice(keyLength - 2) === '[]') {
+	            isArray = true;
+	            key = key.slice(0, keyLength - 2);
+	            if (!queryParams[key]) {
+	              queryParams[key] = [];
+	            }
+	          }
+	          value = pair[1] ? decodeQueryParamPart(pair[1]) : '';
+	        }
+	        if (isArray) {
+	          queryParams[key].push(value);
+	        } else {
+	          queryParams[key] = value;
+	        }
+	      }
+	      return queryParams;
+	    },
+
+	    recognize: function recognize(path, silent) {
+	      noWarning = silent;
+	      var states = [this.rootState],
+	          pathLen,
+	          i,
+	          l,
+	          queryStart,
+	          queryParams = {},
+	          isSlashDropped = false;
+
+	      queryStart = path.indexOf('?');
+	      if (queryStart !== -1) {
+	        var queryString = path.substr(queryStart + 1, path.length);
+	        path = path.substr(0, queryStart);
+	        if (queryString) {
+	          queryParams = this.parseQueryString(queryString);
+	        }
+	      }
+
+	      path = tryDecode(path);
+	      if (!path) return;
+
+	      // DEBUG GROUP path
+
+	      if (path.charAt(0) !== "/") {
+	        path = "/" + path;
+	      }
+
+	      pathLen = path.length;
+	      if (pathLen > 1 && path.charAt(pathLen - 1) === "/") {
+	        path = path.substr(0, pathLen - 1);
+	        isSlashDropped = true;
+	      }
+
+	      for (i = 0, l = path.length; i < l; i++) {
+	        states = recognizeChar(states, path.charAt(i));
+	        if (!states.length) {
+	          break;
+	        }
+	      }
+
+	      // END DEBUG GROUP
+
+	      var solutions = [];
+	      for (i = 0, l = states.length; i < l; i++) {
+	        if (states[i].handlers) {
+	          solutions.push(states[i]);
+	        }
+	      }
+
+	      states = sortSolutions(solutions);
+
+	      var state = solutions[0];
+
+	      if (state && state.handlers) {
+	        // if a trailing slash was dropped and a star segment is the last segment
+	        // specified, put the trailing slash back
+	        if (isSlashDropped && state.regex.source.slice(-5) === "(.+)$") {
+	          path = path + "/";
+	        }
+	        return findHandler(state, path, queryParams);
+	      }
+	    }
+	  };
+
+	  RouteRecognizer.prototype.map = map;
+
+	  var genQuery = RouteRecognizer.prototype.generateQueryString;
+
+	  // export default for holding the Vue reference
+	  var exports$1 = {};
+	  /**
+	   * Warn stuff.
+	   *
+	   * @param {String} msg
+	   */
+
+	  function warn$1(msg) {
+	    /* istanbul ignore next */
+	    if (typeof console !== 'undefined') {
+	      console.error('[vue-router] ' + msg);
+	    }
+	  }
+
+	  /**
+	   * Resolve a relative path.
+	   *
+	   * @param {String} base
+	   * @param {String} relative
+	   * @param {Boolean} append
+	   * @return {String}
+	   */
+
+	  function resolvePath(base, relative, append) {
+	    var query = base.match(/(\?.*)$/);
+	    if (query) {
+	      query = query[1];
+	      base = base.slice(0, -query.length);
+	    }
+	    // a query!
+	    if (relative.charAt(0) === '?') {
+	      return base + relative;
+	    }
+	    var stack = base.split('/');
+	    // remove trailing segment if:
+	    // - not appending
+	    // - appending to trailing slash (last segment is empty)
+	    if (!append || !stack[stack.length - 1]) {
+	      stack.pop();
+	    }
+	    // resolve relative path
+	    var segments = relative.replace(/^\//, '').split('/');
+	    for (var i = 0; i < segments.length; i++) {
+	      var segment = segments[i];
+	      if (segment === '.') {
+	        continue;
+	      } else if (segment === '..') {
+	        stack.pop();
+	      } else {
+	        stack.push(segment);
+	      }
+	    }
+	    // ensure leading slash
+	    if (stack[0] !== '') {
+	      stack.unshift('');
+	    }
+	    return stack.join('/');
+	  }
+
+	  /**
+	   * Forgiving check for a promise
+	   *
+	   * @param {Object} p
+	   * @return {Boolean}
+	   */
+
+	  function isPromise(p) {
+	    return p && typeof p.then === 'function';
+	  }
+
+	  /**
+	   * Retrive a route config field from a component instance
+	   * OR a component contructor.
+	   *
+	   * @param {Function|Vue} component
+	   * @param {String} name
+	   * @return {*}
+	   */
+
+	  function getRouteConfig(component, name) {
+	    var options = component && (component.$options || component.options);
+	    return options && options.route && options.route[name];
+	  }
+
+	  /**
+	   * Resolve an async component factory. Have to do a dirty
+	   * mock here because of Vue core's internal API depends on
+	   * an ID check.
+	   *
+	   * @param {Object} handler
+	   * @param {Function} cb
+	   */
+
+	  var resolver = undefined;
+
+	  function resolveAsyncComponent(handler, cb) {
+	    if (!resolver) {
+	      resolver = {
+	        resolve: exports$1.Vue.prototype._resolveComponent,
+	        $options: {
+	          components: {
+	            _: handler.component
+	          }
+	        }
+	      };
+	    } else {
+	      resolver.$options.components._ = handler.component;
+	    }
+	    resolver.resolve('_', function (Component) {
+	      handler.component = Component;
+	      cb(Component);
+	    });
+	  }
+
+	  /**
+	   * Map the dynamic segments in a path to params.
+	   *
+	   * @param {String} path
+	   * @param {Object} params
+	   * @param {Object} query
+	   */
+
+	  function mapParams(path, params, query) {
+	    if (params === undefined) params = {};
+
+	    path = path.replace(/:([^\/]+)/g, function (_, key) {
+	      var val = params[key];
+	      /* istanbul ignore if */
+	      if (!val) {
+	        warn$1('param "' + key + '" not found when generating ' + 'path for "' + path + '" with params ' + JSON.stringify(params));
+	      }
+	      return val || '';
+	    });
+	    if (query) {
+	      path += genQuery(query);
+	    }
+	    return path;
+	  }
+
+	  var hashRE = /#.*$/;
+
+	  var HTML5History = (function () {
+	    function HTML5History(_ref) {
+	      var root = _ref.root;
+	      var onChange = _ref.onChange;
+	      babelHelpers.classCallCheck(this, HTML5History);
+
+	      if (root && root !== '/') {
+	        // make sure there's the starting slash
+	        if (root.charAt(0) !== '/') {
+	          root = '/' + root;
+	        }
+	        // remove trailing slash
+	        this.root = root.replace(/\/$/, '');
+	        this.rootRE = new RegExp('^\\' + this.root);
+	      } else {
+	        this.root = null;
+	      }
+	      this.onChange = onChange;
+	      // check base tag
+	      var baseEl = document.querySelector('base');
+	      this.base = baseEl && baseEl.getAttribute('href');
+	    }
+
+	    HTML5History.prototype.start = function start() {
+	      var _this = this;
+
+	      this.listener = function (e) {
+	        var url = location.pathname + location.search;
+	        if (_this.root) {
+	          url = url.replace(_this.rootRE, '');
+	        }
+	        _this.onChange(url, e && e.state, location.hash);
+	      };
+	      window.addEventListener('popstate', this.listener);
+	      this.listener();
+	    };
+
+	    HTML5History.prototype.stop = function stop() {
+	      window.removeEventListener('popstate', this.listener);
+	    };
+
+	    HTML5History.prototype.go = function go(path, replace, append) {
+	      var url = this.formatPath(path, append);
+	      if (replace) {
+	        history.replaceState({}, '', url);
+	      } else {
+	        // record scroll position by replacing current state
+	        history.replaceState({
+	          pos: {
+	            x: window.pageXOffset,
+	            y: window.pageYOffset
+	          }
+	        }, '', location.href);
+	        // then push new state
+	        history.pushState({}, '', url);
+	      }
+	      var hashMatch = path.match(hashRE);
+	      var hash = hashMatch && hashMatch[0];
+	      path = url
+	      // strip hash so it doesn't mess up params
+	      .replace(hashRE, '')
+	      // remove root before matching
+	      .replace(this.rootRE, '');
+	      this.onChange(path, null, hash);
+	    };
+
+	    HTML5History.prototype.formatPath = function formatPath(path, append) {
+	      return path.charAt(0) === '/'
+	      // absolute path
+	      ? this.root ? this.root + '/' + path.replace(/^\//, '') : path : resolvePath(this.base || location.pathname, path, append);
+	    };
+
+	    return HTML5History;
+	  })();
+
+	  var HashHistory = (function () {
+	    function HashHistory(_ref) {
+	      var hashbang = _ref.hashbang;
+	      var onChange = _ref.onChange;
+	      babelHelpers.classCallCheck(this, HashHistory);
+
+	      this.hashbang = hashbang;
+	      this.onChange = onChange;
+	    }
+
+	    HashHistory.prototype.start = function start() {
+	      var self = this;
+	      this.listener = function () {
+	        var path = location.hash;
+	        var raw = path.replace(/^#!?/, '');
+	        // always
+	        if (raw.charAt(0) !== '/') {
+	          raw = '/' + raw;
+	        }
+	        var formattedPath = self.formatPath(raw);
+	        if (formattedPath !== path) {
+	          location.replace(formattedPath);
+	          return;
+	        }
+	        // determine query
+	        // note it's possible to have queries in both the actual URL
+	        // and the hash fragment itself.
+	        var query = location.search && path.indexOf('?') > -1 ? '&' + location.search.slice(1) : location.search;
+	        self.onChange(path.replace(/^#!?/, '') + query);
+	      };
+	      window.addEventListener('hashchange', this.listener);
+	      this.listener();
+	    };
+
+	    HashHistory.prototype.stop = function stop() {
+	      window.removeEventListener('hashchange', this.listener);
+	    };
+
+	    HashHistory.prototype.go = function go(path, replace, append) {
+	      path = this.formatPath(path, append);
+	      if (replace) {
+	        location.replace(path);
+	      } else {
+	        location.hash = path;
+	      }
+	    };
+
+	    HashHistory.prototype.formatPath = function formatPath(path, append) {
+	      var isAbsoloute = path.charAt(0) === '/';
+	      var prefix = '#' + (this.hashbang ? '!' : '');
+	      return isAbsoloute ? prefix + path : prefix + resolvePath(location.hash.replace(/^#!?/, ''), path, append);
+	    };
+
+	    return HashHistory;
+	  })();
+
+	  var AbstractHistory = (function () {
+	    function AbstractHistory(_ref) {
+	      var onChange = _ref.onChange;
+	      babelHelpers.classCallCheck(this, AbstractHistory);
+
+	      this.onChange = onChange;
+	      this.currentPath = '/';
+	    }
+
+	    AbstractHistory.prototype.start = function start() {
+	      this.onChange('/');
+	    };
+
+	    AbstractHistory.prototype.stop = function stop() {
+	      // noop
+	    };
+
+	    AbstractHistory.prototype.go = function go(path, replace, append) {
+	      path = this.currentPath = this.formatPath(path, append);
+	      this.onChange(path);
+	    };
+
+	    AbstractHistory.prototype.formatPath = function formatPath(path, append) {
+	      return path.charAt(0) === '/' ? path : resolvePath(this.currentPath, path, append);
+	    };
+
+	    return AbstractHistory;
+	  })();
+
+	  /**
+	   * Determine the reusability of an existing router view.
+	   *
+	   * @param {Directive} view
+	   * @param {Object} handler
+	   * @param {Transition} transition
+	   */
+
+	  function canReuse(view, handler, transition) {
+	    var component = view.childVM;
+	    if (!component || !handler) {
+	      return false;
+	    }
+	    // important: check view.Component here because it may
+	    // have been changed in activate hook
+	    if (view.Component !== handler.component) {
+	      return false;
+	    }
+	    var canReuseFn = getRouteConfig(component, 'canReuse');
+	    return typeof canReuseFn === 'boolean' ? canReuseFn : canReuseFn ? canReuseFn.call(component, {
+	      to: transition.to,
+	      from: transition.from
+	    }) : true; // defaults to true
+	  }
+
+	  /**
+	   * Check if a component can deactivate.
+	   *
+	   * @param {Directive} view
+	   * @param {Transition} transition
+	   * @param {Function} next
+	   */
+
+	  function canDeactivate(view, transition, next) {
+	    var fromComponent = view.childVM;
+	    var hook = getRouteConfig(fromComponent, 'canDeactivate');
+	    if (!hook) {
+	      next();
+	    } else {
+	      transition.callHook(hook, fromComponent, next, {
+	        expectBoolean: true
+	      });
+	    }
+	  }
+
+	  /**
+	   * Check if a component can activate.
+	   *
+	   * @param {Object} handler
+	   * @param {Transition} transition
+	   * @param {Function} next
+	   */
+
+	  function canActivate(handler, transition, next) {
+	    resolveAsyncComponent(handler, function (Component) {
+	      // have to check due to async-ness
+	      if (transition.aborted) {
+	        return;
+	      }
+	      // determine if this component can be activated
+	      var hook = getRouteConfig(Component, 'canActivate');
+	      if (!hook) {
+	        next();
+	      } else {
+	        transition.callHook(hook, null, next, {
+	          expectBoolean: true
+	        });
+	      }
+	    });
+	  }
+
+	  /**
+	   * Call deactivate hooks for existing router-views.
+	   *
+	   * @param {Directive} view
+	   * @param {Transition} transition
+	   * @param {Function} next
+	   */
+
+	  function deactivate(view, transition, next) {
+	    var component = view.childVM;
+	    var hook = getRouteConfig(component, 'deactivate');
+	    if (!hook) {
+	      next();
+	    } else {
+	      transition.callHooks(hook, component, next);
+	    }
+	  }
+
+	  /**
+	   * Activate / switch component for a router-view.
+	   *
+	   * @param {Directive} view
+	   * @param {Transition} transition
+	   * @param {Number} depth
+	   * @param {Function} [cb]
+	   */
+
+	  function activate(view, transition, depth, cb, reuse) {
+	    var handler = transition.activateQueue[depth];
+	    if (!handler) {
+	      saveChildView(view);
+	      if (view._bound) {
+	        view.setComponent(null);
+	      }
+	      cb && cb();
+	      return;
+	    }
+
+	    var Component = view.Component = handler.component;
+	    var activateHook = getRouteConfig(Component, 'activate');
+	    var dataHook = getRouteConfig(Component, 'data');
+	    var waitForData = getRouteConfig(Component, 'waitForData');
+
+	    view.depth = depth;
+	    view.activated = false;
+
+	    var component = undefined;
+	    var loading = !!(dataHook && !waitForData);
+
+	    // "reuse" is a flag passed down when the parent view is
+	    // either reused via keep-alive or as a child of a kept-alive view.
+	    // of course we can only reuse if the current kept-alive instance
+	    // is of the correct type.
+	    reuse = reuse && view.childVM && view.childVM.constructor === Component;
+
+	    if (reuse) {
+	      // just reuse
+	      component = view.childVM;
+	      component.$loadingRouteData = loading;
+	    } else {
+	      saveChildView(view);
+
+	      // unbuild current component. this step also destroys
+	      // and removes all nested child views.
+	      view.unbuild(true);
+
+	      // build the new component. this will also create the
+	      // direct child view of the current one. it will register
+	      // itself as view.childView.
+	      component = view.build({
+	        _meta: {
+	          $loadingRouteData: loading
+	        },
+	        created: function created() {
+	          this._routerView = view;
+	        }
+	      });
+
+	      // handle keep-alive.
+	      // when a kept-alive child vm is restored, we need to
+	      // add its cached child views into the router's view list,
+	      // and also properly update current view's child view.
+	      if (view.keepAlive) {
+	        component.$loadingRouteData = loading;
+	        var cachedChildView = component._keepAliveRouterView;
+	        if (cachedChildView) {
+	          view.childView = cachedChildView;
+	          component._keepAliveRouterView = null;
+	        }
+	      }
+	    }
+
+	    // cleanup the component in case the transition is aborted
+	    // before the component is ever inserted.
+	    var cleanup = function cleanup() {
+	      component.$destroy();
+	    };
+
+	    // actually insert the component and trigger transition
+	    var insert = function insert() {
+	      if (reuse) {
+	        cb && cb();
+	        return;
+	      }
+	      var router = transition.router;
+	      if (router._rendered || router._transitionOnLoad) {
+	        view.transition(component);
+	      } else {
+	        // no transition on first render, manual transition
+	        /* istanbul ignore if */
+	        if (view.setCurrent) {
+	          // 0.12 compat
+	          view.setCurrent(component);
+	        } else {
+	          // 1.0
+	          view.childVM = component;
+	        }
+	        component.$before(view.anchor, null, false);
+	      }
+	      cb && cb();
+	    };
+
+	    var afterData = function afterData() {
+	      // activate the child view
+	      if (view.childView) {
+	        activate(view.childView, transition, depth + 1, null, reuse || view.keepAlive);
+	      }
+	      insert();
+	    };
+
+	    // called after activation hook is resolved
+	    var afterActivate = function afterActivate() {
+	      view.activated = true;
+	      if (dataHook && waitForData) {
+	        // wait until data loaded to insert
+	        loadData(component, transition, dataHook, afterData, cleanup);
+	      } else {
+	        // load data and insert at the same time
+	        if (dataHook) {
+	          loadData(component, transition, dataHook);
+	        }
+	        afterData();
+	      }
+	    };
+
+	    if (activateHook) {
+	      transition.callHooks(activateHook, component, afterActivate, {
+	        cleanup: cleanup,
+	        postActivate: true
+	      });
+	    } else {
+	      afterActivate();
+	    }
+	  }
+
+	  /**
+	   * Reuse a view, just reload data if necessary.
+	   *
+	   * @param {Directive} view
+	   * @param {Transition} transition
+	   */
+
+	  function reuse(view, transition) {
+	    var component = view.childVM;
+	    var dataHook = getRouteConfig(component, 'data');
+	    if (dataHook) {
+	      loadData(component, transition, dataHook);
+	    }
+	  }
+
+	  /**
+	   * Asynchronously load and apply data to component.
+	   *
+	   * @param {Vue} component
+	   * @param {Transition} transition
+	   * @param {Function} hook
+	   * @param {Function} cb
+	   * @param {Function} cleanup
+	   */
+
+	  function loadData(component, transition, hook, cb, cleanup) {
+	    component.$loadingRouteData = true;
+	    transition.callHooks(hook, component, function () {
+	      component.$loadingRouteData = false;
+	      component.$emit('route-data-loaded', component);
+	      cb && cb();
+	    }, {
+	      cleanup: cleanup,
+	      postActivate: true,
+	      processData: function processData(data) {
+	        // handle promise sugar syntax
+	        var promises = [];
+	        if (isPlainObject(data)) {
+	          Object.keys(data).forEach(function (key) {
+	            var val = data[key];
+	            if (isPromise(val)) {
+	              promises.push(val.then(function (resolvedVal) {
+	                component.$set(key, resolvedVal);
+	              }));
+	            } else {
+	              component.$set(key, val);
+	            }
+	          });
+	        }
+	        if (promises.length) {
+	          return promises[0].constructor.all(promises);
+	        }
+	      }
+	    });
+	  }
+
+	  /**
+	   * Save the child view for a kept-alive view so that
+	   * we can restore it when it is switched back to.
+	   *
+	   * @param {Directive} view
+	   */
+
+	  function saveChildView(view) {
+	    if (view.keepAlive && view.childVM && view.childView) {
+	      view.childVM._keepAliveRouterView = view.childView;
+	    }
+	    view.childView = null;
+	  }
+
+	  /**
+	   * Check plain object.
+	   *
+	   * @param {*} val
+	   */
+
+	  function isPlainObject(val) {
+	    return Object.prototype.toString.call(val) === '[object Object]';
+	  }
+
+	  /**
+	   * A RouteTransition object manages the pipeline of a
+	   * router-view switching process. This is also the object
+	   * passed into user route hooks.
+	   *
+	   * @param {Router} router
+	   * @param {Route} to
+	   * @param {Route} from
+	   */
+
+	  var RouteTransition = (function () {
+	    function RouteTransition(router, to, from) {
+	      babelHelpers.classCallCheck(this, RouteTransition);
+
+	      this.router = router;
+	      this.to = to;
+	      this.from = from;
+	      this.next = null;
+	      this.aborted = false;
+	      this.done = false;
+	    }
+
+	    /**
+	     * Abort current transition and return to previous location.
+	     */
+
+	    RouteTransition.prototype.abort = function abort() {
+	      if (!this.aborted) {
+	        this.aborted = true;
+	        // if the root path throws an error during validation
+	        // on initial load, it gets caught in an infinite loop.
+	        var abortingOnLoad = !this.from.path && this.to.path === '/';
+	        if (!abortingOnLoad) {
+	          this.router.replace(this.from.path || '/');
+	        }
+	      }
+	    };
+
+	    /**
+	     * Abort current transition and redirect to a new location.
+	     *
+	     * @param {String} path
+	     */
+
+	    RouteTransition.prototype.redirect = function redirect(path) {
+	      if (!this.aborted) {
+	        this.aborted = true;
+	        if (typeof path === 'string') {
+	          path = mapParams(path, this.to.params, this.to.query);
+	        } else {
+	          path.params = path.params || this.to.params;
+	          path.query = path.query || this.to.query;
+	        }
+	        this.router.replace(path);
+	      }
+	    };
+
+	    /**
+	     * A router view transition's pipeline can be described as
+	     * follows, assuming we are transitioning from an existing
+	     * <router-view> chain [Component A, Component B] to a new
+	     * chain [Component A, Component C]:
+	     *
+	     *  A    A
+	     *  | => |
+	     *  B    C
+	     *
+	     * 1. Reusablity phase:
+	     *   -> canReuse(A, A)
+	     *   -> canReuse(B, C)
+	     *   -> determine new queues:
+	     *      - deactivation: [B]
+	     *      - activation: [C]
+	     *
+	     * 2. Validation phase:
+	     *   -> canDeactivate(B)
+	     *   -> canActivate(C)
+	     *
+	     * 3. Activation phase:
+	     *   -> deactivate(B)
+	     *   -> activate(C)
+	     *
+	     * Each of these steps can be asynchronous, and any
+	     * step can potentially abort the transition.
+	     *
+	     * @param {Function} cb
+	     */
+
+	    RouteTransition.prototype.start = function start(cb) {
+	      var transition = this;
+
+	      // determine the queue of views to deactivate
+	      var deactivateQueue = [];
+	      var view = this.router._rootView;
+	      while (view) {
+	        deactivateQueue.unshift(view);
+	        view = view.childView;
+	      }
+	      var reverseDeactivateQueue = deactivateQueue.slice().reverse();
+
+	      // determine the queue of route handlers to activate
+	      var activateQueue = this.activateQueue = toArray(this.to.matched).map(function (match) {
+	        return match.handler;
+	      });
+
+	      // 1. Reusability phase
+	      var i = undefined,
+	          reuseQueue = undefined;
+	      for (i = 0; i < reverseDeactivateQueue.length; i++) {
+	        if (!canReuse(reverseDeactivateQueue[i], activateQueue[i], transition)) {
+	          break;
+	        }
+	      }
+	      if (i > 0) {
+	        reuseQueue = reverseDeactivateQueue.slice(0, i);
+	        deactivateQueue = reverseDeactivateQueue.slice(i).reverse();
+	        activateQueue = activateQueue.slice(i);
+	      }
+
+	      // 2. Validation phase
+	      transition.runQueue(deactivateQueue, canDeactivate, function () {
+	        transition.runQueue(activateQueue, canActivate, function () {
+	          transition.runQueue(deactivateQueue, deactivate, function () {
+	            // 3. Activation phase
+
+	            // Update router current route
+	            transition.router._onTransitionValidated(transition);
+
+	            // trigger reuse for all reused views
+	            reuseQueue && reuseQueue.forEach(function (view) {
+	              return reuse(view, transition);
+	            });
+
+	            // the root of the chain that needs to be replaced
+	            // is the top-most non-reusable view.
+	            if (deactivateQueue.length) {
+	              var _view = deactivateQueue[deactivateQueue.length - 1];
+	              var depth = reuseQueue ? reuseQueue.length : 0;
+	              activate(_view, transition, depth, cb);
+	            } else {
+	              cb();
+	            }
+	          });
+	        });
+	      });
+	    };
+
+	    /**
+	     * Asynchronously and sequentially apply a function to a
+	     * queue.
+	     *
+	     * @param {Array} queue
+	     * @param {Function} fn
+	     * @param {Function} cb
+	     */
+
+	    RouteTransition.prototype.runQueue = function runQueue(queue, fn, cb) {
+	      var transition = this;
+	      step(0);
+	      function step(index) {
+	        if (index >= queue.length) {
+	          cb();
+	        } else {
+	          fn(queue[index], transition, function () {
+	            step(index + 1);
+	          });
+	        }
+	      }
+	    };
+
+	    /**
+	     * Call a user provided route transition hook and handle
+	     * the response (e.g. if the user returns a promise).
+	     *
+	     * If the user neither expects an argument nor returns a
+	     * promise, the hook is assumed to be synchronous.
+	     *
+	     * @param {Function} hook
+	     * @param {*} [context]
+	     * @param {Function} [cb]
+	     * @param {Object} [options]
+	     *                 - {Boolean} expectBoolean
+	     *                 - {Boolean} postActive
+	     *                 - {Function} processData
+	     *                 - {Function} cleanup
+	     */
+
+	    RouteTransition.prototype.callHook = function callHook(hook, context, cb) {
+	      var _ref = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
+
+	      var _ref$expectBoolean = _ref.expectBoolean;
+	      var expectBoolean = _ref$expectBoolean === undefined ? false : _ref$expectBoolean;
+	      var _ref$postActivate = _ref.postActivate;
+	      var postActivate = _ref$postActivate === undefined ? false : _ref$postActivate;
+	      var processData = _ref.processData;
+	      var cleanup = _ref.cleanup;
+
+	      var transition = this;
+	      var nextCalled = false;
+
+	      // abort the transition
+	      var abort = function abort() {
+	        cleanup && cleanup();
+	        transition.abort();
+	      };
+
+	      // handle errors
+	      var onError = function onError(err) {
+	        postActivate ? next() : abort();
+	        if (err && !transition.router._suppress) {
+	          warn$1('Uncaught error during transition: ');
+	          throw err instanceof Error ? err : new Error(err);
+	        }
+	      };
+
+	      // since promise swallows errors, we have to
+	      // throw it in the next tick...
+	      var onPromiseError = function onPromiseError(err) {
+	        try {
+	          onError(err);
+	        } catch (e) {
+	          setTimeout(function () {
+	            throw e;
+	          }, 0);
+	        }
+	      };
+
+	      // advance the transition to the next step
+	      var next = function next() {
+	        if (nextCalled) {
+	          warn$1('transition.next() should be called only once.');
+	          return;
+	        }
+	        nextCalled = true;
+	        if (transition.aborted) {
+	          cleanup && cleanup();
+	          return;
+	        }
+	        cb && cb();
+	      };
+
+	      var nextWithBoolean = function nextWithBoolean(res) {
+	        if (typeof res === 'boolean') {
+	          res ? next() : abort();
+	        } else if (isPromise(res)) {
+	          res.then(function (ok) {
+	            ok ? next() : abort();
+	          }, onPromiseError);
+	        } else if (!hook.length) {
+	          next();
+	        }
+	      };
+
+	      var nextWithData = function nextWithData(data) {
+	        var res = undefined;
+	        try {
+	          res = processData(data);
+	        } catch (err) {
+	          return onError(err);
+	        }
+	        if (isPromise(res)) {
+	          res.then(next, onPromiseError);
+	        } else {
+	          next();
+	        }
+	      };
+
+	      // expose a clone of the transition object, so that each
+	      // hook gets a clean copy and prevent the user from
+	      // messing with the internals.
+	      var exposed = {
+	        to: transition.to,
+	        from: transition.from,
+	        abort: abort,
+	        next: processData ? nextWithData : next,
+	        redirect: function redirect() {
+	          transition.redirect.apply(transition, arguments);
+	        }
+	      };
+
+	      // actually call the hook
+	      var res = undefined;
+	      try {
+	        res = hook.call(context, exposed);
+	      } catch (err) {
+	        return onError(err);
+	      }
+
+	      if (expectBoolean) {
+	        // boolean hooks
+	        nextWithBoolean(res);
+	      } else if (isPromise(res)) {
+	        // promise
+	        if (processData) {
+	          res.then(nextWithData, onPromiseError);
+	        } else {
+	          res.then(next, onPromiseError);
+	        }
+	      } else if (processData && isPlainOjbect(res)) {
+	        // data promise sugar
+	        nextWithData(res);
+	      } else if (!hook.length) {
+	        next();
+	      }
+	    };
+
+	    /**
+	     * Call a single hook or an array of async hooks in series.
+	     *
+	     * @param {Array} hooks
+	     * @param {*} context
+	     * @param {Function} cb
+	     * @param {Object} [options]
+	     */
+
+	    RouteTransition.prototype.callHooks = function callHooks(hooks, context, cb, options) {
+	      var _this = this;
+
+	      if (Array.isArray(hooks)) {
+	        this.runQueue(hooks, function (hook, _, next) {
+	          if (!_this.aborted) {
+	            _this.callHook(hook, context, next, options);
+	          }
+	        }, cb);
+	      } else {
+	        this.callHook(hooks, context, cb, options);
+	      }
+	    };
+
+	    return RouteTransition;
+	  })();
+
+	  function isPlainOjbect(val) {
+	    return Object.prototype.toString.call(val) === '[object Object]';
+	  }
+
+	  function toArray(val) {
+	    return val ? Array.prototype.slice.call(val) : [];
+	  }
+
+	  var internalKeysRE = /^(component|subRoutes|fullPath)$/;
+
+	  /**
+	   * Route Context Object
+	   *
+	   * @param {String} path
+	   * @param {Router} router
+	   */
+
+	  var Route = function Route(path, router) {
+	    var _this = this;
+
+	    babelHelpers.classCallCheck(this, Route);
+
+	    var matched = router._recognizer.recognize(path);
+	    if (matched) {
+	      // copy all custom fields from route configs
+	      [].forEach.call(matched, function (match) {
+	        for (var key in match.handler) {
+	          if (!internalKeysRE.test(key)) {
+	            _this[key] = match.handler[key];
+	          }
+	        }
+	      });
+	      // set query and params
+	      this.query = matched.queryParams;
+	      this.params = [].reduce.call(matched, function (prev, cur) {
+	        if (cur.params) {
+	          for (var key in cur.params) {
+	            prev[key] = cur.params[key];
+	          }
+	        }
+	        return prev;
+	      }, {});
+	    }
+	    // expose path and router
+	    this.path = path;
+	    // for internal use
+	    this.matched = matched || router._notFoundHandler;
+	    // internal reference to router
+	    Object.defineProperty(this, 'router', {
+	      enumerable: false,
+	      value: router
+	    });
+	    // Important: freeze self to prevent observation
+	    Object.freeze(this);
+	  };
+
+	  function applyOverride (Vue) {
+	    var _Vue$util = Vue.util;
+	    var extend = _Vue$util.extend;
+	    var isArray = _Vue$util.isArray;
+	    var defineReactive = _Vue$util.defineReactive;
+
+	    // override Vue's init and destroy process to keep track of router instances
+	    var init = Vue.prototype._init;
+	    Vue.prototype._init = function (options) {
+	      options = options || {};
+	      var root = options._parent || options.parent || this;
+	      var router = root.$router;
+	      var route = root.$route;
+	      if (router) {
+	        // expose router
+	        this.$router = router;
+	        router._children.push(this);
+	        /* istanbul ignore if */
+	        if (this._defineMeta) {
+	          // 0.12
+	          this._defineMeta('$route', route);
+	        } else {
+	          // 1.0
+	          defineReactive(this, '$route', route);
+	        }
+	      }
+	      init.call(this, options);
+	    };
+
+	    var destroy = Vue.prototype._destroy;
+	    Vue.prototype._destroy = function () {
+	      if (!this._isBeingDestroyed && this.$router) {
+	        this.$router._children.$remove(this);
+	      }
+	      destroy.apply(this, arguments);
+	    };
+
+	    // 1.0 only: enable route mixins
+	    var strats = Vue.config.optionMergeStrategies;
+	    var hooksToMergeRE = /^(data|activate|deactivate)$/;
+
+	    if (strats) {
+	      strats.route = function (parentVal, childVal) {
+	        if (!childVal) return parentVal;
+	        if (!parentVal) return childVal;
+	        var ret = {};
+	        extend(ret, parentVal);
+	        for (var key in childVal) {
+	          var a = ret[key];
+	          var b = childVal[key];
+	          // for data, activate and deactivate, we need to merge them into
+	          // arrays similar to lifecycle hooks.
+	          if (a && hooksToMergeRE.test(key)) {
+	            ret[key] = (isArray(a) ? a : [a]).concat(b);
+	          } else {
+	            ret[key] = b;
+	          }
+	        }
+	        return ret;
+	      };
+	    }
+	  }
+
+	  function View (Vue) {
+
+	    var _ = Vue.util;
+	    var componentDef =
+	    // 0.12
+	    Vue.directive('_component') ||
+	    // 1.0
+	    Vue.internalDirectives.component;
+	    // <router-view> extends the internal component directive
+	    var viewDef = _.extend({}, componentDef);
+
+	    // with some overrides
+	    _.extend(viewDef, {
+
+	      _isRouterView: true,
+
+	      bind: function bind() {
+	        var route = this.vm.$route;
+	        /* istanbul ignore if */
+	        if (!route) {
+	          warn$1('<router-view> can only be used inside a ' + 'router-enabled app.');
+	          return;
+	        }
+	        // force dynamic directive so v-component doesn't
+	        // attempt to build right now
+	        this._isDynamicLiteral = true;
+	        // finally, init by delegating to v-component
+	        componentDef.bind.call(this);
+
+	        // locate the parent view
+	        var parentView = undefined;
+	        var parent = this.vm;
+	        while (parent) {
+	          if (parent._routerView) {
+	            parentView = parent._routerView;
+	            break;
+	          }
+	          parent = parent.$parent;
+	        }
+	        if (parentView) {
+	          // register self as a child of the parent view,
+	          // instead of activating now. This is so that the
+	          // child's activate hook is called after the
+	          // parent's has resolved.
+	          this.parentView = parentView;
+	          parentView.childView = this;
+	        } else {
+	          // this is the root view!
+	          var router = route.router;
+	          router._rootView = this;
+	        }
+
+	        // handle late-rendered view
+	        // two possibilities:
+	        // 1. root view rendered after transition has been
+	        //    validated;
+	        // 2. child view rendered after parent view has been
+	        //    activated.
+	        var transition = route.router._currentTransition;
+	        if (!parentView && transition.done || parentView && parentView.activated) {
+	          var depth = parentView ? parentView.depth + 1 : 0;
+	          activate(this, transition, depth);
+	        }
+	      },
+
+	      unbind: function unbind() {
+	        if (this.parentView) {
+	          this.parentView.childView = null;
+	        }
+	        componentDef.unbind.call(this);
+	      }
+	    });
+
+	    Vue.elementDirective('router-view', viewDef);
+	  }
+
+	  var trailingSlashRE = /\/$/;
+	  var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g;
+	  var queryStringRE = /\?.*$/;
+
+	  // install v-link, which provides navigation support for
+	  // HTML5 history mode
+	  function Link (Vue) {
+	    var _Vue$util = Vue.util;
+	    var _bind = _Vue$util.bind;
+	    var isObject = _Vue$util.isObject;
+	    var addClass = _Vue$util.addClass;
+	    var removeClass = _Vue$util.removeClass;
+
+	    var onPriority = Vue.directive('on').priority;
+	    var LINK_UPDATE = '__vue-router-link-update__';
+
+	    var activeId = 0;
+
+	    Vue.directive('link-active', {
+	      priority: 9999,
+	      bind: function bind() {
+	        var _this = this;
+
+	        var id = String(activeId++);
+	        // collect v-links contained within this element.
+	        // we need do this here before the parent-child relationship
+	        // gets messed up by terminal directives (if, for, components)
+	        var childLinks = this.el.querySelectorAll('[v-link]');
+	        for (var i = 0, l = childLinks.length; i < l; i++) {
+	          var link = childLinks[i];
+	          var existingId = link.getAttribute(LINK_UPDATE);
+	          var value = existingId ? existingId + ',' + id : id;
+	          // leave a mark on the link element which can be persisted
+	          // through fragment clones.
+	          link.setAttribute(LINK_UPDATE, value);
+	        }
+	        this.vm.$on(LINK_UPDATE, this.cb = function (link, path) {
+	          if (link.activeIds.indexOf(id) > -1) {
+	            link.updateClasses(path, _this.el);
+	          }
+	        });
+	      },
+	      unbind: function unbind() {
+	        this.vm.$off(LINK_UPDATE, this.cb);
+	      }
+	    });
+
+	    Vue.directive('link', {
+	      priority: onPriority - 2,
+
+	      bind: function bind() {
+	        var vm = this.vm;
+	        /* istanbul ignore if */
+	        if (!vm.$route) {
+	          warn$1('v-link can only be used inside a router-enabled app.');
+	          return;
+	        }
+	        this.router = vm.$route.router;
+	        // update things when the route changes
+	        this.unwatch = vm.$watch('$route', _bind(this.onRouteUpdate, this));
+	        // check v-link-active ids
+	        var activeIds = this.el.getAttribute(LINK_UPDATE);
+	        if (activeIds) {
+	          this.el.removeAttribute(LINK_UPDATE);
+	          this.activeIds = activeIds.split(',');
+	        }
+	        // no need to handle click if link expects to be opened
+	        // in a new window/tab.
+	        /* istanbul ignore if */
+	        if (this.el.tagName === 'A' && this.el.getAttribute('target') === '_blank') {
+	          return;
+	        }
+	        // handle click
+	        this.handler = _bind(this.onClick, this);
+	        this.el.addEventListener('click', this.handler);
+	      },
+
+	      update: function update(target) {
+	        this.target = target;
+	        if (isObject(target)) {
+	          this.append = target.append;
+	          this.exact = target.exact;
+	          this.prevActiveClass = this.activeClass;
+	          this.activeClass = target.activeClass;
+	        }
+	        this.onRouteUpdate(this.vm.$route);
+	      },
+
+	      onClick: function onClick(e) {
+	        // don't redirect with control keys
+	        /* istanbul ignore if */
+	        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+	        // don't redirect when preventDefault called
+	        /* istanbul ignore if */
+	        if (e.defaultPrevented) return;
+	        // don't redirect on right click
+	        /* istanbul ignore if */
+	        if (e.button !== 0) return;
+
+	        var target = this.target;
+	        if (target) {
+	          // v-link with expression, just go
+	          e.preventDefault();
+	          this.router.go(target);
+	        } else {
+	          // no expression, delegate for an <a> inside
+	          var el = e.target;
+	          while (el.tagName !== 'A' && el !== this.el) {
+	            el = el.parentNode;
+	          }
+	          if (el.tagName === 'A' && sameOrigin(el)) {
+	            e.preventDefault();
+	            var path = el.pathname;
+	            if (this.router.history.root) {
+	              path = path.replace(this.router.history.rootRE, '');
+	            }
+	            this.router.go({
+	              path: path,
+	              replace: target && target.replace,
+	              append: target && target.append
+	            });
+	          }
+	        }
+	      },
+
+	      onRouteUpdate: function onRouteUpdate(route) {
+	        // router.stringifyPath is dependent on current route
+	        // and needs to be called again whenver route changes.
+	        var newPath = this.router.stringifyPath(this.target);
+	        if (this.path !== newPath) {
+	          this.path = newPath;
+	          this.updateActiveMatch();
+	          this.updateHref();
+	        }
+	        if (this.activeIds) {
+	          this.vm.$emit(LINK_UPDATE, this, route.path);
+	        } else {
+	          this.updateClasses(route.path, this.el);
+	        }
+	      },
+
+	      updateActiveMatch: function updateActiveMatch() {
+	        this.activeRE = this.path && !this.exact ? new RegExp('^' + this.path.replace(/\/$/, '').replace(queryStringRE, '').replace(regexEscapeRE, '\\$&') + '(\\/|$)') : null;
+	      },
+
+	      updateHref: function updateHref() {
+	        if (this.el.tagName !== 'A') {
+	          return;
+	        }
+	        var path = this.path;
+	        var router = this.router;
+	        var isAbsolute = path.charAt(0) === '/';
+	        // do not format non-hash relative paths
+	        var href = path && (router.mode === 'hash' || isAbsolute) ? router.history.formatPath(path, this.append) : path;
+	        if (href) {
+	          this.el.href = href;
+	        } else {
+	          this.el.removeAttribute('href');
+	        }
+	      },
+
+	      updateClasses: function updateClasses(path, el) {
+	        var activeClass = this.activeClass || this.router._linkActiveClass;
+	        // clear old class
+	        if (this.prevActiveClass && this.prevActiveClass !== activeClass) {
+	          toggleClasses(el, this.prevActiveClass, removeClass);
+	        }
+	        // remove query string before matching
+	        var dest = this.path.replace(queryStringRE, '');
+	        path = path.replace(queryStringRE, '');
+	        // add new class
+	        if (this.exact) {
+	          if (dest === path ||
+	          // also allow additional trailing slash
+	          dest.charAt(dest.length - 1) !== '/' && dest === path.replace(trailingSlashRE, '')) {
+	            toggleClasses(el, activeClass, addClass);
+	          } else {
+	            toggleClasses(el, activeClass, removeClass);
+	          }
+	        } else {
+	          if (this.activeRE && this.activeRE.test(path)) {
+	            toggleClasses(el, activeClass, addClass);
+	          } else {
+	            toggleClasses(el, activeClass, removeClass);
+	          }
+	        }
+	      },
+
+	      unbind: function unbind() {
+	        this.el.removeEventListener('click', this.handler);
+	        this.unwatch && this.unwatch();
+	      }
+	    });
+
+	    function sameOrigin(link) {
+	      return link.protocol === location.protocol && link.hostname === location.hostname && link.port === location.port;
+	    }
+
+	    // this function is copied from v-bind:class implementation until
+	    // we properly expose it...
+	    function toggleClasses(el, key, fn) {
+	      key = key.trim();
+	      if (key.indexOf(' ') === -1) {
+	        fn(el, key);
+	        return;
+	      }
+	      var keys = key.split(/\s+/);
+	      for (var i = 0, l = keys.length; i < l; i++) {
+	        fn(el, keys[i]);
+	      }
+	    }
+	  }
+
+	  var historyBackends = {
+	    abstract: AbstractHistory,
+	    hash: HashHistory,
+	    html5: HTML5History
+	  };
+
+	  // late bind during install
+	  var Vue = undefined;
+
+	  /**
+	   * Router constructor
+	   *
+	   * @param {Object} [options]
+	   */
+
+	  var Router = (function () {
+	    function Router() {
+	      var _this = this;
+
+	      var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	      var _ref$hashbang = _ref.hashbang;
+	      var hashbang = _ref$hashbang === undefined ? true : _ref$hashbang;
+	      var _ref$abstract = _ref.abstract;
+	      var abstract = _ref$abstract === undefined ? false : _ref$abstract;
+	      var _ref$history = _ref.history;
+	      var history = _ref$history === undefined ? false : _ref$history;
+	      var _ref$saveScrollPosition = _ref.saveScrollPosition;
+	      var saveScrollPosition = _ref$saveScrollPosition === undefined ? false : _ref$saveScrollPosition;
+	      var _ref$transitionOnLoad = _ref.transitionOnLoad;
+	      var transitionOnLoad = _ref$transitionOnLoad === undefined ? false : _ref$transitionOnLoad;
+	      var _ref$suppressTransitionError = _ref.suppressTransitionError;
+	      var suppressTransitionError = _ref$suppressTransitionError === undefined ? false : _ref$suppressTransitionError;
+	      var _ref$root = _ref.root;
+	      var root = _ref$root === undefined ? null : _ref$root;
+	      var _ref$linkActiveClass = _ref.linkActiveClass;
+	      var linkActiveClass = _ref$linkActiveClass === undefined ? 'v-link-active' : _ref$linkActiveClass;
+	      babelHelpers.classCallCheck(this, Router);
+
+	      /* istanbul ignore if */
+	      if (!Router.installed) {
+	        throw new Error('Please install the Router with Vue.use() before ' + 'creating an instance.');
+	      }
+
+	      // Vue instances
+	      this.app = null;
+	      this._children = [];
+
+	      // route recognizer
+	      this._recognizer = new RouteRecognizer();
+	      this._guardRecognizer = new RouteRecognizer();
+
+	      // state
+	      this._started = false;
+	      this._startCb = null;
+	      this._currentRoute = {};
+	      this._currentTransition = null;
+	      this._previousTransition = null;
+	      this._notFoundHandler = null;
+	      this._notFoundRedirect = null;
+	      this._beforeEachHooks = [];
+	      this._afterEachHooks = [];
+
+	      // trigger transition on initial render?
+	      this._rendered = false;
+	      this._transitionOnLoad = transitionOnLoad;
+
+	      // history mode
+	      this._root = root;
+	      this._abstract = abstract;
+	      this._hashbang = hashbang;
+
+	      // check if HTML5 history is available
+	      var hasPushState = typeof window !== 'undefined' && window.history && window.history.pushState;
+	      this._history = history && hasPushState;
+	      this._historyFallback = history && !hasPushState;
+
+	      // create history object
+	      var inBrowser = Vue.util.inBrowser;
+	      this.mode = !inBrowser || this._abstract ? 'abstract' : this._history ? 'html5' : 'hash';
+
+	      var History = historyBackends[this.mode];
+	      this.history = new History({
+	        root: root,
+	        hashbang: this._hashbang,
+	        onChange: function onChange(path, state, anchor) {
+	          _this._match(path, state, anchor);
+	        }
+	      });
+
+	      // other options
+	      this._saveScrollPosition = saveScrollPosition;
+	      this._linkActiveClass = linkActiveClass;
+	      this._suppress = suppressTransitionError;
+	    }
+
+	    /**
+	     * Allow directly passing components to a route
+	     * definition.
+	     *
+	     * @param {String} path
+	     * @param {Object} handler
+	     */
+
+	    // API ===================================================
+
+	    /**
+	    * Register a map of top-level paths.
+	    *
+	    * @param {Object} map
+	    */
+
+	    Router.prototype.map = function map(_map) {
+	      for (var route in _map) {
+	        this.on(route, _map[route]);
+	      }
+	      return this;
+	    };
+
+	    /**
+	     * Register a single root-level path
+	     *
+	     * @param {String} rootPath
+	     * @param {Object} handler
+	     *                 - {String} component
+	     *                 - {Object} [subRoutes]
+	     *                 - {Boolean} [forceRefresh]
+	     *                 - {Function} [before]
+	     *                 - {Function} [after]
+	     */
+
+	    Router.prototype.on = function on(rootPath, handler) {
+	      if (rootPath === '*') {
+	        this._notFound(handler);
+	      } else {
+	        this._addRoute(rootPath, handler, []);
+	      }
+	      return this;
+	    };
+
+	    /**
+	     * Set redirects.
+	     *
+	     * @param {Object} map
+	     */
+
+	    Router.prototype.redirect = function redirect(map) {
+	      for (var path in map) {
+	        this._addRedirect(path, map[path]);
+	      }
+	      return this;
+	    };
+
+	    /**
+	     * Set aliases.
+	     *
+	     * @param {Object} map
+	     */
+
+	    Router.prototype.alias = function alias(map) {
+	      for (var path in map) {
+	        this._addAlias(path, map[path]);
+	      }
+	      return this;
+	    };
+
+	    /**
+	     * Set global before hook.
+	     *
+	     * @param {Function} fn
+	     */
+
+	    Router.prototype.beforeEach = function beforeEach(fn) {
+	      this._beforeEachHooks.push(fn);
+	      return this;
+	    };
+
+	    /**
+	     * Set global after hook.
+	     *
+	     * @param {Function} fn
+	     */
+
+	    Router.prototype.afterEach = function afterEach(fn) {
+	      this._afterEachHooks.push(fn);
+	      return this;
+	    };
+
+	    /**
+	     * Navigate to a given path.
+	     * The path can be an object describing a named path in
+	     * the format of { name: '...', params: {}, query: {}}
+	     * The path is assumed to be already decoded, and will
+	     * be resolved against root (if provided)
+	     *
+	     * @param {String|Object} path
+	     * @param {Boolean} [replace]
+	     */
+
+	    Router.prototype.go = function go(path) {
+	      var replace = false;
+	      var append = false;
+	      if (Vue.util.isObject(path)) {
+	        replace = path.replace;
+	        append = path.append;
+	      }
+	      path = this.stringifyPath(path);
+	      if (path) {
+	        this.history.go(path, replace, append);
+	      }
+	    };
+
+	    /**
+	     * Short hand for replacing current path
+	     *
+	     * @param {String} path
+	     */
+
+	    Router.prototype.replace = function replace(path) {
+	      if (typeof path === 'string') {
+	        path = { path: path };
+	      }
+	      path.replace = true;
+	      this.go(path);
+	    };
+
+	    /**
+	     * Start the router.
+	     *
+	     * @param {VueConstructor} App
+	     * @param {String|Element} container
+	     * @param {Function} [cb]
+	     */
+
+	    Router.prototype.start = function start(App, container, cb) {
+	      /* istanbul ignore if */
+	      if (this._started) {
+	        warn$1('already started.');
+	        return;
+	      }
+	      this._started = true;
+	      this._startCb = cb;
+	      if (!this.app) {
+	        /* istanbul ignore if */
+	        if (!App || !container) {
+	          throw new Error('Must start vue-router with a component and a ' + 'root container.');
+	        }
+	        /* istanbul ignore if */
+	        if (App instanceof Vue) {
+	          throw new Error('Must start vue-router with a component, not a ' + 'Vue instance.');
+	        }
+	        this._appContainer = container;
+	        var Ctor = this._appConstructor = typeof App === 'function' ? App : Vue.extend(App);
+	        // give it a name for better debugging
+	        Ctor.options.name = Ctor.options.name || 'RouterApp';
+	      }
+
+	      // handle history fallback in browsers that do not
+	      // support HTML5 history API
+	      if (this._historyFallback) {
+	        var _location = window.location;
+	        var _history = new HTML5History({ root: this._root });
+	        var path = _history.root ? _location.pathname.replace(_history.rootRE, '') : _location.pathname;
+	        if (path && path !== '/') {
+	          _location.assign((_history.root || '') + '/' + this.history.formatPath(path) + _location.search);
+	          return;
+	        }
+	      }
+
+	      this.history.start();
+	    };
+
+	    /**
+	     * Stop listening to route changes.
+	     */
+
+	    Router.prototype.stop = function stop() {
+	      this.history.stop();
+	      this._started = false;
+	    };
+
+	    /**
+	     * Normalize named route object / string paths into
+	     * a string.
+	     *
+	     * @param {Object|String|Number} path
+	     * @return {String}
+	     */
+
+	    Router.prototype.stringifyPath = function stringifyPath(path) {
+	      var generatedPath = '';
+	      if (path && typeof path === 'object') {
+	        if (path.name) {
+	          var extend = Vue.util.extend;
+	          var currentParams = this._currentTransition && this._currentTransition.to.params;
+	          var targetParams = path.params || {};
+	          var params = currentParams ? extend(extend({}, currentParams), targetParams) : targetParams;
+	          generatedPath = encodeURI(this._recognizer.generate(path.name, params));
+	        } else if (path.path) {
+	          generatedPath = encodeURI(path.path);
+	        }
+	        if (path.query) {
+	          // note: the generated query string is pre-URL-encoded by the recognizer
+	          var query = this._recognizer.generateQueryString(path.query);
+	          if (generatedPath.indexOf('?') > -1) {
+	            generatedPath += '&' + query.slice(1);
+	          } else {
+	            generatedPath += query;
+	          }
+	        }
+	      } else {
+	        generatedPath = encodeURI(path ? path + '' : '');
+	      }
+	      return generatedPath;
+	    };
+
+	    // Internal methods ======================================
+
+	    /**
+	    * Add a route containing a list of segments to the internal
+	    * route recognizer. Will be called recursively to add all
+	    * possible sub-routes.
+	    *
+	    * @param {String} path
+	    * @param {Object} handler
+	    * @param {Array} segments
+	    */
+
+	    Router.prototype._addRoute = function _addRoute(path, handler, segments) {
+	      guardComponent(path, handler);
+	      handler.path = path;
+	      handler.fullPath = (segments.reduce(function (path, segment) {
+	        return path + segment.path;
+	      }, '') + path).replace('//', '/');
+	      segments.push({
+	        path: path,
+	        handler: handler
+	      });
+	      this._recognizer.add(segments, {
+	        as: handler.name
+	      });
+	      // add sub routes
+	      if (handler.subRoutes) {
+	        for (var subPath in handler.subRoutes) {
+	          // recursively walk all sub routes
+	          this._addRoute(subPath, handler.subRoutes[subPath],
+	          // pass a copy in recursion to avoid mutating
+	          // across branches
+	          segments.slice());
+	        }
+	      }
+	    };
+
+	    /**
+	     * Set the notFound route handler.
+	     *
+	     * @param {Object} handler
+	     */
+
+	    Router.prototype._notFound = function _notFound(handler) {
+	      guardComponent('*', handler);
+	      this._notFoundHandler = [{ handler: handler }];
+	    };
+
+	    /**
+	     * Add a redirect record.
+	     *
+	     * @param {String} path
+	     * @param {String} redirectPath
+	     */
+
+	    Router.prototype._addRedirect = function _addRedirect(path, redirectPath) {
+	      if (path === '*') {
+	        this._notFoundRedirect = redirectPath;
+	      } else {
+	        this._addGuard(path, redirectPath, this.replace);
+	      }
+	    };
+
+	    /**
+	     * Add an alias record.
+	     *
+	     * @param {String} path
+	     * @param {String} aliasPath
+	     */
+
+	    Router.prototype._addAlias = function _addAlias(path, aliasPath) {
+	      this._addGuard(path, aliasPath, this._match);
+	    };
+
+	    /**
+	     * Add a path guard.
+	     *
+	     * @param {String} path
+	     * @param {String} mappedPath
+	     * @param {Function} handler
+	     */
+
+	    Router.prototype._addGuard = function _addGuard(path, mappedPath, _handler) {
+	      var _this2 = this;
+
+	      this._guardRecognizer.add([{
+	        path: path,
+	        handler: function handler(match, query) {
+	          var realPath = mapParams(mappedPath, match.params, query);
+	          _handler.call(_this2, realPath);
+	        }
+	      }]);
+	    };
+
+	    /**
+	     * Check if a path matches any redirect records.
+	     *
+	     * @param {String} path
+	     * @return {Boolean} - if true, will skip normal match.
+	     */
+
+	    Router.prototype._checkGuard = function _checkGuard(path) {
+	      var matched = this._guardRecognizer.recognize(path, true);
+	      if (matched) {
+	        matched[0].handler(matched[0], matched.queryParams);
+	        return true;
+	      } else if (this._notFoundRedirect) {
+	        matched = this._recognizer.recognize(path);
+	        if (!matched) {
+	          this.replace(this._notFoundRedirect);
+	          return true;
+	        }
+	      }
+	    };
+
+	    /**
+	     * Match a URL path and set the route context on vm,
+	     * triggering view updates.
+	     *
+	     * @param {String} path
+	     * @param {Object} [state]
+	     * @param {String} [anchor]
+	     */
+
+	    Router.prototype._match = function _match(path, state, anchor) {
+	      var _this3 = this;
+
+	      if (this._checkGuard(path)) {
+	        return;
+	      }
+
+	      var currentRoute = this._currentRoute;
+	      var currentTransition = this._currentTransition;
+
+	      if (currentTransition) {
+	        if (currentTransition.to.path === path) {
+	          // do nothing if we have an active transition going to the same path
+	          return;
+	        } else if (currentRoute.path === path) {
+	          // We are going to the same path, but we also have an ongoing but
+	          // not-yet-validated transition. Abort that transition and reset to
+	          // prev transition.
+	          currentTransition.aborted = true;
+	          this._currentTransition = this._prevTransition;
+	          return;
+	        } else {
+	          // going to a totally different path. abort ongoing transition.
+	          currentTransition.aborted = true;
+	        }
+	      }
+
+	      // construct new route and transition context
+	      var route = new Route(path, this);
+	      var transition = new RouteTransition(this, route, currentRoute);
+
+	      // current transition is updated right now.
+	      // however, current route will only be updated after the transition has
+	      // been validated.
+	      this._prevTransition = currentTransition;
+	      this._currentTransition = transition;
+
+	      if (!this.app) {
+	        (function () {
+	          // initial render
+	          var router = _this3;
+	          _this3.app = new _this3._appConstructor({
+	            el: _this3._appContainer,
+	            created: function created() {
+	              this.$router = router;
+	            },
+	            _meta: {
+	              $route: route
+	            }
+	          });
+	        })();
+	      }
+
+	      // check global before hook
+	      var beforeHooks = this._beforeEachHooks;
+	      var startTransition = function startTransition() {
+	        transition.start(function () {
+	          _this3._postTransition(route, state, anchor);
+	        });
+	      };
+
+	      if (beforeHooks.length) {
+	        transition.runQueue(beforeHooks, function (hook, _, next) {
+	          if (transition === _this3._currentTransition) {
+	            transition.callHook(hook, null, next, {
+	              expectBoolean: true
+	            });
+	          }
+	        }, startTransition);
+	      } else {
+	        startTransition();
+	      }
+
+	      if (!this._rendered && this._startCb) {
+	        this._startCb.call(null);
+	      }
+
+	      // HACK:
+	      // set rendered to true after the transition start, so
+	      // that components that are acitvated synchronously know
+	      // whether it is the initial render.
+	      this._rendered = true;
+	    };
+
+	    /**
+	     * Set current to the new transition.
+	     * This is called by the transition object when the
+	     * validation of a route has succeeded.
+	     *
+	     * @param {Transition} transition
+	     */
+
+	    Router.prototype._onTransitionValidated = function _onTransitionValidated(transition) {
+	      // set current route
+	      var route = this._currentRoute = transition.to;
+	      // update route context for all children
+	      if (this.app.$route !== route) {
+	        this.app.$route = route;
+	        this._children.forEach(function (child) {
+	          child.$route = route;
+	        });
+	      }
+	      // call global after hook
+	      if (this._afterEachHooks.length) {
+	        this._afterEachHooks.forEach(function (hook) {
+	          return hook.call(null, {
+	            to: transition.to,
+	            from: transition.from
+	          });
+	        });
+	      }
+	      this._currentTransition.done = true;
+	    };
+
+	    /**
+	     * Handle stuff after the transition.
+	     *
+	     * @param {Route} route
+	     * @param {Object} [state]
+	     * @param {String} [anchor]
+	     */
+
+	    Router.prototype._postTransition = function _postTransition(route, state, anchor) {
+	      // handle scroll positions
+	      // saved scroll positions take priority
+	      // then we check if the path has an anchor
+	      var pos = state && state.pos;
+	      if (pos && this._saveScrollPosition) {
+	        Vue.nextTick(function () {
+	          window.scrollTo(pos.x, pos.y);
+	        });
+	      } else if (anchor) {
+	        Vue.nextTick(function () {
+	          var el = document.getElementById(anchor.slice(1));
+	          if (el) {
+	            window.scrollTo(window.scrollX, el.offsetTop);
+	          }
+	        });
+	      }
+	    };
+
+	    return Router;
+	  })();
+
+	  function guardComponent(path, handler) {
+	    var comp = handler.component;
+	    if (Vue.util.isPlainObject(comp)) {
+	      comp = handler.component = Vue.extend(comp);
+	    }
+	    /* istanbul ignore if */
+	    if (typeof comp !== 'function') {
+	      handler.component = null;
+	      warn$1('invalid component for route "' + path + '".');
+	    }
+	  }
+
+	  /* Installation */
+
+	  Router.installed = false;
+
+	  /**
+	   * Installation interface.
+	   * Install the necessary directives.
+	   */
+
+	  Router.install = function (externalVue) {
+	    /* istanbul ignore if */
+	    if (Router.installed) {
+	      warn$1('already installed.');
+	      return;
+	    }
+	    Vue = externalVue;
+	    applyOverride(Vue);
+	    View(Vue);
+	    Link(Vue);
+	    exports$1.Vue = Vue;
+	    Router.installed = true;
+	  };
+
+	  // auto install
+	  /* istanbul ignore if */
+	  if (typeof window !== 'undefined' && window.Vue) {
+	    window.Vue.use(Router);
+	  }
+
+	  return Router;
+
+	}));
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(4)
-	__vue_template__ = __webpack_require__(8)
+	__webpack_require__(5)
+	__vue_script__ = __webpack_require__(9)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] phone\\vue\\App.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(10)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -10525,16 +13274,16 @@
 	})()}
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(5);
+	var content = __webpack_require__(6);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(7)(content, {});
+	var update = __webpack_require__(8)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -10551,21 +13300,21 @@
 	}
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(6)();
+	exports = module.exports = __webpack_require__(7)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.fonts{\n    font-size:2.5em;\n}\n.blue{\n    color:#35a3e2;\n}\n.green{\n    color:#1dc565;\n}\n.orange{\n    color:#ffa54e;\n}\n.red{\n    color:#fc6785;\n}\n.uinn-ahz{\n    padding:1em;\n}\n.uinn-top{\n    padding-top:0.5em;\n}\n.bc-white{\n    background:#fff;\n}\n", ""]);
+	exports.push([module.id, "\n.fonts{\n\tfont-size:2.5em;\n}\n.blue{\n\tcolor:#35a3e2;\n}\n.green{\n\tcolor:#1dc565;\n}\n.orange{\n\tcolor:#ffa54e;\n}\n.red{\n\tcolor:#fc6785;\n}\n.uinn-ahz{\n\tpadding:1em;\n}\n.uinn-top{\n\tpadding-top:0.5em;\n}\n.bc-white{\n\tbackground:#fff;\n}\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	/*
@@ -10621,7 +13370,7 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10843,16 +13592,332 @@
 
 
 /***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = "\n<div class=\"ub\" style=\"width:100%\">\n    <img style=\"width:100%\" src=\"" + __webpack_require__(9) + "\" />\n</div> \n<div class=\"ub ub-ver\">\n    <div class=\"ub-f1 ub bc-white\">\n        <div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\">\n            <div class=\"ub-f1 ub ub-pc\">\n                <span class=\"fa fa-hand-o-up fonts blue\"></span>\n            </div>\n            <div class=\"ub-f1 ub ub-pc uinn-top\">考勤</div>\n        </div>\n        <div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\">\n            <div class=\"ub-f1 ub ub-pc\">\n                <span class=\"fa fa-flag-o fonts green\"></span>\n            </div>\n            <div class=\"ub-f1 ub ub-pc uinn-top\">签到</div>\n        </div>\n        <div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\">\n            <div class=\"ub-f1 ub ub-pc\">\n                <span class=\"fa fa-users fonts orange\"></span>\n            </div>\n            <div class=\"ub-f1 ub ub-pc uinn-top\">团队足迹</div>\n        </div>\n    </div>\n    <div class=\"ub-f1 ub bc-white\">\n        <div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\">\n            <div class=\"ub-f1 ub ub-pc\">\n                <span class=\"fa fa-history fonts red\"></span>\n            </div>\n            <div class=\"ub-f1 ub ub-pc uinn-top\">考勤统计</div>\n        </div>\n        <div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n            <div class=\"ub-f1 ub ub-pc\"></div>\n            <div class=\"ub-f1 ub ub-pc\"></div>\n        </div>\n        <div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n            <div class=\"ub-f1 ub ub-pc\"></div>\n            <div class=\"ub-f1 ub ub-pc\"></div>\n        </div>\n    </div>\n</div>\n";
-
-/***/ },
 /* 9 */
 /***/ function(module, exports) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// 	<style>
+	// 		.fonts{
+	// 			font-size:2.5em;
+	// 		}
+	// 		.blue{
+	// 			color:#35a3e2;
+	// 		}
+	// 		.green{
+	// 			color:#1dc565;
+	// 		}
+	// 		.orange{
+	// 			color:#ffa54e;
+	// 		}
+	// 		.red{
+	// 			color:#fc6785;
+	// 		}
+	// 		.uinn-ahz{
+	// 			padding:1em;
+	// 		}
+	// 		.uinn-top{
+	// 			padding-top:0.5em;
+	// 		}
+	// 		.bc-white{
+	// 			background:#fff;
+	// 		}
+	// 	</style>
+	// 	<template>
+	// 		<div id="app>
+	// 			<div id="header" class="uh bc-text-head ub bc-head">
+	// 			<div class="nav-btn " id="nav-left"></div>
+	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
+	// 			<div class="nav-btn" id="nav-right">
+	// 			</div>
+	// 		</div>
+	// 		<div class="ub" style="width:100%">
+	// 			<img style="width:100%" src="../images/banner.jpg" />
+	// 		</div> 
+	// 		<div class="ub ub-ver">
+	// 			<div class="ub-f1 ub bc-white">
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb" v-link="{path:'/First'}">
+	// 					<div class="ub-f1 ub ub-pc">
+	// 						<span class="fa fa-hand-o-up fonts blue"></span>
+	// 					</div>
+	// 					<div class="ub-f1 ub ub-pc uinn-top">考勤</div>
+	// 				</div>
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb v-link="{path:'/Second'}">
+	// 					<div class="ub-f1 ub ub-pc">
+	// 						<span class="fa fa-flag-o fonts green"></span>
+	// 					</div>
+	// 					<div class="ub-f1 ub ub-pc uinn-top">签到</div>
+	// 				</div>
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb">
+	// 					<div class="ub-f1 ub ub-pc">
+	// 						<span class="fa fa-users fonts orange"></span>
+	// 					</div>
+	// 					<div class="ub-f1 ub ub-pc uinn-top">团队足迹</div>
+	// 				</div>
+	// 			</div>
+	// 			<div class="ub-f1 ub bc-white">
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border">
+	// 					<div class="ub-f1 ub ub-pc">
+	// 						<span class="fa fa-history fonts red"></span>
+	// 					</div>
+	// 					<div class="ub-f1 ub ub-pc uinn-top">考勤统计</div>
+	// 				</div>
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz">
+	// 					<div class="ub-f1 ub ub-pc"></div>
+	// 					<div class="ub-f1 ub ub-pc"></div>
+	// 				</div>
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz">
+	// 					<div class="ub-f1 ub ub-pc"></div>
+	// 					<div class="ub-f1 ub ub-pc"></div>
+	// 				</div>
+	// 			</div>
+	// 		</div>
+	// 		</div>
+	// 	</template> 
+	// 	<script>
+	exports.default = {
+		data: function data() {
+			return {};
+		},
+		methods: {
+			first: function first() {},
+			second: function second() {}
+		}
+	};
+	// </script>
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<div id=\"app>\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t<div class=\"nav-btn \" id=\"nav-left\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(11) + "\" />\n</div> \n<div class=\"ub ub-ver\">\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/First'}\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb v-link=\"{path:'/Second'}\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">签到</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-history fonts red\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t</div>\n</div>\n</div>\n";
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
 	module.exports = "data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QNnaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9IjhERDVBRDkyNDdFNkVENDc4RTI0MDQ0NUMzQjMxQkZBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVEMzQ3NTg2QjVEMzExRTZBRTA4RDMxQ0E5RTc0QTY4IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVEMzQ3NTg1QjVEMzExRTZBRTA4RDMxQ0E5RTc0QTY4IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjRCNTczNjJBNEIzMTFFNkE3QzU4MDFFNDhBQzA0OUEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjRCNTczNjNBNEIzMTFFNkE3QzU4MDFFNDhBQzA0OUEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+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"
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(13)
+	__vue_template__ = __webpack_require__(15)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-06efd9f8/First.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(14);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(8)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(7)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning{\n    background:#1cc5ea;\n}\n#afternoon{\n    background:#ffcc00;\n}\n#circles{\n    height:100%;\n    \n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports) {
+
+	module.exports = "\n    <div id=\"app>\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">�ֳ�����</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--��ť��ʼ-->\n\n                    <!--��ť����-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">����Ա</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>��</span>�ϰ�����</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">����</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub\"> <span>��</span>�ϰ�����</div> \n            <div class=\"ub ub-pc\">\n                <div class=\"circle\" id=\"afternoon\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">����</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>\n                </div>\n                \n            </div>\n\t</div>\n";
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(17)
+	__vue_script__ = __webpack_require__(19)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] phone\\vue\\components\\Second.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(20)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-06f5f348/Second.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(18);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(8)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(7)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning{\n    background:#1cc5ea;\n}\n#circles{\n    height:100%;\n    \n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// <template>
+	//     <div id="app">
+	// 		<div id="header" class="uh bc-text-head ub bc-head">
+	//                 <div class="nav-btn " id="nav-left"></div>
+	//                 <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
+	//                 <div class="nav-btn" id="nav-right">
+	//                     <!--按钮开始-->
+	//
+	//                     <!--按钮结束-->
+	//                 </div>
+	//             </div>
+	// 	<div class="ub">
+	//             <div class="ub-f1">管理员</div>
+	//             <div class="ub-f1 ub ub-pe"><input type="date" value="2016-12-16" /></div>
+	//         </div>
+	//         <div class="ub"> <span>签</span>签到打卡</div>       
+	//             <div class="ub ub-pc">              
+	//                 <div class="circle" id="morning">
+	//                     <div class="ub ub-ver" id="circles">
+	//                         <div class="ub-f1 ub ub-ae ub-pc">签到</div>
+	//                         <div class="ub-f1 ub ub-pc ub-ac">12:00</div> 
+	//                     </div>               
+	//                 </div>
+	//             </div>
+	// 	</div>        
+	//
+	// </template>
+	// <style>
+	//         .circle{
+	//             width:8em;
+	//             height:8em;
+	//             border-radius:50%;
+	//             color:#fff;
+	//         }
+	//         #morning{
+	//             background:#1cc5ea;
+	//         }
+	//         #circles{
+	//             height:100%;
+	//
+	//         }
+	//     </style>
+	// 	<script>
+	exports.default = {
+		data: function data() {
+			return {};
+		}
+	};
+	// </script>
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	module.exports = "\n    <div id=\"app\">\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">现场考勤</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--按钮开始-->\n\n                    <!--按钮结束-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>签</span>签到打卡</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">签到</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>\n\t</div>        \n            \n";
 
 /***/ }
 /******/ ]);
