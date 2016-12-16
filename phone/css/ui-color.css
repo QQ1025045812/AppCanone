@@ -1,7 +1,7 @@
 /*****************************************/
 /*基础header颜色*/
 .bc-head {
-    background-color: #00A1EA;
+    background-color: #FFF;
 }
 /*****************************************/
 /*基础body背景颜色*/
@@ -27,7 +27,7 @@
 }
 /*基础标题字体颜色*/
 .bc-text-head {
-    color: white;
+    color: #000;
 }
 /*辅助字体颜色*/
 .sc-text {

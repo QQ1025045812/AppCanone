@@ -7,7 +7,8 @@ module.exports={
 	module:{
 		loaders:[
 			{test:/\.vue$/,loader:'vue'},
-		    {test:/\.js$/,loader:'babel-loader',exclude:/node_modules/}
+		    {test:/\.js$/,loader:'babel-loader',exclude:/node_modules/},
+		    {test:/\.(png|jpg)$/,loader:'url-loader'}
 		]
 	},
 	babel:{
