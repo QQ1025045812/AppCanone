@@ -37,18 +37,18 @@
 		</div> 
 		<div class="ub ub-ver">
 			<div class="ub-f1 ub bc-white">
-				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb">
+				<a class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb" v-link="{path:'/components/First'}">
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-hand-o-up fonts blue"></span>
 					</div>
-					<div class="ub-f1 ub ub-pc uinn-top"><a v-link="{path:'/components/First'}">考勤</a></div>
-				</div>
-				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb>
+					<div class="ub-f1 ub ub-pc uinn-top">考勤</div>
+				</a>
+				<a class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb " v-link="{path:'/components/Second'}">
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-flag-o fonts green"></span>
 					</div>
-					<div class="ub-f1 ub ub-pc uinn-top"><a v-link="{path:'/components/Second'}">签到</a></div>
-				</div>
+					<div class="ub-f1 ub ub-pc uinn-top">签到</div>
+				</a>
 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb">
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-users fonts orange"></span>
