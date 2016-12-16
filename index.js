@@ -10,20 +10,14 @@ router.map({
 	'/App':{
 		component:App
 	},
-	'/First':{
+	'/components/First':{
 		component:First
 	},
-	'/Second':{
+	'/components/Second':{
 		component:Second
 	}
 })
 router.start(App,'#app')
 router.redirect({
 	'/':'/App'
-})
-new Vue({
-	el:'body',
-	components:{
-		app:App
-	}
 })

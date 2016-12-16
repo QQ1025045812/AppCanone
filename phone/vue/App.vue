@@ -25,7 +25,7 @@
 		}
 	</style>
 	<template>
-		<div id="app>
+		<div id="app">
 			<div id="header" class="uh bc-text-head ub bc-head">
 			<div class="nav-btn " id="nav-left"></div>
 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
@@ -37,17 +37,17 @@
 		</div> 
 		<div class="ub ub-ver">
 			<div class="ub-f1 ub bc-white">
-				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb" v-link="{path:'/First'}">
+				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb">
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-hand-o-up fonts blue"></span>
 					</div>
-					<div class="ub-f1 ub ub-pc uinn-top">考勤</div>
+					<div class="ub-f1 ub ub-pc uinn-top"><a v-link="{path:'/components/First'}">考勤</a></div>
 				</div>
-				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb v-link="{path:'/Second'}">
+				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb>
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-flag-o fonts green"></span>
 					</div>
-					<div class="ub-f1 ub ub-pc uinn-top">签到</div>
+					<div class="ub-f1 ub ub-pc uinn-top"><a v-link="{path:'/components/Second'}">签到</a></div>
 				</div>
 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb">
 					<div class="ub-f1 ub ub-pc">

@@ -75,22 +75,16 @@
 		'/App': {
 			component: _App2.default
 		},
-		'/First': {
+		'/components/First': {
 			component: _First2.default
 		},
-		'/Second': {
+		'/components/Second': {
 			component: _Second2.default
 		}
 	});
 	router.start(_App2.default, '#app');
 	router.redirect({
 		'/': '/App'
-	});
-	new _vue2.default({
-		el: 'body',
-		components: {
-			app: _App2.default
-		}
 	});
 
 /***/ },
@@ -13627,7 +13621,7 @@
 	// 		}
 	// 	</style>
 	// 	<template>
-	// 		<div id="app>
+	// 		<div id="app">
 	// 			<div id="header" class="uh bc-text-head ub bc-head">
 	// 			<div class="nav-btn " id="nav-left"></div>
 	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
@@ -13639,17 +13633,17 @@
 	// 		</div> 
 	// 		<div class="ub ub-ver">
 	// 			<div class="ub-f1 ub bc-white">
-	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb" v-link="{path:'/First'}">
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb">
 	// 					<div class="ub-f1 ub ub-pc">
 	// 						<span class="fa fa-hand-o-up fonts blue"></span>
 	// 					</div>
-	// 					<div class="ub-f1 ub ub-pc uinn-top">考勤</div>
+	// 					<div class="ub-f1 ub ub-pc uinn-top"><a v-link="{path:'/components/First'}">考勤</a></div>
 	// 				</div>
-	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb v-link="{path:'/Second'}">
+	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb>
 	// 					<div class="ub-f1 ub ub-pc">
 	// 						<span class="fa fa-flag-o fonts green"></span>
 	// 					</div>
-	// 					<div class="ub-f1 ub ub-pc uinn-top">签到</div>
+	// 					<div class="ub-f1 ub ub-pc uinn-top"><a v-link="{path:'/components/Second'}">签到</a></div>
 	// 				</div>
 	// 				<div class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb">
 	// 					<div class="ub-f1 ub ub-pc">
@@ -13693,7 +13687,7 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<div id=\"app>\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t<div class=\"nav-btn \" id=\"nav-left\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(11) + "\" />\n</div> \n<div class=\"ub ub-ver\">\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/First'}\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb v-link=\"{path:'/Second'}\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">签到</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-history fonts red\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t</div>\n</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<div id=\"app\">\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t<div class=\"nav-btn \" id=\"nav-left\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(11) + "\" />\n</div> \n<div class=\"ub ub-ver\">\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\"><a v-link=\"{path:'/components/First'}\">考勤</a></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb>\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\"><a v-link=\"{path:'/components/Second'}\">签到</a></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-history fonts red\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t</div>\n</div>\n</div>\n";
 
 /***/ },
 /* 11 */
@@ -13776,7 +13770,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = "\n    <div id=\"app>\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">�ֳ�����</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--��ť��ʼ-->\n\n                    <!--��ť����-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">����Ա</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>��</span>�ϰ�����</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">����</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub\"> <span>��</span>�ϰ�����</div> \n            <div class=\"ub ub-pc\">\n                <div class=\"circle\" id=\"afternoon\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">����</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>\n                </div>\n                \n            </div>\n\t</div>\n";
+	module.exports = "\n    <div id=\"app\">\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">�ֳ�����</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--��ť��ʼ-->\n\n                    <!--��ť����-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">����Ա</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>��</span>�ϰ�����</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">����</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub\"> <span>��</span>�ϰ�����</div> \n            <div class=\"ub ub-pc\">\n                <div class=\"circle\" id=\"afternoon\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">����</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>\n                </div>\n                \n            </div>\n\t</div>\n";
 
 /***/ },
 /* 16 */
