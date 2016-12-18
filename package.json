@@ -4,7 +4,7 @@
   "description": "vuedemo",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --port 8082"
+    "dev": "webpack-dev-server --content-base ./phone --inline --hot --port 8081"
   },
   "repository": {
     "type": "git",

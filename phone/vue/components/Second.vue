@@ -1,7 +1,7 @@
 <template>
 		<div id="header" class="uh bc-text-head ub bc-head">
                 <div class="nav-btn " id="nav-left"></div>
-                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
+                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">签到</h1>
                 <div class="nav-btn" id="nav-right">
                     <!--按钮开始-->
 

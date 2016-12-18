@@ -1,26 +1,32 @@
 <template>
-		<div id="header" class="uh bc-text-head ub bc-head">
-                <div class="nav-btn " id="nav-left"></div>
-                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">ÏÖ³¡¿¼ÇÚ</h1>
-                <div class="nav-btn" id="nav-right">
-                    <!--°´Å¥¿ªÊ¼-->
-
-                    <!--°´Å¥½áÊø-->
-                </div>
-            </div>
+	<div id="header" class="uh bc-text-head ub bc-head">
+			<div class="nav-btn " id="nav-left"></div>
+			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">è€ƒå‹¤</h1>
+			<div class="nav-btn" id="nav-right">
+			</div>
+	</div>
 	<div class="ub">
-            <div class="ub-f1">¹ÜÀíÔ±</div>
-            <div class="ub-f1 ub ub-pe"><input type="date" value="2016-12-16" /></div>
-        </div>
-        <div class="ub"> <span>Ç©</span>Ç©µ½´ò¿¨</div>       
-            <div class="ub ub-pc">              
-                <div class="circle" id="morning">
-                    <div class="ub ub-ver" id="circles">
-                        <div class="ub-f1 ub ub-ae ub-pc">Ç©µ½</div>
-                        <div class="ub-f1 ub ub-pc ub-ac">12:00</div> 
-                    </div>               
-                </div>
-            </div>                   
+		<div class="ub-f1">ç®¡ç†å‘˜</div>
+		<div class="ub-f1 ub ub-pe"><input type="date" value="2016-12-16" /></div>
+    </div>
+	<div class="ub"> <span>ä¸Š</span>ä¸Šç­æ‰“å¡</div>       
+		<div class="ub ub-pc">              
+			<div class="circle" id="morning">
+				<div class="ub ub-ver" id="circles">
+					<div class="ub-f1 ub ub-ae ub-pc">æ‰“å¡</div>
+					<div class="ub-f1 ub ub-pc ub-ac">12:00</div> 
+				</div>               
+			</div>
+		</div>
+		<div class="ub"> <span>ä¸Š</span>ä¸Šç­æ‰“å¡</div> 
+		<div class="ub ub-pc">
+			<div class="circle" id="afternoon">
+				<div class="ub ub-ver" id="circles">
+					<div class="ub-f1 ub ub-ae ub-pc">æ‰“å¡</div>
+					<div class="ub-f1 ub ub-pc ub-ac">12:00</div> 
+				</div>
+			</div>
+	</div>
 </template>
 <style>
         .circle{
@@ -32,17 +38,10 @@
         #morning{
             background:#1cc5ea;
         }
-        #circles{
-            height:100%;
-            
+        #afternoon{
+            background:#ffcc00;
         }
-    </style>
-	<script>
-		export default{
-			data:function(){
-				return {
-				
-				}
-			}
-		}
-	</script>
+        #circles{
+            height:100%;    
+        }
+</style>

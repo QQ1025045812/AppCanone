@@ -13237,7 +13237,7 @@
 
 	var _First2 = _interopRequireDefault(_First);
 
-	var _Second = __webpack_require__(18);
+	var _Second = __webpack_require__(17);
 
 	var _Second2 = _interopRequireDefault(_Second);
 
@@ -13724,12 +13724,7 @@
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
 	__webpack_require__(14)
-	__vue_script__ = __webpack_require__(16)
-	if (__vue_script__ &&
-	    __vue_script__.__esModule &&
-	    Object.keys(__vue_script__).length > 1) {
-	  console.warn("[vue-loader] phone\\vue\\components\\First.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(17)
+	__vue_template__ = __webpack_require__(16)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -13788,7 +13783,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning{\n    background:#1cc5ea;\n}\n#circles{\n    height:100%;\n    \n}\n", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning{\n    background:#1cc5ea;\n}\n#afternoon{\n    background:#ffcc00;\n}\n#circles{\n    height:100%;    \n}\n", ""]);
 
 	// exports
 
@@ -13797,77 +13792,21 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	// <template>
-	// 		<div id="header" class="uh bc-text-head ub bc-head">
-	//                 <div class="nav-btn " id="nav-left"></div>
-	//                 <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">�ֳ�����</h1>
-	//                 <div class="nav-btn" id="nav-right">
-	//                     <!--��ť��ʼ-->
-	//
-	//                     <!--��ť����-->
-	//                 </div>
-	//             </div>
-	// 	<div class="ub">
-	//             <div class="ub-f1">����Ա</div>
-	//             <div class="ub-f1 ub ub-pe"><input type="date" value="2016-12-16" /></div>
-	//         </div>
-	//         <div class="ub"> <span>ǩ</span>ǩ������</div>       
-	//             <div class="ub ub-pc">              
-	//                 <div class="circle" id="morning">
-	//                     <div class="ub ub-ver" id="circles">
-	//                         <div class="ub-f1 ub ub-ae ub-pc">ǩ��</div>
-	//                         <div class="ub-f1 ub ub-pc ub-ac">12:00</div> 
-	//                     </div>               
-	//                 </div>
-	//             </div>                   
-	// </template>
-	// <style>
-	//         .circle{
-	//             width:8em;
-	//             height:8em;
-	//             border-radius:50%;
-	//             color:#fff;
-	//         }
-	//         #morning{
-	//             background:#1cc5ea;
-	//         }
-	//         #circles{
-	//             height:100%;
-	//
-	//         }
-	//     </style>
-	// 	<script>
-	exports.default = {
-		data: function data() {
-			return {};
-		}
-	};
-	// </script>
+	module.exports = "\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\"></div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub\">\n\t\t<div class=\"ub-f1\">管理员</div>\n\t\t<div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n    </div>\n\t<div class=\"ub\"> <span>上</span>上班打卡</div>       \n\t\t<div class=\"ub ub-pc\">              \n\t\t\t<div class=\"circle\" id=\"morning\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n\t\t\t\t</div>               \n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"ub\"> <span>上</span>上班打卡</div> \n\t\t<div class=\"ub ub-pc\">\n\t\t\t<div class=\"circle\" id=\"afternoon\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n";
 
 /***/ },
 /* 17 */
-/***/ function(module, exports) {
-
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">�ֳ�����</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--��ť��ʼ-->\n\n                    <!--��ť����-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">����Ա</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>ǩ</span>ǩ������</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">ǩ��</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>                   \n";
-
-/***/ },
-/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(19)
-	__vue_script__ = __webpack_require__(21)
+	__webpack_require__(18)
+	__vue_script__ = __webpack_require__(20)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] phone\\vue\\components\\Second.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(22)
+	__vue_template__ = __webpack_require__(21)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -13892,13 +13831,13 @@
 	})()}
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(20);
+	var content = __webpack_require__(19);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(9)(content, {});
@@ -13918,7 +13857,7 @@
 	}
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(8)();
@@ -13932,7 +13871,7 @@
 
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13943,7 +13882,7 @@
 	// <template>
 	// 		<div id="header" class="uh bc-text-head ub bc-head">
 	//                 <div class="nav-btn " id="nav-left"></div>
-	//                 <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
+	//                 <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">签到</h1>
 	//                 <div class="nav-btn" id="nav-right">
 	//                     <!--按钮开始-->
 	//
@@ -13988,10 +13927,10 @@
 	// </script>
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">现场考勤</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--按钮开始-->\n\n                    <!--按钮结束-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>签</span>签到打卡</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">签到</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>                   \n";
+	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\"></div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                    <!--按钮开始-->\n\n                    <!--按钮结束-->\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" value=\"2016-12-16\" /></div>\n        </div>\n        <div class=\"ub\"> <span>签</span>签到打卡</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">签到</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">12:00</div> \n                    </div>               \n                </div>\n            </div>                   \n";
 
 /***/ }
 /******/ ]);
