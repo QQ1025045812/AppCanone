@@ -72,7 +72,7 @@
 				}
 			},
 			ready:function(){
-				setInterval(this.secondsChange(),1000);
+				setInterval(this.secondsChange,1000);
 			}
 		}
 	</script>

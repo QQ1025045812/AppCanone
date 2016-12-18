@@ -13821,7 +13821,7 @@
 	// 			<div class="circle" id="morning">
 	// 				<div class="ub ub-ver" id="circles">
 	// 					<div class="ub-f1 ub ub-ae ub-pc">打卡</div>
-	// 					<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
+	// 					<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div>
 	// 				</div>               
 	// 			</div>
 	// 		</div>
@@ -13888,7 +13888,7 @@
 			}
 		},
 		ready: function ready() {
-			setInterval(this.secondsChange(), 1000);
+			setInterval(this.secondsChange, 1000);
 		}
 	};
 	// </script>
@@ -13897,7 +13897,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub\">\n\t\t<div class=\"ub-f1\">管理员</div>\n\t\t<div class=\"ub-f1 ub ub-pe\"><input type=\"date\" v-bind:value=\"days\" v-model=\"days\" /></div>\n    </div>\n\n\t<div class=\"ub\"> <span>上</span>上班打卡</div>       \n\t\t<div class=\"ub ub-pc\">              \n\t\t\t<div class=\"circle\" id=\"morning\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div> \n\t\t\t\t</div>               \n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"ub\"> <span>上</span>上班打卡</div> \n\t\t<div class=\"ub ub-pc\">\n\t\t\t<div class=\"circle\" id=\"afternoon\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div> \n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n";
+	module.exports = "\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub\">\n\t\t<div class=\"ub-f1\">管理员</div>\n\t\t<div class=\"ub-f1 ub ub-pe\"><input type=\"date\" v-bind:value=\"days\" v-model=\"days\" /></div>\n    </div>\n\n\t<div class=\"ub\"> <span>上</span>上班打卡</div>       \n\t\t<div class=\"ub ub-pc\">              \n\t\t\t<div class=\"circle\" id=\"morning\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div>\n\t\t\t\t</div>               \n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"ub\"> <span>上</span>上班打卡</div> \n\t\t<div class=\"ub ub-pc\">\n\t\t\t<div class=\"circle\" id=\"afternoon\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div> \n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n";
 
 /***/ },
 /* 18 */
@@ -14058,7 +14058,7 @@
 			}
 		},
 		ready: function ready() {
-			setInterval(this.secondsChange(), 1000);
+			setInterval(this.secondsChange, 1000);
 		}
 	};
 	// </script>

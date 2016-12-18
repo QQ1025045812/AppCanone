@@ -17,7 +17,7 @@
 			<div class="circle" id="morning">
 				<div class="ub ub-ver" id="circles">
 					<div class="ub-f1 ub ub-ae ub-pc">打卡</div>
-					<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
+					<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div>
 				</div>               
 			</div>
 		</div>
@@ -84,7 +84,7 @@
 			}
 		},
 		ready:function(){
-			setInterval(this.secondsChange(),1000);	
+			setInterval(this.secondsChange,1000);	
 			}
 	}
 </script>
