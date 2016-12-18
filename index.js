@@ -22,3 +22,4 @@ router.start(App,'#app')
 router.redirect({
 	'/':'/App'
 })
+///
