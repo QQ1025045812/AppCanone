@@ -1,5 +1,4 @@
 <template>
-    <div id="app">
 		<div id="header" class="uh bc-text-head ub bc-head">
                 <div class="nav-btn " id="nav-left"></div>
                 <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
@@ -21,9 +20,7 @@
                         <div class="ub-f1 ub ub-pc ub-ac">12:00</div> 
                     </div>               
                 </div>
-            </div>
-	</div>        
-            
+            </div>                   
 </template>
 <style>
         .circle{
