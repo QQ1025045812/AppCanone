@@ -14,3 +14,4 @@ router.go({"path":"/"});
 router.redirect({
 	'/':'/App'
 })
+///
