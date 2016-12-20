@@ -1,4 +1,4 @@
-	<style>
+	<style scoped>
 		.fonts{
 			font-size:2.5em;
 		}

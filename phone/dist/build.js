@@ -61,10 +61,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_vue2.default.use(_vueRouter2.default);
-	//import App from './phone/vue/App.vue'
-	//import First from './phone/vue/components/First.vue'
-	//import Second from './phone/vue/components/Second.vue'
-
 	var App = _vue2.default.extend({});
 	//配置路由
 	var router = new _vueRouter2.default();
@@ -13307,8 +13303,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e6ec5b40&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e6ec5b40&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13326,7 +13322,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.fonts{\n\tfont-size:2.5em;\n}\n.blue{\n\tcolor:#35a3e2;\n}\n.green{\n\tcolor:#1dc565;\n}\n.orange{\n\tcolor:#ffa54e;\n}\n.red{\n\tcolor:#fc6785;\n}\n.uinn-ahz{\n\tpadding:1em;\n}\n.uinn-top{\n\tpadding-top:0.5em;\n}\n.bc-white{\n\tbackground:#fff;\n}\n", ""]);
+	exports.push([module.id, "\n.fonts[_v-e6ec5b40]{\n\tfont-size:2.5em;\n}\n.blue[_v-e6ec5b40]{\n\tcolor:#35a3e2;\n}\n.green[_v-e6ec5b40]{\n\tcolor:#1dc565;\n}\n.orange[_v-e6ec5b40]{\n\tcolor:#ffa54e;\n}\n.red[_v-e6ec5b40]{\n\tcolor:#fc6785;\n}\n.uinn-ahz[_v-e6ec5b40]{\n\tpadding:1em;\n}\n.uinn-top[_v-e6ec5b40]{\n\tpadding-top:0.5em;\n}\n.bc-white[_v-e6ec5b40]{\n\tbackground:#fff;\n}\n", ""]);
 
 	// exports
 
@@ -13618,7 +13614,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	// 	<style>
+	// 	<style scoped>
 	// 		.fonts{
 	// 			font-size:2.5em;
 	// 		}
@@ -13709,7 +13705,7 @@
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t<div class=\"nav-btn \" id=\"nav-left\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" />\n</div> \n<div class=\"ub ub-ver\">\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/components/First'}\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/components/Second'}\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\">\n\t\t\t\t<span class=\"fa fa-history fonts red\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\" _v-e6ec5b40=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-e6ec5b40=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-e6ec5b40=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-e6ec5b40=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-e6ec5b40=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-e6ec5b40=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-e6ec5b40=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/components/First'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/components/Second'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -13769,8 +13765,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-75cf38fb&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-75cf38fb&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13788,7 +13784,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning{\n    background:#1cc5ea;\n}\n#afternoon{\n    background:#ffcc00;\n}\n#circles{\n    height:100%;    \n}\n", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle[_v-75cf38fb]{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning[_v-75cf38fb]{\n    background:#1cc5ea;\n}\n#afternoon[_v-75cf38fb]{\n    background:#ffcc00;\n}\n#circles[_v-75cf38fb]{\n    height:100%;    \n}\n", ""]);
 
 	// exports
 
@@ -13835,7 +13831,7 @@
 	// 			</div>
 	// 	</div>
 	// </template>
-	// <style>
+	// <style scoped>
 	//         .circle{
 	//             width:8em;
 	//             height:8em;
@@ -13897,7 +13893,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub\">\n\t\t<div class=\"ub-f1\">管理员</div>\n\t\t<div class=\"ub-f1 ub ub-pe\"><input type=\"date\" v-bind:value=\"days\" v-model=\"days\" /></div>\n    </div>\n\n\t<div class=\"ub\"> <span>上</span>上班打卡</div>       \n\t\t<div class=\"ub ub-pc\">              \n\t\t\t<div class=\"circle\" id=\"morning\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div>\n\t\t\t\t</div>               \n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"ub\"> <span>上</span>上班打卡</div> \n\t\t<div class=\"ub ub-pc\">\n\t\t\t<div class=\"circle\" id=\"afternoon\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div> \n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n";
+	module.exports = "\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-75cf38fb=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-75cf38fb=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-75cf38fb=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub\" _v-75cf38fb=\"\">\n\t\t<div class=\"ub-f1\" _v-75cf38fb=\"\">管理员</div>\n\t\t<div class=\"ub-f1 ub ub-pe\" _v-75cf38fb=\"\"><input type=\"date\" v-bind:value=\"days\" v-model=\"days\" _v-75cf38fb=\"\"></div>\n    </div>\n\n\t<div class=\"ub\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div>       \n\t\t<div class=\"ub ub-pc\" _v-75cf38fb=\"\">              \n\t\t\t<div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div>\n\t\t\t\t</div>               \n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"ub\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div> \n\t\t<div class=\"ub ub-pc\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"circle\" id=\"afternoon\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n\t\t\t\t</div>\n\t\t\t</div>\n\t</div>\n";
 
 /***/ },
 /* 18 */
@@ -13951,8 +13947,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-699187b9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-699187b9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13970,7 +13966,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning{\n    background:#1cc5ea;\n}\n#circles{\n    height:100%;\n    \n}\n", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.circle[_v-699187b9]{\n    width:8em;\n    height:8em;\n    border-radius:50%;\n    color:#fff;\n}\n#morning[_v-699187b9]{\n    background:#1cc5ea;\n}\n#circles[_v-699187b9]{\n    height:100%;\n    \n}\n", ""]);
 
 	// exports
 
@@ -14007,7 +14003,7 @@
 	//                 </div>
 	//             </div>                   
 	// </template>
-	// <style>
+	// <style scoped>
 	//         .circle{
 	//             width:8em;
 	//             height:8em;
@@ -14067,7 +14063,7 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\">\n                <div class=\"nav-btn \" id=\"nav-left\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\">\n                </div>\n            </div>\n\t<div class=\"ub\">\n            <div class=\"ub-f1\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\"><input type=\"date\" v-bind:value=\"days\" v-model=\"days\"/></div>\n        </div>\n        <div class=\"ub\"> <span>签</span>签到打卡</div>       \n            <div class=\"ub ub-pc\">              \n                <div class=\"circle\" id=\"morning\">\n                    <div class=\"ub ub-ver\" id=\"circles\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\">签到</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>                   \n";
+	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub bc-head\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub\" _v-699187b9=\"\">\n            <div class=\"ub-f1\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\"><input type=\"date\" v-bind:value=\"days\" v-model=\"days\" _v-699187b9=\"\"></div>\n        </div>\n        <div class=\"ub\" _v-699187b9=\"\"> <span _v-699187b9=\"\">签</span>签到打卡</div>       \n            <div class=\"ub ub-pc\" _v-699187b9=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-699187b9=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">签到</div>\n                        <div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>                   \n";
 
 /***/ }
 /******/ ]);

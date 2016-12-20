@@ -21,7 +21,7 @@
                 </div>
             </div>                   
 </template>
-<style>
+<style scoped>
         .circle{
             width:8em;
             height:8em;
