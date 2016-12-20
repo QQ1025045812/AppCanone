@@ -43,8 +43,8 @@
                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
             </div>
         </div>
-        <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
-            <div class="ub ub-pc uinn white">              
+        <div class="ub umar-t uinn white"> <span>上</span>上班打卡</div>       
+            <div class="ub ub-pc uinn white" v-on:click="add()">              
                 <div class="circle" id="morning">
                     <div class="ub ub-ver" id="circles">
                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -52,7 +52,7 @@
                     </div>               
                 </div>
             </div>
-            <div class="ub uinn wmar-t"> <span>上</span>上班打卡</div> 
+            <div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
             <div class="ub ub-pc uinn white">
                 <div class="circle" id="afternoon">
                     <div class="ub ub-ver" id="circles">
@@ -94,6 +94,10 @@
 				var result =hour+':'+minute+':'+second;
 				return result;
 			},
+			add:function(){
+					var self=this;
+					self.$route.router.go('/components/First2')
+				},
 			secondsChange:function(){
 				this.seconds=this.getSeconds();
 			}

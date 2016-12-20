@@ -65,7 +65,7 @@
 	//配置路由
 	var router = new _vueRouter2.default();
 	router.map(_routerConfig2.default);
-	router.start(App, '#app');
+	router.start(App, '#page_0');
 	router.go({ "path": "/" });
 	router.redirect({
 		'/': '/App'
@@ -13237,6 +13237,14 @@
 
 	var _Second2 = _interopRequireDefault(_Second);
 
+	var _First3 = __webpack_require__(23);
+
+	var _First4 = _interopRequireDefault(_First3);
+
+	var _Second3 = __webpack_require__(28);
+
+	var _Second4 = _interopRequireDefault(_Second3);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
@@ -13248,6 +13256,12 @@
 		},
 		'/components/Second': {
 			component: _Second2.default
+		},
+		'/components/First2': {
+			component: _First4.default
+		},
+		'/components/Second2': {
+			component: _Second4.default
 		}
 	};
 
@@ -13322,7 +13336,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.fonts[_v-e6ec5b40]{\n\tfont-size:2.5em;\n}\n.blue[_v-e6ec5b40]{\n\tcolor:#35a3e2;\n}\n.green[_v-e6ec5b40]{\n\tcolor:#1dc565;\n}\n.orange[_v-e6ec5b40]{\n\tcolor:#ffa54e;\n}\n.red[_v-e6ec5b40]{\n\tcolor:#fc6785;\n}\n.uinn-ahz[_v-e6ec5b40]{\n\tpadding:1em;\n}\n.uinn-top[_v-e6ec5b40]{\n\tpadding-top:0.5em;\n}\n.bc-white[_v-e6ec5b40]{\n\tbackground:#fff;\n}\n.head[_v-e6ec5b40]{\n\tbackground:#f6fdff;\n}\n", ""]);
+	exports.push([module.id, "\n.fonts[_v-e6ec5b40]{\n\tfont-size:2.5em;\n}\n.blue[_v-e6ec5b40]{\n\tcolor:#35a3e2;\n}\n.green[_v-e6ec5b40]{\n\tcolor:#1dc565;\n}\n.orange[_v-e6ec5b40]{\n\tcolor:#ffa54e;\n}\n.red[_v-e6ec5b40]{\n\tcolor:#fc6785;\n}\n.uinn-ahz[_v-e6ec5b40]{\n\tpadding:1em;\n}\n.uinn-top[_v-e6ec5b40]{\n\tpadding-top:0.5em;\n}\n.bc-white[_v-e6ec5b40]{\n\tbackground:#fff;\n}\n.head[_v-e6ec5b40]{\n\tbackground:#f6fdff;\n}\n\n", ""]);
 
 	// exports
 
@@ -13642,9 +13656,10 @@
 	// 		.head{
 	// 			background:#f6fdff;
 	// 		}
+	//
 	// 	</style>
 	// 	<template>
-	// 			<div id="header" class="uh bc-text-head ub .bc-white">
+	// 			<div id="header" class="uh bc-text-head ub bc-white">
 	// 			<div class="nav-btn " id="nav-left"></div>
 	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
 	// 			<div class="nav-btn" id="nav-right">
@@ -13708,7 +13723,7 @@
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub .bc-white\" _v-e6ec5b40=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-e6ec5b40=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-e6ec5b40=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-e6ec5b40=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-e6ec5b40=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-e6ec5b40=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-e6ec5b40=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/components/First'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/components/Second'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-white\" _v-e6ec5b40=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-e6ec5b40=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-e6ec5b40=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-e6ec5b40=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-e6ec5b40=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-e6ec5b40=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-e6ec5b40=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/components/First'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/components/Second'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -13846,8 +13861,8 @@
 	//                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
 	//             </div>
 	//         </div>
-	//         <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
-	//             <div class="ub ub-pc uinn white">              
+	//         <div class="ub umar-t uinn white"> <span>上</span>上班打卡</div>       
+	//             <div class="ub ub-pc uinn white" v-on:click="add()">              
 	//                 <div class="circle" id="morning">
 	//                     <div class="ub ub-ver" id="circles">
 	//                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -13855,7 +13870,7 @@
 	//                     </div>               
 	//                 </div>
 	//             </div>
-	//             <div class="ub uinn wmar-t"> <span>上</span>上班打卡</div> 
+	//             <div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
 	//             <div class="ub ub-pc uinn white">
 	//                 <div class="circle" id="afternoon">
 	//                     <div class="ub ub-ver" id="circles">
@@ -13897,6 +13912,10 @@
 				var result = hour + ':' + minute + ':' + second;
 				return result;
 			},
+			add: function add() {
+				var self = this;
+				self.$route.router.go('/components/First2');
+			},
 			secondsChange: function secondsChange() {
 				this.seconds = this.getSeconds();
 			}
@@ -13911,7 +13930,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-75cf38fb=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-75cf38fb=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-75cf38fb=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-75cf38fb=\"\">\n            <div class=\"ub-f3\" _v-75cf38fb=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-75cf38fb=\"\">\n                <div class=\"uba gray\" _v-75cf38fb=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-75cf38fb=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc uinn white\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub uinn wmar-t\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div> \n            <div class=\"ub ub-pc uinn white\" _v-75cf38fb=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-75cf38fb=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-75cf38fb=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-75cf38fb=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-75cf38fb=\"\">\n            <div class=\"ub-f3\" _v-75cf38fb=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-75cf38fb=\"\">\n                <div class=\"uba gray\" _v-75cf38fb=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-75cf38fb=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc uinn white\" v-on:click=\"add()\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub uinn umar-t white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">下</span>下班打卡</div> \n            <div class=\"ub ub-pc uinn white\" _v-75cf38fb=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n";
 
 /***/ },
 /* 18 */
@@ -13984,7 +14003,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t.head[_v-699187b9]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .circle[_v-699187b9]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-699187b9]{\n            background:#1cc5ea;\n        }\n        #circles[_v-699187b9]{\n            height:100%;\n            \n        }\n\t\t.white[_v-699187b9]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-699187b9]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-699187b9]{\n\t\t\tcolor:#ccc;\n\t\t}\n    ", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t.head[_v-699187b9]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .circle[_v-699187b9]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-699187b9]{\n            background:#1cc5ea;\n        }\n        #circles[_v-699187b9]{\n            height:100%;\n            \n        }\n\t\t.white[_v-699187b9]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-699187b9]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-699187b9]{\n\t\t\tcolor:#ccc;\n\t\t}\n    ", ""]);
 
 	// exports
 
@@ -14013,9 +14032,9 @@
 	//                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
 	//             </div>
 	//         </div>
-	//         <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
+	//         <div class="ub umar-t uinn white"> <span>上</span>上班打卡</div>       
 	//             <div class="ub ub-pc head uinn white">              
-	//                 <div class="circle" id="morning">
+	//                 <div class="circle" id="morning" v-on:click="add()">
 	//                     <div class="ub ub-ver" id="circles">
 	//                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
 	// 						<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
@@ -14024,6 +14043,7 @@
 	//             </div>                   
 	// </template>
 	// <style scoped>
+	//
 	// 		.head{
 	// 			background:#f6fdff;
 	// 		}
@@ -14081,6 +14101,10 @@
 				var result = hour + ':' + minute + ':' + second;
 				return result;
 			},
+			add: function add() {
+				var self = this;
+				self.$route.router.go('/components/Second2');
+			},
 			secondsChange: function secondsChange() {
 				this.seconds = this.getSeconds();
 			}
@@ -14095,7 +14119,304 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn\" _v-699187b9=\"\"> <span _v-699187b9=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc head uinn white\" _v-699187b9=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-699187b9=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>                   \n";
+	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn white\" _v-699187b9=\"\"> <span _v-699187b9=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc head uinn white\" _v-699187b9=\"\">              \n                <div class=\"circle\" id=\"morning\" v-on:click=\"add()\" _v-699187b9=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>                   \n";
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(24)
+	__vue_script__ = __webpack_require__(26)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] phone\\vue\\components\\First2.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(27)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-442f8fc7/First2.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(25);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-442f8fc7&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First2.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-442f8fc7&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First2.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n    .white[_v-442f8fc7]{\n        background:#fff;\n    }\n    .gray[_v-442f8fc7]{\n        color:#aaa;\n    }\n    .head[_v-442f8fc7]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .position-bottom[_v-442f8fc7]{\n            position:absolute;\n            bottom:0;\n            left:0;\n        }\n        \n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// <style scoped>
+	//     .white{
+	//         background:#fff;
+	//     }
+	//     .gray{
+	//         color:#aaa;
+	//     }
+	//     .head{
+	// 			background:#f6fdff;
+	// 		}
+	//         .position-bottom{
+	//             position:absolute;
+	//             bottom:0;
+	//             left:0;
+	//         }
+	//
+	// </style>
+	// <template>
+	//     <div id="header" class="uh bc-text-head ub white">
+	// 			<div class="nav-btn " id="nav-left">
+	// 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
+	// 			</div>
+	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">上班打卡</h1>
+	// 			<div class="nav-btn" id="nav-right">
+	// 			</div>
+	// 	</div
+	//     <div class="ub uinn white umar-t">
+	//             <span class="gray">打卡时间：</span><span>12:00</span>
+	//         </div>
+	//         <div class="ub uinn header umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
+	//         <div class="ub uinn white umar-t">
+	//             <span class="gray">打卡地点：</span>
+	//             <span>广东省珠海市香洲区翠微西路8号</span>
+	//         </div>
+	//         <div class="uba bc-border uinput ub ub-f1 header umar-t">
+	//     <textarea placeholder="备注....." type="text" class="ub-f1"></textarea>
+	// </div>
+	// <div class="ub ubt uh ub-ver header gray position-bottom">
+	//     <div class="ub-f1 tx-c uinn gray">
+	//         <span class="fa fa-send-o"></span>
+	//     </div>
+	//     <div class="ub-f1 tx-c">提交</div>
+	// </div>
+	// </template>
+	// <script>
+	exports.default = {
+	    data: function data() {},
+	    methods: {
+	        history: function history() {
+	            window.history.go(-1);
+	        }
+	    }
+	};
+	// </script>
+
+/***/ },
+/* 27 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-442f8fc7=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-442f8fc7=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-442f8fc7=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-442f8fc7=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-442f8fc7=\"\">\n\t\t\t</div>\n\t</div>\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡时间：</span><span _v-442f8fc7=\"\">12:00</span>\n        \n        <div class=\"ub uinn header umar-t\" _v-442f8fc7=\"\"><span class=\"gray\" _v-442f8fc7=\"\">项目名称：</span><span _v-442f8fc7=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\">\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡地点：</span>\n            <span _v-442f8fc7=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 header umar-t\" _v-442f8fc7=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1\" _v-442f8fc7=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver header gray position-bottom\" _v-442f8fc7=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-442f8fc7=\"\">\n        <span class=\"fa fa-send-o\" _v-442f8fc7=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-442f8fc7=\"\">提交</div>\n</div>\n";
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__webpack_require__(29)
+	__vue_script__ = __webpack_require__(31)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] phone\\vue\\components\\Second2.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(32)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-6e91ce6e/Second2.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(30);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(9)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6e91ce6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second2.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6e91ce6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second2.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(8)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n    .white[_v-6e91ce6e]{\n        background:#fff;\n    }\n    .gray[_v-6e91ce6e]{\n        color:#aaa;\n    }\n    .head[_v-6e91ce6e]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .position-bottom[_v-6e91ce6e]{\n            position:absolute;\n            bottom:0;\n            left:0;\n        }\n        .min-height[_v-6e91ce6e]{\n            height:3em;\n        }\n        \n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	// <style scoped>
+	//     .white{
+	//         background:#fff;
+	//     }
+	//     .gray{
+	//         color:#aaa;
+	//     }
+	//     .head{
+	// 			background:#f6fdff;
+	// 		}
+	//         .position-bottom{
+	//             position:absolute;
+	//             bottom:0;
+	//             left:0;
+	//         }
+	//         .min-height{
+	//             height:3em;
+	//         }
+	//
+	// </style>
+	// <template>
+	//     <div id="header" class="uh bc-text-head ub white">
+	// 			<div class="nav-btn " id="nav-left">
+	// 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
+	// 			</div>
+	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">签到</h1>
+	// 			<div class="nav-btn" id="nav-right">
+	// 			</div>
+	//     </div>
+	//     <div class="ub uinn white umar-t">
+	//             <span class="gray">打卡时间：</span><span>12:00</span>
+	//         </div>
+	//         <div class="ub uinn white umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
+	//         <div class="ub uinn white umar-t">
+	//             <span class="gray">打卡地点：</span>
+	//             <span>广东省珠海市香洲区翠微西路8号</span>
+	//         </div>
+	//         <div class="uba bc-border uinput ub ub-f1 white umar-t min-height">
+	//     <textarea placeholder="备注....." type="text" class="min-height"></textarea>
+	// </div>
+	// <div class="ub ubt uh ub-ver white gray position-bottom">
+	//     <div class="ub-f1 tx-c uinn gray">
+	//         <span class="fa fa-send-o"></span>
+	//     </div>
+	//     <div class="ub-f1 tx-c">提交</div>
+	// </div>
+	// </template>
+	// <script>
+	exports.default = {
+	    data: function data() {
+	        return {};
+	    },
+	    methods: {
+	        history: function history() {
+	            window.history.go(-1);
+	        }
+	    }
+	};
+	// </script>
+
+/***/ },
+/* 32 */
+/***/ function(module, exports) {
+
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6e91ce6e=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6e91ce6e=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6e91ce6e=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6e91ce6e=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6e91ce6e=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡时间：</span><span _v-6e91ce6e=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\"><span class=\"gray\" _v-6e91ce6e=\"\">项目名称：</span><span _v-6e91ce6e=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡地点：</span>\n            <span _v-6e91ce6e=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 white umar-t min-height\" _v-6e91ce6e=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"min-height\" _v-6e91ce6e=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" _v-6e91ce6e=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-6e91ce6e=\"\">\n        <span class=\"fa fa-send-o\" _v-6e91ce6e=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-6e91ce6e=\"\">提交</div>\n</div>\n";
 
 /***/ }
 /******/ ]);
