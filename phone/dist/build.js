@@ -13644,7 +13644,7 @@
 	// 		}
 	// 	</style>
 	// 	<template>
-	// 			<div id="header" class="uh bc-text-head ub head">
+	// 			<div id="header" class="uh bc-text-head ub .bc-white">
 	// 			<div class="nav-btn " id="nav-left"></div>
 	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">现场考勤</h1>
 	// 			<div class="nav-btn" id="nav-right">
@@ -13708,7 +13708,7 @@
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub head\" _v-e6ec5b40=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-e6ec5b40=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-e6ec5b40=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-e6ec5b40=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-e6ec5b40=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-e6ec5b40=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-e6ec5b40=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/components/First'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/components/Second'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub .bc-white\" _v-e6ec5b40=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-e6ec5b40=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-e6ec5b40=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-e6ec5b40=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-e6ec5b40=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-e6ec5b40=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-e6ec5b40=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/components/First'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/components/Second'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -13832,7 +13832,7 @@
 	// 		}
 	//     </style>
 	// <template>
-	// 	<div id="header" class="uh bc-text-head ub head">
+	// 	<div id="header" class="uh bc-text-head ub white">
 	// 			<div class="nav-btn " id="nav-left">
 	// 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 	// 			</div>
@@ -13840,14 +13840,14 @@
 	// 			<div class="nav-btn" id="nav-right">
 	// 			</div>
 	// 	</div>
-	// 	<div class="ub head uinn">
+	// 	<div class="ub uinn white umar-t">
 	//             <div class="ub-f3">管理员</div>
 	//             <div class="ub-f1 ub ub-pe">
 	//                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
 	//             </div>
 	//         </div>
 	//         <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
-	//             <div class="ub ub-pc head uinn">              
+	//             <div class="ub ub-pc uinn white">              
 	//                 <div class="circle" id="morning">
 	//                     <div class="ub ub-ver" id="circles">
 	//                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -13856,7 +13856,7 @@
 	//                 </div>
 	//             </div>
 	//             <div class="ub uinn wmar-t"> <span>上</span>上班打卡</div> 
-	//             <div class="ub ub-pc head uinn">
+	//             <div class="ub ub-pc uinn white">
 	//                 <div class="circle" id="afternoon">
 	//                     <div class="ub ub-ver" id="circles">
 	//                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -13911,7 +13911,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub head\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-75cf38fb=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-75cf38fb=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-75cf38fb=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub head uinn\" _v-75cf38fb=\"\">\n            <div class=\"ub-f3\" _v-75cf38fb=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-75cf38fb=\"\">\n                <div class=\"uba gray\" _v-75cf38fb=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-75cf38fb=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc head uinn\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub uinn wmar-t\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div> \n            <div class=\"ub ub-pc head uinn\" _v-75cf38fb=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-75cf38fb=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-75cf38fb=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-75cf38fb=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-75cf38fb=\"\">\n            <div class=\"ub-f3\" _v-75cf38fb=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-75cf38fb=\"\">\n                <div class=\"uba gray\" _v-75cf38fb=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-75cf38fb=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc uinn white\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n            <div class=\"ub uinn wmar-t\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div> \n            <div class=\"ub ub-pc uinn white\" _v-75cf38fb=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n";
 
 /***/ },
 /* 18 */
@@ -13999,7 +13999,7 @@
 		value: true
 	});
 	// <template>
-	// 		<div id="header" class="uh bc-text-head ub head">
+	// 		<div id="header" class="uh bc-text-head ub white">
 	//                 <div class="nav-btn " id="nav-left">
 	// 					<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 	// 				</div>
@@ -14007,14 +14007,14 @@
 	//                 <div class="nav-btn" id="nav-right">
 	//                 </div>
 	//             </div>
-	// 	<div class="ub head uinn">
+	// 	<div class="ub white uinn umar-t">
 	//             <div class="ub-f3">管理员</div>
 	//             <div class="ub-f1 ub ub-pe">
 	//                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
 	//             </div>
 	//         </div>
 	//         <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
-	//             <div class="ub ub-pc head uinn">              
+	//             <div class="ub ub-pc head uinn white">              
 	//                 <div class="circle" id="morning">
 	//                     <div class="ub ub-ver" id="circles">
 	//                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -14095,7 +14095,7 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub head\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub head uinn\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn\" _v-699187b9=\"\"> <span _v-699187b9=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc head uinn\" _v-699187b9=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-699187b9=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>                   \n";
+	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub umar-t uinn\" _v-699187b9=\"\"> <span _v-699187b9=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-pc head uinn white\" _v-699187b9=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-699187b9=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>                   \n";
 
 /***/ }
 /******/ ]);

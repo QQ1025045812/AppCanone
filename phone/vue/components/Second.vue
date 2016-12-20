@@ -1,5 +1,5 @@
 <template>
-		<div id="header" class="uh bc-text-head ub head">
+		<div id="header" class="uh bc-text-head ub white">
                 <div class="nav-btn " id="nav-left">
 					<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 				</div>
@@ -7,14 +7,14 @@
                 <div class="nav-btn" id="nav-right">
                 </div>
             </div>
-	<div class="ub head uinn">
+	<div class="ub white uinn umar-t">
             <div class="ub-f3">管理员</div>
             <div class="ub-f1 ub ub-pe">
                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
             </div>
         </div>
         <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
-            <div class="ub ub-pc head uinn">              
+            <div class="ub ub-pc head uinn white">              
                 <div class="circle" id="morning">
                     <div class="ub ub-ver" id="circles">
                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
