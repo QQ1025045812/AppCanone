@@ -1,5 +1,5 @@
 <template>
-		<div id="header" class="uh bc-text-head ub bc-head">
+		<div id="header" class="uh bc-text-head ub head">
                 <div class="nav-btn " id="nav-left">
 					<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 				</div>
@@ -7,21 +7,26 @@
                 <div class="nav-btn" id="nav-right">
                 </div>
             </div>
-	<div class="ub">
-            <div class="ub-f1">管理员</div>
-            <div class="ub-f1 ub ub-pe"><input type="date" v-bind:value="days" v-model="days"/></div>
+	<div class="ub head uinn">
+            <div class="ub-f3">管理员</div>
+            <div class="ub-f1 ub ub-pe">
+                <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
+            </div>
         </div>
-        <div class="ub"> <span>签</span>签到打卡</div>       
-            <div class="ub ub-pc">              
+        <div class="ub umar-t uinn"> <span>上</span>上班打卡</div>       
+            <div class="ub ub-pc head uinn">              
                 <div class="circle" id="morning">
                     <div class="ub ub-ver" id="circles">
-                        <div class="ub-f1 ub ub-ae ub-pc">签到</div>
-                        <div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
+                        <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
+						<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
                     </div>               
                 </div>
             </div>                   
 </template>
 <style scoped>
+		.head{
+			background:#f6fdff;
+		}
         .circle{
             width:8em;
             height:8em;
@@ -35,6 +40,15 @@
             height:100%;
             
         }
+		.white{
+            background:#fff;
+        }
+		.bordernone{
+			border:none;
+		}
+		.gray{
+			color:#ccc;
+		}
     </style>
 	<script>
 		export default{

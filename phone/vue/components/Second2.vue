@@ -5,9 +5,12 @@
     .gray{
         color:#aaa;
     }
+    .head{
+			background:#f6fdff;
+		}
 </style>
 <template>
-    <div id="header" class="uh bc-text-head ub bc-head">
+    <div id="header" class="uh bc-text-head ub head">
 			<div class="nav-btn " id="nav-left">
 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 			</div>
