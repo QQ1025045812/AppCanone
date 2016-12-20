@@ -14231,19 +14231,19 @@
 	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">上班打卡</h1>
 	// 			<div class="nav-btn" id="nav-right">
 	// 			</div>
-	// 	</div
+	//     </div>
 	//     <div class="ub uinn white umar-t">
 	//             <span class="gray">打卡时间：</span><span>12:00</span>
 	//         </div>
-	//         <div class="ub uinn header umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
+	//         <div class="ub uinn white umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
 	//         <div class="ub uinn white umar-t">
 	//             <span class="gray">打卡地点：</span>
 	//             <span>广东省珠海市香洲区翠微西路8号</span>
 	//         </div>
-	//         <div class="uba bc-border uinput ub ub-f1 header umar-t">
-	//     <textarea placeholder="备注....." type="text" class="ub-f1"></textarea>
+	//         <div class="uba bc-border uinput ub ub-f1 umar-t">
+	//     <textarea placeholder="备注....." type="text" class="ub-f1 white"></textarea>
 	// </div>
-	// <div class="ub ubt uh ub-ver header gray position-bottom">
+	// <div class="ub ubt uh ub-ver white gray position-bottom">
 	//     <div class="ub-f1 tx-c uinn gray">
 	//         <span class="fa fa-send-o"></span>
 	//     </div>
@@ -14265,7 +14265,7 @@
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-442f8fc7=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-442f8fc7=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-442f8fc7=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-442f8fc7=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-442f8fc7=\"\">\n\t\t\t</div>\n\t</div>\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡时间：</span><span _v-442f8fc7=\"\">12:00</span>\n        \n        <div class=\"ub uinn header umar-t\" _v-442f8fc7=\"\"><span class=\"gray\" _v-442f8fc7=\"\">项目名称：</span><span _v-442f8fc7=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\">\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡地点：</span>\n            <span _v-442f8fc7=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 header umar-t\" _v-442f8fc7=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1\" _v-442f8fc7=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver header gray position-bottom\" _v-442f8fc7=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-442f8fc7=\"\">\n        <span class=\"fa fa-send-o\" _v-442f8fc7=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-442f8fc7=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-442f8fc7=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-442f8fc7=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-442f8fc7=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-442f8fc7=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-442f8fc7=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\">\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡时间：</span><span _v-442f8fc7=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\"><span class=\"gray\" _v-442f8fc7=\"\">项目名称：</span><span _v-442f8fc7=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\">\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡地点：</span>\n            <span _v-442f8fc7=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-442f8fc7=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" _v-442f8fc7=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" _v-442f8fc7=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-442f8fc7=\"\">\n        <span class=\"fa fa-send-o\" _v-442f8fc7=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-442f8fc7=\"\">提交</div>\n</div>\n";
 
 /***/ },
 /* 28 */
@@ -14389,8 +14389,8 @@
 	//             <span class="gray">打卡地点：</span>
 	//             <span>广东省珠海市香洲区翠微西路8号</span>
 	//         </div>
-	//         <div class="uba bc-border uinput ub ub-f1 white umar-t min-height">
-	//     <textarea placeholder="备注....." type="text" class="min-height"></textarea>
+	//         <div class="uba bc-border uinput ub ub-f1 umar-t">
+	//     <textarea placeholder="备注....." type="text" class="white"></textarea>
 	// </div>
 	// <div class="ub ubt uh ub-ver white gray position-bottom">
 	//     <div class="ub-f1 tx-c uinn gray">
@@ -14416,7 +14416,7 @@
 /* 32 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6e91ce6e=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6e91ce6e=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6e91ce6e=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6e91ce6e=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6e91ce6e=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡时间：</span><span _v-6e91ce6e=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\"><span class=\"gray\" _v-6e91ce6e=\"\">项目名称：</span><span _v-6e91ce6e=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡地点：</span>\n            <span _v-6e91ce6e=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 white umar-t min-height\" _v-6e91ce6e=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"min-height\" _v-6e91ce6e=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" _v-6e91ce6e=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-6e91ce6e=\"\">\n        <span class=\"fa fa-send-o\" _v-6e91ce6e=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-6e91ce6e=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6e91ce6e=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6e91ce6e=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6e91ce6e=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6e91ce6e=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6e91ce6e=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡时间：</span><span _v-6e91ce6e=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\"><span class=\"gray\" _v-6e91ce6e=\"\">项目名称：</span><span _v-6e91ce6e=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡地点：</span>\n            <span _v-6e91ce6e=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-6e91ce6e=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"white\" _v-6e91ce6e=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" _v-6e91ce6e=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-6e91ce6e=\"\">\n        <span class=\"fa fa-send-o\" _v-6e91ce6e=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-6e91ce6e=\"\">提交</div>\n</div>\n";
 
 /***/ }
 /******/ ]);

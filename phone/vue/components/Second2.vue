@@ -35,8 +35,8 @@
             <span class="gray">打卡地点：</span>
             <span>广东省珠海市香洲区翠微西路8号</span>
         </div>
-        <div class="uba bc-border uinput ub ub-f1 white umar-t min-height">
-    <textarea placeholder="备注....." type="text" class="min-height"></textarea>
+        <div class="uba bc-border uinput ub ub-f1 umar-t">
+    <textarea placeholder="备注....." type="text" class="white"></textarea>
 </div>
 <div class="ub ubt uh ub-ver white gray position-bottom">
     <div class="ub-f1 tx-c uinn gray">

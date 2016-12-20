@@ -27,15 +27,15 @@
     <div class="ub uinn white umar-t">
             <span class="gray">打卡时间：</span><span>12:00</span>
         </div>
-        <div class="ub uinn header umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
+        <div class="ub uinn white umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
         <div class="ub uinn white umar-t">
             <span class="gray">打卡地点：</span>
             <span>广东省珠海市香洲区翠微西路8号</span>
         </div>
-        <div class="uba bc-border uinput ub ub-f1 header umar-t">
-    <textarea placeholder="备注....." type="text" class="ub-f1"></textarea>
+        <div class="uba bc-border uinput ub ub-f1 umar-t">
+    <textarea placeholder="备注....." type="text" class="ub-f1 white"></textarea>
 </div>
-<div class="ub ubt uh ub-ver header gray position-bottom">
+<div class="ub ubt uh ub-ver white gray position-bottom">
     <div class="ub-f1 tx-c uinn gray">
         <span class="fa fa-send-o"></span>
     </div>
