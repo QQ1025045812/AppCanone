@@ -1,4 +1,4 @@
-import Vue from 'vue'
+﻿import Vue from 'vue'
 import VueRouter from 'vue-router'
 //import App from './phone/vue/App.vue'
 //import First from './phone/vue/components/First.vue'
@@ -14,4 +14,3 @@ router.go({"path":"/"});
 router.redirect({
 	'/':'/App'
 })
-///
