@@ -17,7 +17,7 @@ export default{
 	'/attendance/:time':{
 		component:First2
 	},
-	'/attendance/Second2':{
+	'/attendance/:id':{
 		component:Second2
 	},
 	'/attendance/details/:id':{

@@ -14,7 +14,8 @@
             </div>
         </div>
 		<div class="ub ub-ver">   
-        	<div class="ub umar-t uinn white"> <span>签到</span>签到打卡</div>    
+        	<div class="ub umar-t uinn white"> <span>签到</span>签到打卡</div>
+			<div class="ub umar-t uinn white"> <span>签到次数</span>签到打{{length}}</div>    
 				<div class="ub ub-pc head uinn white">              
 					<div class="circle" id="morning" v-on:click="add('detail')">
 						<div class="ub ub-ver" id="circles">
@@ -58,6 +59,7 @@
 				return {
 					days:this.getDays(),
 					seconds:this.getSeconds(),
+					length:'',
 				}
 			},
 			methods:{
@@ -92,9 +94,10 @@
 			},
 			ready:function(){
 				setInterval(this.secondsChange,1000);
-				//if(localStorage.getItem("detail")!=null){
-				//this.morningWorks=false;
-				//};
+				if(localStorage.getItem("detail")!=null){
+				 	var arr=JSON.parse(localStorage.getItem("detail"))
+					 this.length=arr.length;
+				};
 			}
 		}
 	</script>

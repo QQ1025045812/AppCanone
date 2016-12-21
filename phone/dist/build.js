@@ -13264,7 +13264,7 @@
 		'/attendance/:time': {
 			component: _First4.default
 		},
-		'/attendance/Second2': {
+		'/attendance/:id': {
 			component: _Second4.default
 		},
 		'/attendance/details/:id': {
@@ -14348,7 +14348,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t.head[_v-699187b9]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .circle[_v-699187b9]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-699187b9]{\n            background:#1cc5ea;\n        }\n        #circles[_v-699187b9]{\n            height:100%;\n            \n        }\n\t\t.white[_v-699187b9]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-699187b9]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-699187b9]{\n\t\t\tcolor:#ccc;\n\t\t}\n    ", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t.head[_v-699187b9]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .circle[_v-699187b9]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-699187b9]{\n            background:#1cc5ea;\n        }\n        #circles[_v-699187b9]{\n            height:100%;\n            \n        }\n\t\t.white[_v-699187b9]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-699187b9]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-699187b9]{\n\t\t\tcolor:#ccc;\n\t\t}\n    ", ""]);
 
 	// exports
 
@@ -14378,7 +14378,8 @@
 	//             </div>
 	//         </div>
 	// 		<div class="ub ub-ver">   
-	//         	<div class="ub umar-t uinn white"> <span>签到</span>签到打卡</div>    
+	//         	<div class="ub umar-t uinn white"> <span>签到</span>签到打卡</div>
+	// 			<div class="ub umar-t uinn white"> <span>签到次数</span>签到打{{length}}</div>    
 	// 				<div class="ub ub-pc head uinn white">              
 	// 					<div class="circle" id="morning" v-on:click="add('detail')">
 	// 						<div class="ub ub-ver" id="circles">
@@ -14421,7 +14422,8 @@
 		data: function data() {
 			return {
 				days: this.getDays(),
-				seconds: this.getSeconds()
+				seconds: this.getSeconds(),
+				length: ''
 			};
 		},
 		methods: {
@@ -14456,9 +14458,10 @@
 		},
 		ready: function ready() {
 			setInterval(this.secondsChange, 1000);
-			//if(localStorage.getItem("detail")!=null){
-			//this.morningWorks=false;
-			//};
+			if (localStorage.getItem("detail") != null) {
+				var arr = JSON.parse(localStorage.getItem("detail"));
+				this.length = arr.length;
+			};
 		}
 	};
 	// </script>
@@ -14467,7 +14470,7 @@
 /* 41 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n\t\t<div class=\"ub ub-ver\" _v-699187b9=\"\">   \n        \t<div class=\"ub umar-t uinn white\" _v-699187b9=\"\"> <span _v-699187b9=\"\">签到</span>签到打卡</div>    \n\t\t\t\t<div class=\"ub ub-pc head uinn white\" _v-699187b9=\"\">              \n\t\t\t\t\t<div class=\"circle\" id=\"morning\" v-on:click=\"add('detail')\" _v-699187b9=\"\">\n\t\t\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">签到</div>\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n\t\t\t\t\t\t</div>               \n\t\t\t\t\t</div>\n\t\t\t\t</div> \n\t\t\t</div>                 \n";
+	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n\t\t<div class=\"ub ub-ver\" _v-699187b9=\"\">   \n        \t<div class=\"ub umar-t uinn white\" _v-699187b9=\"\"> <span _v-699187b9=\"\">签到</span>签到打卡</div>\n\t\t\t<div class=\"ub umar-t uinn white\" _v-699187b9=\"\"> <span _v-699187b9=\"\">签到次数</span>签到打{{length}}</div>    \n\t\t\t\t<div class=\"ub ub-pc head uinn white\" _v-699187b9=\"\">              \n\t\t\t\t\t<div class=\"circle\" id=\"morning\" v-on:click=\"add('detail')\" _v-699187b9=\"\">\n\t\t\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">签到</div>\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n\t\t\t\t\t\t</div>               \n\t\t\t\t\t</div>\n\t\t\t\t</div> \n\t\t\t</div>                 \n";
 
 /***/ },
 /* 42 */
@@ -14796,7 +14799,7 @@
 	//         <div class="uba bc-border uinput ub ub-f1 umar-t">
 	//     <textarea placeholder="备注....." type="text" class="white"></textarea>
 	// </div>
-	// <div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata()">
+	// <div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(data)">
 	//     <div class="ub-f1 tx-c uinn gray">
 	//         <span class="fa fa-send-o"></span>
 	//     </div>
@@ -14809,7 +14812,8 @@
 	        return {
 	            time: "12:00",
 	            address: '广东省珠海市香洲区翠微西路8号',
-	            note: ''
+	            note: '',
+	            data: this.$route.params.id
 	        };
 	    },
 	    methods: {
@@ -14817,7 +14821,6 @@
 	            window.history.go(-1);
 	        },
 	        savedata: function savedata(datas) {
-	            alert(1);
 	            var arr = [];
 	            var news = {
 	                "address": this.address,
@@ -14836,9 +14839,9 @@
 	    },
 	    ready: function ready() {
 	        //this.$route.params.id
-	        //alert(0)
-	        console.log("000");
-	        console.log(this.$route.params.id);
+	        // alert(0)
+	        //console.log("000")
+	        //console.log(this.$route.params.id)
 	    }
 	};
 	// </script>
@@ -14847,7 +14850,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6e91ce6e=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6e91ce6e=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6e91ce6e=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6e91ce6e=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6e91ce6e=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡时间：</span><span _v-6e91ce6e=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\"><span class=\"gray\" _v-6e91ce6e=\"\">项目名称：</span><span _v-6e91ce6e=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡地点：</span>\n            <span _v-6e91ce6e=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-6e91ce6e=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"white\" _v-6e91ce6e=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata()\" _v-6e91ce6e=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-6e91ce6e=\"\">\n        <span class=\"fa fa-send-o\" _v-6e91ce6e=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-6e91ce6e=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6e91ce6e=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6e91ce6e=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6e91ce6e=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6e91ce6e=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6e91ce6e=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡时间：</span><span _v-6e91ce6e=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\"><span class=\"gray\" _v-6e91ce6e=\"\">项目名称：</span><span _v-6e91ce6e=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡地点：</span>\n            <span _v-6e91ce6e=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-6e91ce6e=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"white\" _v-6e91ce6e=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(data)\" _v-6e91ce6e=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-6e91ce6e=\"\">\n        <span class=\"fa fa-send-o\" _v-6e91ce6e=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-6e91ce6e=\"\">提交</div>\n</div>\n";
 
 /***/ },
 /* 54 */

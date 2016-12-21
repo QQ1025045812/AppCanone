@@ -38,7 +38,7 @@
         <div class="uba bc-border uinput ub ub-f1 umar-t">
     <textarea placeholder="备注....." type="text" class="white"></textarea>
 </div>
-<div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata()">
+<div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(data)">
     <div class="ub-f1 tx-c uinn gray">
         <span class="fa fa-send-o"></span>
     </div>
@@ -52,6 +52,7 @@
                 time:"12:00",
                 address:'广东省珠海市香洲区翠微西路8号',
                 note:'',
+                data:this.$route.params.id,
             }
         },
         methods:{
@@ -59,7 +60,6 @@
                 window.history.go(-1);
             },
             savedata:function(datas){
-                alert(1)
                 var arr=[];
                  var news={
                     "address":this.address,
@@ -78,9 +78,9 @@
         },
         ready:function(){
                 //this.$route.params.id
-                //alert(0)
-                console.log("000")
-                console.log(this.$route.params.id)
+               // alert(0)
+                //console.log("000")
+                //console.log(this.$route.params.id)
             }
     }
 </script>
