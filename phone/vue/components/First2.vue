@@ -35,7 +35,7 @@
         <div class="uba bc-border uinput ub ub-f1 umar-t">
     <textarea placeholder="备注....." type="text" class="ub-f1 white" v-model="note"></textarea>
 </div>
-<div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(datas)">
+<div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(data)">
     <div class="ub-f1 tx-c uinn gray">
         <span class="fa fa-send-o"></span>
     </div>
