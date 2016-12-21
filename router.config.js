@@ -8,19 +8,19 @@ export default{
 	'/App':{
 		component:App
 	},
-	'/components/First':{
+	'/attendance/First':{
 		component:First
 	},
 	'/components/Second':{
 		component:Second
 	},
-	'/components/First2':{
+	'/attendance/:time':{
 		component:First2
 	},
-	'/components/Second2':{
+	'/attendance/Second2':{
 		component:Second2
 	},
-	'/components/details':{
+	'/attendance/details/:id':{
         component:details
     },
 }

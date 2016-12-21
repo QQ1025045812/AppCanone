@@ -37,7 +37,6 @@
 				</div>                 
 </template>
 <style scoped>
-
 		.head{
 			background:#f6fdff;
 		}

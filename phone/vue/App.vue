@@ -40,13 +40,13 @@
 		</div> 
 		<div class="ub ub-ver">
 			<div class="ub-f1 ub bc-white">
-				<a class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb" v-link="{path:'/components/First'}">
+				<a class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb" v-link="{path:'/attendance/First'}">
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-hand-o-up fonts blue"></span>
 					</div>
 					<div class="ub-f1 ub ub-pc uinn-top">考勤</div>
 				</a>
-				<a class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb " v-link="{path:'/components/Second'}">
+				<a class="ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb " v-link="{path:'/attendance/Second'}">
 					<div class="ub-f1 ub ub-pc">
 						<span class="fa fa-flag-o fonts green"></span>
 					</div>
@@ -84,13 +84,12 @@
 				
 				}
 			},
+			ready:function(){
+				//var arr=['undefined'];
+				//localStorage.setItem("datas",arr);
+			},
 			methods:{
-				first:function(){
-				
-				},
-				second(){
-				
-				}
+			
 			}
 		}
 	</script>          

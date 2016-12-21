@@ -43,9 +43,9 @@
                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
             </div>
         </div>
-        <div class="ub ub-ver" v-if="Math.random() > 0.5">
+        <div class="ub ub-ver" v-if="morningWorks">
         	<div class="ub ub-f1 umar-t uinn white"> <span>上</span>上班打卡</div>       
-            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('First2')">              
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('morning')">              
                 <div class="circle" id="morning">
                     <div class="ub ub-ver" id="circles">
                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -57,17 +57,17 @@
         <div class="ub ub-ver" v-else>
 			<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>12:00</span></div>
 			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>        
-            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('details')">              
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('morning')">              
                 <div class="circle" id="morning">
                     <div class="ub ub-pc ub-ac" id="circles">
-                        <div class="ub-f1 ub ub-pc">打卡详情</div>
+                        <div class="ub-f1 ub ub-pc">查看详情</div>
                     </div>               
                 </div>
             </div>
         </div>
-			<div class="ub ub-ver" v-if="Math.random() > 0.5">
+			<div class="ub ub-ver" v-if="afternoonWorks">
 				<div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
-            <div class="ub ub-pc uinn white" v-on:click="add('First2')">
+            <div class="ub ub-pc uinn white" v-on:click="add('afternoon')">
                 <div class="circle" id="afternoon">
                     <div class="ub ub-ver" id="circles">
                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -80,10 +80,10 @@
 			<div class="ub ub-ver" v-else>
 			<div class="ub ub-f1 umar-t uinn white"> <span>下</span><span>打卡时间：</span><span>12:00</span></div>
 			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>             
-            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('details')">              
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('afternoon')">              
                 <div class="circle" id="morning">
                     <div class="ub ub-ac ub-pc" id="circles">
-                        <div class="ub-f1 ub ub-pc">打卡详情</div>
+                        <div class="ub-f1 ub ub-pc">查看详情</div>
                     </div>               
                 </div>
             </div>
@@ -95,7 +95,12 @@
 			return {
 			days:this.getDays(),
 			seconds:this.getSeconds(),
+			morningWorks:true,
+			afternoonWorks:true
 			}
+		},
+		ready:function(){
+			localStorage.getItem("datas");
 		},
 		methods:{
 			history:function(){
@@ -120,16 +125,24 @@
 				var result =hour+':'+minute+':'+second;
 				return result;
 			},
-			add:function(id){
-					var self=this;
-					self.$route.router.go('/components/'+id)
+			add:function(time){
+					this.$route.router.go('/attendance/'+time)
 				},
+			view:function(id){
+				this.$route.router.go('/attendance/details/'+id)
+			},
 			secondsChange:function(){
 				this.seconds=this.getSeconds();
 			}
 		},
 		ready:function(){
-			setInterval(this.secondsChange,1000);	
-			}
+			setInterval(this.secondsChange,1000);
+			if(localStorage.getItem("morning")!=null){
+				this.morningWorks=false;
+			};
+			if(localStorage.getItem("afternoon")!=null){
+				this.afternoonWorks=false;
+			};
+		}
 	}
 </script>
