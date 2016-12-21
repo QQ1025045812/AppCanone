@@ -13,15 +13,28 @@
                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
             </div>
         </div>
-        <div class="ub umar-t uinn white"> <span>上</span>上班打卡</div>       
-            <div class="ub ub-pc head uinn white">              
-                <div class="circle" id="morning" v-on:click="add()">
-                    <div class="ub ub-ver" id="circles">
-                        <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
-						<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
-                    </div>               
-                </div>
-            </div>                   
+		<div class="ub ub-ver" v-if="Math.random() > 0.5">   
+        	<div class="ub umar-t uinn white"> <span>签到</span>签到打卡</div>    
+				<div class="ub ub-pc head uinn white">              
+					<div class="circle" id="morning" v-on:click="add('Second2')">
+						<div class="ub ub-ver" id="circles">
+							<div class="ub-f1 ub ub-ae ub-pc">签到</div>
+							<div class="ub-f1 ub ub-pc ub-ac">{{seconds}}</div> 
+						</div>               
+					</div>
+				</div> 
+			</div>      
+				<div class="ub ub-pc ub-ver uinn white" v-else>
+					<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>12:00</span></div> 
+					<div class="ub ub-f1 umar-t uinn white"> <span>签到地点：</span><span>珠海浩智科技</span></div>                 
+					<div class="ub ub-pc">
+						<div class="circle" id="morning" v-on:click="add('details')">
+						<div class="ub ub-pc ub-ac" id="circles">
+							<div class="ub-f1 ub ub-pc ub-ac">查看详情</div> 
+						</div>               
+					</div>
+					</div>
+				</div>                 
 </template>
 <style scoped>
 
@@ -82,9 +95,9 @@
 					var result =hour+':'+minute+':'+second;
 					return result;
 				},
-				add:function(){
+				add:function(id){
 					var self=this;
-					self.$route.router.go('/components/Second2')
+					self.$route.router.go('/components/'+id)
 				},
 				secondsChange:function(){
 					this.seconds=this.getSeconds();

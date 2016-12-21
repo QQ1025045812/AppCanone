@@ -3,6 +3,7 @@ import First from './phone/vue/components/First.vue'
 import Second from './phone/vue/components/Second.vue'
 import First2 from './phone/vue/components/First2.vue'
 import Second2 from './phone/vue/components/Second2.vue'
+import details from './phone/vue/components/details.vue'
 export default{
 	'/App':{
 		component:App
@@ -18,5 +19,8 @@ export default{
 	},
 	'/components/Second2':{
 		component:Second2
-	}
+	},
+	'/components/details':{
+        component:details
+    },
 }

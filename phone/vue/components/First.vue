@@ -27,7 +27,7 @@
 		.head{
 			background:#f6fdff;
 		}
-    </style>
+</style>
 <template>
 	<div id="header" class="uh bc-text-head ub white">
 			<div class="nav-btn " id="nav-left">
@@ -43,8 +43,9 @@
                 <div class="uba gray"><input type="date" class="bordernone" v-bind:value="days"/></div>
             </div>
         </div>
-        <div class="ub umar-t uinn white"> <span>上</span>上班打卡</div>       
-            <div class="ub ub-pc uinn white" v-on:click="add()">              
+        <div class="ub ub-ver" v-if="Math.random() > 0.5">
+        	<div class="ub ub-f1 umar-t uinn white"> <span>上</span>上班打卡</div>       
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('First2')">              
                 <div class="circle" id="morning">
                     <div class="ub ub-ver" id="circles">
                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -52,8 +53,21 @@
                     </div>               
                 </div>
             </div>
-            <div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
-            <div class="ub ub-pc uinn white">
+        </div>
+        <div class="ub ub-ver" v-else>
+			<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>12:00</span></div>
+			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>        
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('details')">              
+                <div class="circle" id="morning">
+                    <div class="ub ub-pc ub-ac" id="circles">
+                        <div class="ub-f1 ub ub-pc">打卡详情</div>
+                    </div>               
+                </div>
+            </div>
+        </div>
+			<div class="ub ub-ver" v-if="Math.random() > 0.5">
+				<div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
+            <div class="ub ub-pc uinn white" v-on:click="add('First2')">
                 <div class="circle" id="afternoon">
                     <div class="ub ub-ver" id="circles">
                         <div class="ub-f1 ub ub-ae ub-pc">打卡</div>
@@ -62,13 +76,25 @@
                 </div>
                 
             </div>
+			</div>
+			<div class="ub ub-ver" v-else>
+			<div class="ub ub-f1 umar-t uinn white"> <span>下</span><span>打卡时间：</span><span>12:00</span></div>
+			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>             
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('details')">              
+                <div class="circle" id="morning">
+                    <div class="ub ub-ac ub-pc" id="circles">
+                        <div class="ub-f1 ub ub-pc">打卡详情</div>
+                    </div>               
+                </div>
+            </div>
+        </div>
 </template>
 <script>
 	export default{
 		data:function(){
 			return {
 			days:this.getDays(),
-			seconds:this.getSeconds()
+			seconds:this.getSeconds(),
 			}
 		},
 		methods:{
@@ -94,9 +120,9 @@
 				var result =hour+':'+minute+':'+second;
 				return result;
 			},
-			add:function(){
+			add:function(id){
 					var self=this;
-					self.$route.router.go('/components/First2')
+					self.$route.router.go('/components/'+id)
 				},
 			secondsChange:function(){
 				this.seconds=this.getSeconds();

@@ -8,12 +8,6 @@
     .head{
 			background:#f6fdff;
 		}
-        .position-bottom{
-            position:absolute;
-            bottom:0;
-            left:0;
-        }
-        
 </style>
 <template>
     <div id="header" class="uh bc-text-head ub white">
@@ -32,15 +26,10 @@
             <span class="gray">打卡地点：</span>
             <span>广东省珠海市香洲区翠微西路8号</span>
         </div>
-        <div class="uba bc-border uinput ub ub-f1 umar-t">
-    <textarea placeholder="备注....." type="text" class="ub-f1 white"></textarea>
-</div>
-<div class="ub ubt uh ub-ver white gray position-bottom">
-    <div class="ub-f1 tx-c uinn gray">
-        <span class="fa fa-send-o"></span>
-    </div>
-    <div class="ub-f1 tx-c">提交</div>
-</div>
+        <div class="ub ub-ver">
+            <div class="ub-f1">备注：</div>
+            <div class="ub-f1">打卡测试.........</div>
+        </div>
 </template>
 <script>
     export default{
