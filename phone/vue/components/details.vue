@@ -46,8 +46,8 @@
             },
             getdata:function(type){
 				var data=JSON.parse(localStorage.getItem(type));
-				this.addressm=data[0].address;
-				this.timem=data[0].time;
+				this.address=data[0].address;
+				this.time=data[0].time;
                 this.note=data[0].notes;
             }
         },
