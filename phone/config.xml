@@ -16,4 +16,11 @@
 <debug/>
 <partobfuscation/>
 <webapp/>
+<config desc="uexBaiduMap" type="KEY" >
+    <param platform="Android" name="$uexBaiduMap_APIKey$" value="4qBw3Cs6yU38k0Nhky7924OIrUS56mbH"/>
+</config>
 </widget>
+
+
+
+
