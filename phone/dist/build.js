@@ -13264,9 +13264,6 @@
 		'/attendance/:time': {
 			component: _First4.default
 		},
-		'/attendance/:id': {
-			component: _Second4.default
-		},
 		'/attendance/details/:id': {
 			component: _details2.default
 		}
@@ -13819,7 +13816,7 @@
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -13877,6 +13874,17 @@
 	//             </div>
 	//         </div>
 	//         <div class="ub ub-ver" v-if="morningWorks">
+	// 			<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>{{timem}}</span></div>
+	// 			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>{{addressm}}</span></div>        
+	//             <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('morning')">              
+	//                 <div class="circle" id="morning">
+	//                     <div class="ub ub-pc ub-ac" id="circles">
+	//                         <div class="ub-f1 ub ub-pc">查看详情</div>
+	//                     </div>               
+	//                 </div>
+	//             </div>
+	//         </div>
+	// 		<div class="ub ub-ver" v-else>
 	//         	<div class="ub ub-f1 umar-t uinn white"> <span>上</span>上班打卡</div>       
 	//             <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('morning')">              
 	//                 <div class="circle" id="morning">
@@ -13887,18 +13895,18 @@
 	//                 </div>
 	//             </div>
 	//         </div>
-	//         <div class="ub ub-ver" v-else>
-	// 			<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>12:00</span></div>
-	// 			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>        
-	//             <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('morning')">              
-	//                 <div class="circle" id="morning">
-	//                     <div class="ub ub-pc ub-ac" id="circles">
-	//                         <div class="ub-f1 ub ub-pc">查看详情</div>
-	//                     </div>               
-	//                 </div>
-	//             </div>
-	//         </div>
-	// 			<div class="ub ub-ver" v-if="afternoonWorks">
+	// 		<div class="ub ub-ver" v-if="afternoonWorks">
+	// 		<div class="ub ub-f1 umar-t uinn white"> <span>下</span><span>打卡时间：</span><span>{{timea}}</span></div>
+	// 		<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>{{addressa}}</span></div>             
+	// 		<div class="ub ub-f1 ub-pc uinn white" v-on:click="view('afternoon')">              
+	// 			<div class="circle" id="morning">
+	// 				<div class="ub ub-ac ub-pc" id="circles">
+	// 					<div class="ub-f1 ub ub-pc">查看详情</div>
+	// 				</div>               
+	// 			</div>
+	// 		</div>
+	// </div>
+	// 			<div class="ub ub-ver" v-else>
 	// 				<div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
 	//             <div class="ub ub-pc uinn white" v-on:click="add('afternoon')">
 	//                 <div class="circle" id="afternoon">
@@ -13910,26 +13918,20 @@
 	//
 	//             </div>
 	// 			</div>
-	// 			<div class="ub ub-ver" v-else>
-	// 			<div class="ub ub-f1 umar-t uinn white"> <span>下</span><span>打卡时间：</span><span>12:00</span></div>
-	// 			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>             
-	//             <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('afternoon')">              
-	//                 <div class="circle" id="morning">
-	//                     <div class="ub ub-ac ub-pc" id="circles">
-	//                         <div class="ub-f1 ub ub-pc">查看详情</div>
-	//                     </div>               
-	//                 </div>
-	//             </div>
-	//         </div>
+	//
 	// </template>
 	// <script>
 	exports.default = (0, _defineProperty3.default)({
 		data: function data() {
 			return {
-				days: this.getDays(),
-				seconds: this.getSeconds(),
-				morningWorks: true,
-				afternoonWorks: true
+				days: getDays(),
+				seconds: getSeconds(),
+				morningWorks: false,
+				afternoonWorks: false,
+				addressm: '',
+				timem: '',
+				addressa: '',
+				timea: ''
 			};
 		},
 		ready: function ready() {
@@ -13939,25 +13941,6 @@
 			history: function history() {
 				window.history.go(-1);
 			},
-			getDays: function getDays() {
-				var date = new Date();
-				var year = date.getFullYear();
-				var month = date.getMonth() + 1;
-				var date = date.getDate();
-				date = (date <= 9 ? "0" : "") + date;
-				var result = year + '-' + month + '-' + date;
-				return result;
-			},
-			getSeconds: function getSeconds() {
-				var date = new Date();
-				var hour = date.getHours();
-				var minute = date.getMinutes();
-				minute = (minute <= 9 ? "0" : "") + minute;
-				var second = date.getSeconds();
-				second = (second <= 9 ? "0" : "") + second;
-				var result = hour + ':' + minute + ':' + second;
-				return result;
-			},
 			add: function add(time) {
 				this.$route.router.go('/attendance/' + time);
 			},
@@ -13965,16 +13948,22 @@
 				this.$route.router.go('/attendance/details/' + id);
 			},
 			secondsChange: function secondsChange() {
-				this.seconds = this.getSeconds();
+				this.seconds = getSeconds();
 			}
 		}
-	}, "ready", function ready() {
+	}, 'ready', function ready() {
 		setInterval(this.secondsChange, 1000);
 		if (localStorage.getItem("morning") != null) {
-			this.morningWorks = false;
+			var data = JSON.parse(localStorage.getItem("morning"));
+			this.addressm = data[0].address;
+			this.timem = data[0].time;
+			this.morningWorks = true;
 		};
 		if (localStorage.getItem("afternoon") != null) {
-			this.afternoonWorks = false;
+			var data = JSON.parse(localStorage.getItem("afternoon"));
+			this.addressa = data[0].address;
+			this.timea = data[0].time;
+			this.afternoonWorks = true;
 		};
 	});
 	// </script>
@@ -14275,7 +14264,7 @@
 /* 36 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-569ed4cd=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-569ed4cd=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-569ed4cd=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-569ed4cd=\"\">\n            <div class=\"ub-f3\" _v-569ed4cd=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-569ed4cd=\"\">\n                <div class=\"uba gray\" _v-569ed4cd=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-569ed4cd=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-if=\"morningWorks\" _v-569ed4cd=\"\">\n        \t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"add('morning')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-569ed4cd=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-569ed4cd=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-else=\"\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">上</span><span _v-569ed4cd=\"\">打卡时间：</span><span _v-569ed4cd=\"\">12:00</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">打卡地点：</span><span _v-569ed4cd=\"\">珠海浩智科技</span></div>        \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('morning')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-pc ub-ac\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-569ed4cd=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n\t\t\t<div class=\"ub ub-ver\" v-if=\"afternoonWorks\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"ub uinn umar-t white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">下</span>下班打卡</div> \n            <div class=\"ub ub-pc uinn white\" v-on:click=\"add('afternoon')\" _v-569ed4cd=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-569ed4cd=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-569ed4cd=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n\t\t\t</div>\n\t\t\t<div class=\"ub ub-ver\" v-else=\"\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">下</span><span _v-569ed4cd=\"\">打卡时间：</span><span _v-569ed4cd=\"\">12:00</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">打卡地点：</span><span _v-569ed4cd=\"\">珠海浩智科技</span></div>             \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('afternoon')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ac ub-pc\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-569ed4cd=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-569ed4cd=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-569ed4cd=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-569ed4cd=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-569ed4cd=\"\">\n            <div class=\"ub-f3\" _v-569ed4cd=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-569ed4cd=\"\">\n                <div class=\"uba gray\" _v-569ed4cd=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-569ed4cd=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-if=\"morningWorks\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">上</span><span _v-569ed4cd=\"\">打卡时间：</span><span _v-569ed4cd=\"\">{{timem}}</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">打卡地点：</span><span _v-569ed4cd=\"\">{{addressm}}</span></div>        \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('morning')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-pc ub-ac\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-569ed4cd=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n\t\t<div class=\"ub ub-ver\" v-else=\"\" _v-569ed4cd=\"\">\n        \t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"add('morning')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-569ed4cd=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-569ed4cd=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n        </div>\n\t\t<div class=\"ub ub-ver\" v-if=\"afternoonWorks\" _v-569ed4cd=\"\">\n\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">下</span><span _v-569ed4cd=\"\">打卡时间：</span><span _v-569ed4cd=\"\">{{timea}}</span></div>\n\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">打卡地点：</span><span _v-569ed4cd=\"\">{{addressa}}</span></div>             \n\t\t<div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('afternoon')\" _v-569ed4cd=\"\">              \n\t\t\t<div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"ub ub-ac ub-pc\" id=\"circles\" _v-569ed4cd=\"\">\n\t\t\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-569ed4cd=\"\">查看详情</div>\n\t\t\t\t</div>               \n\t\t\t</div>\n\t\t</div>\n</div>\n\t\t\t<div class=\"ub ub-ver\" v-else=\"\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"ub uinn umar-t white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">下</span>下班打卡</div> \n            <div class=\"ub ub-pc uinn white\" v-on:click=\"add('afternoon')\" _v-569ed4cd=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-569ed4cd=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-569ed4cd=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n\t\t\t</div>\n\n";
 
 /***/ },
 /* 37 */
@@ -14357,7 +14346,7 @@
 /* 40 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -14421,8 +14410,8 @@
 	exports.default = {
 		data: function data() {
 			return {
-				days: this.getDays(),
-				seconds: this.getSeconds(),
+				days: getDays(),
+				seconds: getSeconds(),
 				length: ''
 			};
 		},
@@ -14430,30 +14419,11 @@
 			history: function history() {
 				window.history.go(-1);
 			},
-			getDays: function getDays() {
-				var date = new Date();
-				var year = date.getFullYear();
-				var month = date.getMonth() + 1;
-				var date = date.getDate();
-				date = (date <= 9 ? "0" : "") + date;
-				var result = year + '-' + month + '-' + date;
-				return result;
-			},
-			getSeconds: function getSeconds() {
-				var date = new Date();
-				var hour = date.getHours();
-				var minute = date.getMinutes();
-				minute = (minute <= 9 ? "0" : "") + minute;
-				var second = date.getSeconds();
-				second = (second <= 9 ? "0" : "") + second;
-				var result = hour + ':' + minute + ':' + second;
-				return result;
-			},
 			add: function add(id) {
 				this.$route.router.go('/attendance/' + id);
 			},
 			secondsChange: function secondsChange() {
-				this.seconds = this.getSeconds();
+				this.seconds = getSeconds();
 			}
 		},
 		ready: function ready() {
@@ -14586,7 +14556,7 @@
 	// 			<div class="nav-btn " id="nav-left">
 	// 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 	// 			</div>
-	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">上班打卡</h1>
+	//             <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">{{data}}</h1>
 	// 			<div class="nav-btn" id="nav-right">
 	// 			</div>
 	//     </div>
@@ -14601,7 +14571,7 @@
 	//         <div class="uba bc-border uinput ub ub-f1 umar-t">
 	//     <textarea placeholder="备注....." type="text" class="ub-f1 white" v-model="note"></textarea>
 	// </div>
-	// <div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(data)">
+	// <div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(nochange)">
 	//     <div class="ub-f1 tx-c uinn gray">
 	//         <span class="fa fa-send-o"></span>
 	//     </div>
@@ -14612,10 +14582,11 @@
 	exports.default = {
 	    data: function data() {
 	        return {
-	            address: "广东省珠海市香洲区翠微西路8号",
+	            address: "",
 	            note: '',
-	            time: "12:00",
-	            data: this.$route.params.time
+	            time: getSeconds(),
+	            data: this.$route.params.time,
+	            nochange: this.$route.params.time
 	        };
 	    },
 	    methods: {
@@ -14626,10 +14597,11 @@
 	            var arr = [];
 	            var news = {
 	                "address": this.address,
-	                "time": this.time
+	                "time": this.time,
+	                "notes": this.note
 	            };
 	            var old = localStorage.getItem(datas);
-	            if ((0, _stringify2.default)(old) != "null") {
+	            if (old != null) {
 	                arr = JSON.parse(old);
 	                arr.push(news);
 	            } else {
@@ -14640,7 +14612,23 @@
 	        }
 	    },
 	    ready: function ready() {
-	        //this.datas=this.$route.params.time;
+	        var self = this;
+	        if (this.data == "detail") {
+	            this.data = "上班签到";
+	        } else {
+	            this.data = "上班打卡";
+	        };
+	        uexBaiduMap.getCurrentLocation();
+	        uexBaiduMap.cbCurrentLocation = function (data) {
+	            var datas = JSON.parse(data);
+	            var json = {
+	                longitude: datas.longitude,
+	                latitude: datas.latitude
+	            };
+	            uexBaiduMap.reverseGeocode(geodata, function (error, data) {
+	                self.address = data.address;
+	            });
+	        };
 	    }
 	};
 	// </script>
@@ -14665,7 +14653,7 @@
 /* 48 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-7d536e35=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-7d536e35=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-7d536e35=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-7d536e35=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-7d536e35=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡时间：</span><span _v-7d536e35=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\"><span class=\"gray\" _v-7d536e35=\"\">项目名称：</span><span _v-7d536e35=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡地点：</span>\n            <span _v-7d536e35=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-7d536e35=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" v-model=\"note\" _v-7d536e35=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(data)\" _v-7d536e35=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-7d536e35=\"\">\n        <span class=\"fa fa-send-o\" _v-7d536e35=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-7d536e35=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-7d536e35=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-7d536e35=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-7d536e35=\"\"></div>\n\t\t\t</div>\n            <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-7d536e35=\"\">{{data}}</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-7d536e35=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡时间：</span><span _v-7d536e35=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\"><span class=\"gray\" _v-7d536e35=\"\">项目名称：</span><span _v-7d536e35=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡地点：</span>\n            <span _v-7d536e35=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-7d536e35=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" v-model=\"note\" _v-7d536e35=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(nochange)\" _v-7d536e35=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-7d536e35=\"\">\n        <span class=\"fa fa-send-o\" _v-7d536e35=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-7d536e35=\"\">提交</div>\n</div>\n";
 
 /***/ },
 /* 49 */
@@ -14932,7 +14920,7 @@
 /* 57 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -14953,32 +14941,45 @@
 	// 			<div class="nav-btn " id="nav-left">
 	// 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 	// 			</div>
-	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">上班打卡</h1>
+	// 			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">打卡详情</h1>
 	// 			<div class="nav-btn" id="nav-right">
 	// 			</div>
 	//     </div>
 	//     <div class="ub uinn white umar-t">
-	//             <span class="gray">打卡时间：</span><span>12:00</span>
+	//             <span class="gray">打卡时间：</span><span>{{time}}</span>
 	//         </div>
 	//         <div class="ub uinn white umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
 	//         <div class="ub uinn white umar-t">
 	//             <span class="gray">打卡地点：</span>
-	//             <span>广东省珠海市香洲区翠微西路8号</span>
+	//             <span>{{address}}</span>
 	//         </div>
 	//         <div class="ub ub-ver">
 	//             <div class="ub-f1">备注：</div>
-	//             <div class="ub-f1">打卡测试.........</div>
+	//             <div class="ub-f1">{{note}}</div>
 	//         </div>
 	// </template>
 	// <script>
 	exports.default = {
 	    data: function data() {
-	        return {};
+	        return {
+	            address: '',
+	            time: '',
+	            note: ''
+	        };
 	    },
 	    methods: {
 	        history: function history() {
 	            window.history.go(-1);
+	        },
+	        getdata: function getdata(type) {
+	            var data = JSON.parse(localStorage.getItem(type));
+	            this.addressm = data[0].address;
+	            this.timem = data[0].time;
+	            this.note = data[0].notes;
 	        }
+	    },
+	    ready: function ready() {
+	        this.getdata(this.$route.params.id);
 	    }
 	};
 	// </script>
@@ -14987,7 +14988,7 @@
 /* 58 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6b953382=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6b953382=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6b953382=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6b953382=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6b953382=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6b953382=\"\">\n            <span class=\"gray\" _v-6b953382=\"\">打卡时间：</span><span _v-6b953382=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6b953382=\"\"><span class=\"gray\" _v-6b953382=\"\">项目名称：</span><span _v-6b953382=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6b953382=\"\">\n            <span class=\"gray\" _v-6b953382=\"\">打卡地点：</span>\n            <span _v-6b953382=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"ub ub-ver\" _v-6b953382=\"\">\n            <div class=\"ub-f1\" _v-6b953382=\"\">备注：</div>\n            <div class=\"ub-f1\" _v-6b953382=\"\">打卡测试.........</div>\n        </div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6b953382=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6b953382=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6b953382=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6b953382=\"\">打卡详情</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6b953382=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6b953382=\"\">\n            <span class=\"gray\" _v-6b953382=\"\">打卡时间：</span><span _v-6b953382=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6b953382=\"\"><span class=\"gray\" _v-6b953382=\"\">项目名称：</span><span _v-6b953382=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6b953382=\"\">\n            <span class=\"gray\" _v-6b953382=\"\">打卡地点：</span>\n            <span _v-6b953382=\"\">{{address}}</span>\n        </div>\n        <div class=\"ub ub-ver\" _v-6b953382=\"\">\n            <div class=\"ub-f1\" _v-6b953382=\"\">备注：</div>\n            <div class=\"ub-f1\" _v-6b953382=\"\">{{note}}</div>\n        </div>\n";
 
 /***/ }
 /******/ ]);

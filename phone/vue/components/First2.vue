@@ -20,7 +20,7 @@
 			<div class="nav-btn " id="nav-left">
 				<div class="fa fa-angle-left fa-2x" v-on:click="history()"></div>
 			</div>
-			<h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">上班打卡</h1>
+            <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">{{data}}</h1>
 			<div class="nav-btn" id="nav-right">
 			</div>
     </div>
@@ -35,7 +35,7 @@
         <div class="uba bc-border uinput ub ub-f1 umar-t">
     <textarea placeholder="备注....." type="text" class="ub-f1 white" v-model="note"></textarea>
 </div>
-<div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(data)">
+<div class="ub ubt uh ub-ver white gray position-bottom" v-on:click="savedata(nochange)">
     <div class="ub-f1 tx-c uinn gray">
         <span class="fa fa-send-o"></span>
     </div>
@@ -46,10 +46,11 @@
     export default{
         data:function(){
             return {
-                address:"广东省珠海市香洲区翠微西路8号",
+                address:"",
                 note:'',
-                time:"12:00",
+                time:getSeconds(),
                 data:this.$route.params.time,
+                nochange:this.$route.params.time,
             }
         },
         methods:{
@@ -61,9 +62,10 @@
                  var news={
                     "address":this.address,
                     "time":this.time,
+                    "notes":this.note,
                 }
                 var old=localStorage.getItem(datas);
-                if(JSON.stringify(old)!="null"){
+                if(old!=null){
                     arr=JSON.parse(old);
                     arr.push(news)
                 }else{
@@ -74,7 +76,23 @@
             }
         },
         ready:function(){
-            //this.datas=this.$route.params.time;
+            var self=this;
+            if(this.data=="detail"){
+                this.data="上班签到"
+            }else{
+                this.data="上班打卡"
+            };
+            uexBaiduMap.getCurrentLocation();
+            uexBaiduMap.cbCurrentLocation = function(data){
+               var datas=JSON.parse(data);
+               var json={
+                   longitude: datas.longitude,
+                   latitude: datas.latitude
+               };
+               uexBaiduMap.reverseGeocode(geodata, function(error,data) {
+                    self.address=data.address;
+              });
+            }
         }
     }
 </script>

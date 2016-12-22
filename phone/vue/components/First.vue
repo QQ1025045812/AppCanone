@@ -44,6 +44,17 @@
             </div>
         </div>
         <div class="ub ub-ver" v-if="morningWorks">
+			<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>{{timem}}</span></div>
+			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>{{addressm}}</span></div>        
+            <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('morning')">              
+                <div class="circle" id="morning">
+                    <div class="ub ub-pc ub-ac" id="circles">
+                        <div class="ub-f1 ub ub-pc">查看详情</div>
+                    </div>               
+                </div>
+            </div>
+        </div>
+		<div class="ub ub-ver" v-else>
         	<div class="ub ub-f1 umar-t uinn white"> <span>上</span>上班打卡</div>       
             <div class="ub ub-f1 ub-pc uinn white" v-on:click="add('morning')">              
                 <div class="circle" id="morning">
@@ -54,18 +65,18 @@
                 </div>
             </div>
         </div>
-        <div class="ub ub-ver" v-else>
-			<div class="ub ub-f1 umar-t uinn white"> <span>上</span><span>打卡时间：</span><span>12:00</span></div>
-			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>        
-            <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('morning')">              
-                <div class="circle" id="morning">
-                    <div class="ub ub-pc ub-ac" id="circles">
-                        <div class="ub-f1 ub ub-pc">查看详情</div>
-                    </div>               
-                </div>
-            </div>
-        </div>
-			<div class="ub ub-ver" v-if="afternoonWorks">
+		<div class="ub ub-ver" v-if="afternoonWorks">
+		<div class="ub ub-f1 umar-t uinn white"> <span>下</span><span>打卡时间：</span><span>{{timea}}</span></div>
+		<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>{{addressa}}</span></div>             
+		<div class="ub ub-f1 ub-pc uinn white" v-on:click="view('afternoon')">              
+			<div class="circle" id="morning">
+				<div class="ub ub-ac ub-pc" id="circles">
+					<div class="ub-f1 ub ub-pc">查看详情</div>
+				</div>               
+			</div>
+		</div>
+</div>
+			<div class="ub ub-ver" v-else>
 				<div class="ub uinn umar-t white"> <span>下</span>下班打卡</div> 
             <div class="ub ub-pc uinn white" v-on:click="add('afternoon')">
                 <div class="circle" id="afternoon">
@@ -77,26 +88,20 @@
                 
             </div>
 			</div>
-			<div class="ub ub-ver" v-else>
-			<div class="ub ub-f1 umar-t uinn white"> <span>下</span><span>打卡时间：</span><span>12:00</span></div>
-			<div class="ub ub-f1 umar-t uinn white"> <span>打卡地点：</span><span>珠海浩智科技</span></div>             
-            <div class="ub ub-f1 ub-pc uinn white" v-on:click="view('afternoon')">              
-                <div class="circle" id="morning">
-                    <div class="ub ub-ac ub-pc" id="circles">
-                        <div class="ub-f1 ub ub-pc">查看详情</div>
-                    </div>               
-                </div>
-            </div>
-        </div>
+
 </template>
 <script>
 	export default{
 		data:function(){
 			return {
-			days:this.getDays(),
-			seconds:this.getSeconds(),
-			morningWorks:true,
-			afternoonWorks:true
+			days:getDays(),
+			seconds:getSeconds(),
+			morningWorks:false,
+			afternoonWorks:false,
+			addressm:'',
+			timem:'',
+			addressa:'',
+			timea:'',
 			}
 		},
 		ready:function(){
@@ -106,25 +111,6 @@
 			history:function(){
 				window.history.go(-1);
 			},
-			getDays:function(){
-				var date=new Date();
-				var year = date.getFullYear();
-				var month = date.getMonth()+1;
-				var date = date.getDate();
-				date=(date<=9?"0":"")+date;
-				var result = year+'-'+month+'-'+date;
-				return result;
-			},
-			getSeconds:function(){
-				var date=new Date;
-				var hour = date.getHours();
-				var minute = date.getMinutes();
-				minute=(minute<=9?"0":"")+minute;
-				var second = date.getSeconds();
-				second=(second<=9?"0":"")+second;
-				var result =hour+':'+minute+':'+second;
-				return result;
-			},
 			add:function(time){
 					this.$route.router.go('/attendance/'+time)
 				},
@@ -132,16 +118,22 @@
 				this.$route.router.go('/attendance/details/'+id)
 			},
 			secondsChange:function(){
-				this.seconds=this.getSeconds();
+				this.seconds=getSeconds();
 			}
 		},
 		ready:function(){
 			setInterval(this.secondsChange,1000);
 			if(localStorage.getItem("morning")!=null){
-				this.morningWorks=false;
+				var data=JSON.parse(localStorage.getItem("morning"));
+				this.addressm=data[0].address;
+				this.timem=data[0].time;
+				this.morningWorks=true;
 			};
 			if(localStorage.getItem("afternoon")!=null){
-				this.afternoonWorks=false;
+				var data=JSON.parse(localStorage.getItem("afternoon"));
+				this.addressa=data[0].address;
+				this.timea=data[0].time;
+				this.afternoonWorks=true;
 			};
 		}
 	}

@@ -57,8 +57,8 @@
 		export default{
 			data:function(){
 				return {
-					days:this.getDays(),
-					seconds:this.getSeconds(),
+					days:getDays(),
+					seconds:getSeconds(),
 					length:'',
 				}
 			},
@@ -66,30 +66,11 @@
 				history:function(){
 					window.history.go(-1);
 				},
-				getDays:function(){
-					var date=new Date();
-					var year = date.getFullYear();
-					var month = date.getMonth()+1;
-					var date = date.getDate();
-					date=(date<=9?"0":"")+date;
-					var result = year+'-'+month+'-'+date;
-					return result;
-				},
-				getSeconds:function(){
-					var date=new Date;
-					var hour = date.getHours();
-					var minute = date.getMinutes();
-					minute=(minute<=9?"0":"")+minute;
-					var second = date.getSeconds();
-					second=(second<=9?"0":"")+second;
-					var result =hour+':'+minute+':'+second;
-					return result;
-				},
 				add:function(id){
 					this.$route.router.go('/attendance/'+id)
 				},
 				secondsChange:function(){
-					this.seconds=this.getSeconds();
+					this.seconds=getSeconds();
 				}
 			},
 			ready:function(){
