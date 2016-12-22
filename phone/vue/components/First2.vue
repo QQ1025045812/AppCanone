@@ -89,7 +89,7 @@
                    longitude: datas.longitude,
                    latitude: datas.latitude
                };
-               uexBaiduMap.reverseGeocode(geodata, function(error,data) {
+               uexBaiduMap.reverseGeocode(json, function(error,data) {
                     self.address=data.address;
               });
             }
