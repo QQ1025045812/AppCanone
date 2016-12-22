@@ -2,7 +2,7 @@ module.exports={
 	entry:'./index.js',
 	output:{
 		path:__dirname+'/phone/dist/',
-		filename:'build.js'
+		filename:'build.js',
 	},
 	module:{
 		loaders:[
@@ -13,6 +13,6 @@ module.exports={
 	},
 	babel:{
 		presets:['es2015'],
-		plugins:['transform-runtime']
+		plugins:['transform-runtime'],
 	}
 };

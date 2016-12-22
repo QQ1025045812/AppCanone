@@ -13300,7 +13300,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-e6ec5b40/App.vue"
+	  var id = "_v-702f694e/App.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -13324,8 +13324,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e6ec5b40&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-e6ec5b40&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-702f694e&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-702f694e&scoped=true!./../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./App.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13343,7 +13343,7 @@
 
 
 	// module
-	exports.push([module.id, "\n.fonts[_v-e6ec5b40]{\n\tfont-size:2.5em;\n}\n.blue[_v-e6ec5b40]{\n\tcolor:#35a3e2;\n}\n.green[_v-e6ec5b40]{\n\tcolor:#1dc565;\n}\n.orange[_v-e6ec5b40]{\n\tcolor:#ffa54e;\n}\n.red[_v-e6ec5b40]{\n\tcolor:#fc6785;\n}\n.uinn-ahz[_v-e6ec5b40]{\n\tpadding:1em;\n}\n.uinn-top[_v-e6ec5b40]{\n\tpadding-top:0.5em;\n}\n.bc-white[_v-e6ec5b40]{\n\tbackground:#fff;\n}\n.head[_v-e6ec5b40]{\n\tbackground:#f6fdff;\n}\n\n", ""]);
+	exports.push([module.id, "\n.fonts[_v-702f694e]{\n\tfont-size:2.5em;\n}\n.blue[_v-702f694e]{\n\tcolor:#35a3e2;\n}\n.green[_v-702f694e]{\n\tcolor:#1dc565;\n}\n.orange[_v-702f694e]{\n\tcolor:#ffa54e;\n}\n.red[_v-702f694e]{\n\tcolor:#fc6785;\n}\n.uinn-ahz[_v-702f694e]{\n\tpadding:1em;\n}\n.uinn-top[_v-702f694e]{\n\tpadding-top:0.5em;\n}\n.bc-white[_v-702f694e]{\n\tbackground:#fff;\n}\n.head[_v-702f694e]{\n\tbackground:#f6fdff;\n}\n\n", ""]);
 
 	// exports
 
@@ -13731,7 +13731,7 @@
 /* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-white\" _v-e6ec5b40=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-e6ec5b40=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-e6ec5b40=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-e6ec5b40=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-e6ec5b40=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-e6ec5b40=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-e6ec5b40=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/attendance/First'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/attendance/Second'}\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-e6ec5b40=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-e6ec5b40=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-e6ec5b40=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-e6ec5b40=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-e6ec5b40=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub bc-white\" _v-702f694e=\"\">\n\t<div class=\"nav-btn \" id=\"nav-left\" _v-702f694e=\"\"></div>\n\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-702f694e=\"\">现场考勤</h1>\n\t<div class=\"nav-btn\" id=\"nav-right\" _v-702f694e=\"\">\n\t</div>\n</div>\n<div class=\"ub\" style=\"width:100%\" _v-702f694e=\"\">\n\t<img style=\"width:100%\" src=\"" + __webpack_require__(12) + "\" _v-702f694e=\"\">\n</div> \n<div class=\"ub ub-ver\" _v-702f694e=\"\">\n\t<div class=\"ub-f1 ub bc-white\" _v-702f694e=\"\">\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb\" v-link=\"{path:'/attendance/First'}\" _v-702f694e=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\">\n\t\t\t\t<span class=\"fa fa-hand-o-up fonts blue\" _v-702f694e=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-702f694e=\"\">考勤</div>\n\t\t</a>\n\t\t<a class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border ubb \" v-link=\"{path:'/attendance/Second'}\" _v-702f694e=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\">\n\t\t\t\t<span class=\"fa fa-flag-o fonts green\" _v-702f694e=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-702f694e=\"\">签到</div>\n\t\t</a>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz bc-border ubb\" _v-702f694e=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\">\n\t\t\t\t<span class=\"fa fa-users fonts orange\" _v-702f694e=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-702f694e=\"\">团队足迹</div>\n\t\t</div>\n\t</div>\n\t<div class=\"ub-f1 ub bc-white\" _v-702f694e=\"\">\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz ubr bc-border\" _v-702f694e=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\">\n\t\t\t\t<span class=\"fa fa-history fonts red\" _v-702f694e=\"\"></span>\n\t\t\t</div>\n\t\t\t<div class=\"ub-f1 ub ub-pc uinn-top\" _v-702f694e=\"\">考勤统计</div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-702f694e=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\"></div>\n\t\t</div>\n\t\t<div class=\"ub-f1 ub ub-pc ub-ver ub-con uinn-ahz\" _v-702f694e=\"\">\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\"></div>\n\t\t\t<div class=\"ub-f1 ub ub-pc\" _v-702f694e=\"\"></div>\n\t\t</div>\n\t</div>\n</div>\n";
 
 /***/ },
 /* 12 */
@@ -13767,7 +13767,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-75cf38fb/First.vue"
+	  var id = "_v-569ed4cd/First.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -13791,8 +13791,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-75cf38fb&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-75cf38fb&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-569ed4cd&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-569ed4cd&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -13810,7 +13810,7 @@
 
 
 	// module
-	exports.push([module.id, "\n        .circle[_v-75cf38fb]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-75cf38fb]{\n            background:#1cc5ea;\n        }\n        #afternoon[_v-75cf38fb]{\n            background:#ffcc00;\n        }\n        #circles[_v-75cf38fb]{\n            height:100%;\n            \n        }\n        .white[_v-75cf38fb]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-75cf38fb]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-75cf38fb]{\n\t\t\tcolor:#ccc;\n\t\t}\n\t\t.head[_v-75cf38fb]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n", ""]);
+	exports.push([module.id, "\n        .circle[_v-569ed4cd]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-569ed4cd]{\n            background:#1cc5ea;\n        }\n        #afternoon[_v-569ed4cd]{\n            background:#ffcc00;\n        }\n        #circles[_v-569ed4cd]{\n            height:100%;\n            \n        }\n        .white[_v-569ed4cd]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-569ed4cd]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-569ed4cd]{\n\t\t\tcolor:#ccc;\n\t\t}\n\t\t.head[_v-569ed4cd]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n", ""]);
 
 	// exports
 
@@ -14275,7 +14275,7 @@
 /* 36 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-75cf38fb=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-75cf38fb=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-75cf38fb=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-75cf38fb=\"\">\n            <div class=\"ub-f3\" _v-75cf38fb=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-75cf38fb=\"\">\n                <div class=\"uba gray\" _v-75cf38fb=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-75cf38fb=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-if=\"morningWorks\" _v-75cf38fb=\"\">\n        \t<div class=\"ub ub-f1 umar-t uinn white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"add('morning')\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-else=\"\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">上</span><span _v-75cf38fb=\"\">打卡时间：</span><span _v-75cf38fb=\"\">12:00</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">打卡地点：</span><span _v-75cf38fb=\"\">珠海浩智科技</span></div>        \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('morning')\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-pc ub-ac\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-75cf38fb=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n\t\t\t<div class=\"ub ub-ver\" v-if=\"afternoonWorks\" _v-75cf38fb=\"\">\n\t\t\t\t<div class=\"ub uinn umar-t white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">下</span>下班打卡</div> \n            <div class=\"ub ub-pc uinn white\" v-on:click=\"add('afternoon')\" _v-75cf38fb=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-75cf38fb=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-75cf38fb=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n\t\t\t</div>\n\t\t\t<div class=\"ub ub-ver\" v-else=\"\" _v-75cf38fb=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">下</span><span _v-75cf38fb=\"\">打卡时间：</span><span _v-75cf38fb=\"\">12:00</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-75cf38fb=\"\"> <span _v-75cf38fb=\"\">打卡地点：</span><span _v-75cf38fb=\"\">珠海浩智科技</span></div>             \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('afternoon')\" _v-75cf38fb=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-75cf38fb=\"\">\n                    <div class=\"ub ub-ac ub-pc\" id=\"circles\" _v-75cf38fb=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-75cf38fb=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-569ed4cd=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-569ed4cd=\"\">考勤</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-569ed4cd=\"\">\n\t\t\t</div>\n\t</div>\n\t<div class=\"ub uinn white umar-t\" _v-569ed4cd=\"\">\n            <div class=\"ub-f3\" _v-569ed4cd=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-569ed4cd=\"\">\n                <div class=\"uba gray\" _v-569ed4cd=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-569ed4cd=\"\"></div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-if=\"morningWorks\" _v-569ed4cd=\"\">\n        \t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">上</span>上班打卡</div>       \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"add('morning')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-569ed4cd=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-569ed4cd=\"\">{{seconds}}</div> \n                    </div>               \n                </div>\n            </div>\n        </div>\n        <div class=\"ub ub-ver\" v-else=\"\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">上</span><span _v-569ed4cd=\"\">打卡时间：</span><span _v-569ed4cd=\"\">12:00</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">打卡地点：</span><span _v-569ed4cd=\"\">珠海浩智科技</span></div>        \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('morning')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-pc ub-ac\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-569ed4cd=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n\t\t\t<div class=\"ub ub-ver\" v-if=\"afternoonWorks\" _v-569ed4cd=\"\">\n\t\t\t\t<div class=\"ub uinn umar-t white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">下</span>下班打卡</div> \n            <div class=\"ub ub-pc uinn white\" v-on:click=\"add('afternoon')\" _v-569ed4cd=\"\">\n                <div class=\"circle\" id=\"afternoon\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ver\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-ae ub-pc\" _v-569ed4cd=\"\">打卡</div>\n\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-569ed4cd=\"\">{{seconds}}</div> \n                    </div>\n                </div>\n                \n            </div>\n\t\t\t</div>\n\t\t\t<div class=\"ub ub-ver\" v-else=\"\" _v-569ed4cd=\"\">\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">下</span><span _v-569ed4cd=\"\">打卡时间：</span><span _v-569ed4cd=\"\">12:00</span></div>\n\t\t\t<div class=\"ub ub-f1 umar-t uinn white\" _v-569ed4cd=\"\"> <span _v-569ed4cd=\"\">打卡地点：</span><span _v-569ed4cd=\"\">珠海浩智科技</span></div>             \n            <div class=\"ub ub-f1 ub-pc uinn white\" v-on:click=\"view('afternoon')\" _v-569ed4cd=\"\">              \n                <div class=\"circle\" id=\"morning\" _v-569ed4cd=\"\">\n                    <div class=\"ub ub-ac ub-pc\" id=\"circles\" _v-569ed4cd=\"\">\n                        <div class=\"ub-f1 ub ub-pc\" _v-569ed4cd=\"\">查看详情</div>\n                    </div>               \n                </div>\n            </div>\n        </div>\n";
 
 /***/ },
 /* 37 */
@@ -14305,7 +14305,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-699187b9/Second.vue"
+	  var id = "_v-ba9533b2/Second.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -14329,8 +14329,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-699187b9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-699187b9&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba9533b2&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-ba9533b2&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -14348,7 +14348,7 @@
 
 
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t.head[_v-699187b9]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .circle[_v-699187b9]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-699187b9]{\n            background:#1cc5ea;\n        }\n        #circles[_v-699187b9]{\n            height:100%;\n            \n        }\n\t\t.white[_v-699187b9]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-699187b9]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-699187b9]{\n\t\t\tcolor:#ccc;\n\t\t}\n    ", ""]);
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t.head[_v-ba9533b2]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .circle[_v-ba9533b2]{\n            width:8em;\n            height:8em;\n            border-radius:50%;\n            color:#fff;\n        }\n        #morning[_v-ba9533b2]{\n            background:#1cc5ea;\n        }\n        #circles[_v-ba9533b2]{\n            height:100%;\n            \n        }\n\t\t.white[_v-ba9533b2]{\n            background:#fff;\n        }\n\t\t.bordernone[_v-ba9533b2]{\n\t\t\tborder:none;\n\t\t}\n\t\t.gray[_v-ba9533b2]{\n\t\t\tcolor:#ccc;\n\t\t}\n    ", ""]);
 
 	// exports
 
@@ -14470,7 +14470,7 @@
 /* 41 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-699187b9=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-699187b9=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-699187b9=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-699187b9=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-699187b9=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-699187b9=\"\">\n            <div class=\"ub-f3\" _v-699187b9=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-699187b9=\"\">\n                <div class=\"uba gray\" _v-699187b9=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-699187b9=\"\"></div>\n            </div>\n        </div>\n\t\t<div class=\"ub ub-ver\" _v-699187b9=\"\">   \n        \t<div class=\"ub umar-t uinn white\" _v-699187b9=\"\"> <span _v-699187b9=\"\">签到</span>签到打卡</div>\n\t\t\t<div class=\"ub umar-t uinn white\" _v-699187b9=\"\"> <span _v-699187b9=\"\">签到次数</span>签到打{{length}}</div>    \n\t\t\t\t<div class=\"ub ub-pc head uinn white\" _v-699187b9=\"\">              \n\t\t\t\t\t<div class=\"circle\" id=\"morning\" v-on:click=\"add('detail')\" _v-699187b9=\"\">\n\t\t\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\" _v-699187b9=\"\">\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\" _v-699187b9=\"\">签到</div>\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-699187b9=\"\">{{seconds}}</div> \n\t\t\t\t\t\t</div>               \n\t\t\t\t\t</div>\n\t\t\t\t</div> \n\t\t\t</div>                 \n";
+	module.exports = "\n\t\t<div id=\"header\" class=\"uh bc-text-head ub white\" _v-ba9533b2=\"\">\n                <div class=\"nav-btn \" id=\"nav-left\" _v-ba9533b2=\"\">\n\t\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-ba9533b2=\"\"></div>\n\t\t\t\t</div>\n                <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-ba9533b2=\"\">签到</h1>\n                <div class=\"nav-btn\" id=\"nav-right\" _v-ba9533b2=\"\">\n                </div>\n            </div>\n\t<div class=\"ub white uinn umar-t\" _v-ba9533b2=\"\">\n            <div class=\"ub-f3\" _v-ba9533b2=\"\">管理员</div>\n            <div class=\"ub-f1 ub ub-pe\" _v-ba9533b2=\"\">\n                <div class=\"uba gray\" _v-ba9533b2=\"\"><input type=\"date\" class=\"bordernone\" v-bind:value=\"days\" _v-ba9533b2=\"\"></div>\n            </div>\n        </div>\n\t\t<div class=\"ub ub-ver\" _v-ba9533b2=\"\">   \n        \t<div class=\"ub umar-t uinn white\" _v-ba9533b2=\"\"> <span _v-ba9533b2=\"\">签到</span>签到打卡</div>\n\t\t\t<div class=\"ub umar-t uinn white\" _v-ba9533b2=\"\"> <span _v-ba9533b2=\"\">签到次数</span>签到打{{length}}</div>    \n\t\t\t\t<div class=\"ub ub-pc head uinn white\" _v-ba9533b2=\"\">              \n\t\t\t\t\t<div class=\"circle\" id=\"morning\" v-on:click=\"add('detail')\" _v-ba9533b2=\"\">\n\t\t\t\t\t\t<div class=\"ub ub-ver\" id=\"circles\" _v-ba9533b2=\"\">\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-ae ub-pc\" _v-ba9533b2=\"\">签到</div>\n\t\t\t\t\t\t\t<div class=\"ub-f1 ub ub-pc ub-ac\" _v-ba9533b2=\"\">{{seconds}}</div> \n\t\t\t\t\t\t</div>               \n\t\t\t\t\t</div>\n\t\t\t\t</div> \n\t\t\t</div>                 \n";
 
 /***/ },
 /* 42 */
@@ -14500,7 +14500,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-442f8fc7/First2.vue"
+	  var id = "_v-7d536e35/First2.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -14524,8 +14524,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-442f8fc7&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First2.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-442f8fc7&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First2.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7d536e35&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First2.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-7d536e35&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./First2.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -14543,7 +14543,7 @@
 
 
 	// module
-	exports.push([module.id, "\n    .white[_v-442f8fc7]{\n        background:#fff;\n    }\n    .gray[_v-442f8fc7]{\n        color:#aaa;\n    }\n    .head[_v-442f8fc7]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .position-bottom[_v-442f8fc7]{\n            position:absolute;\n            bottom:0;\n            left:0;\n        }\n        \n", ""]);
+	exports.push([module.id, "\n    .white[_v-7d536e35]{\n        background:#fff;\n    }\n    .gray[_v-7d536e35]{\n        color:#aaa;\n    }\n    .head[_v-7d536e35]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .position-bottom[_v-7d536e35]{\n            position:absolute;\n            bottom:0;\n            left:0;\n        }\n        \n", ""]);
 
 	// exports
 
@@ -14665,7 +14665,7 @@
 /* 48 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-442f8fc7=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-442f8fc7=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-442f8fc7=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-442f8fc7=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-442f8fc7=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\">\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡时间：</span><span _v-442f8fc7=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\"><span class=\"gray\" _v-442f8fc7=\"\">项目名称：</span><span _v-442f8fc7=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-442f8fc7=\"\">\n            <span class=\"gray\" _v-442f8fc7=\"\">打卡地点：</span>\n            <span _v-442f8fc7=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-442f8fc7=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" v-model=\"note\" _v-442f8fc7=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(data)\" _v-442f8fc7=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-442f8fc7=\"\">\n        <span class=\"fa fa-send-o\" _v-442f8fc7=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-442f8fc7=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-7d536e35=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-7d536e35=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-7d536e35=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-7d536e35=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-7d536e35=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡时间：</span><span _v-7d536e35=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\"><span class=\"gray\" _v-7d536e35=\"\">项目名称：</span><span _v-7d536e35=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡地点：</span>\n            <span _v-7d536e35=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-7d536e35=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" v-model=\"note\" _v-7d536e35=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(data)\" _v-7d536e35=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-7d536e35=\"\">\n        <span class=\"fa fa-send-o\" _v-7d536e35=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-7d536e35=\"\">提交</div>\n</div>\n";
 
 /***/ },
 /* 49 */
@@ -14695,7 +14695,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-6e91ce6e/Second2.vue"
+	  var id = "_v-97e1efca/Second2.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -14719,8 +14719,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6e91ce6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second2.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6e91ce6e&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second2.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-97e1efca&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second2.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-97e1efca&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./Second2.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -14738,7 +14738,7 @@
 
 
 	// module
-	exports.push([module.id, "\n    .white[_v-6e91ce6e]{\n        background:#fff;\n    }\n    .gray[_v-6e91ce6e]{\n        color:#aaa;\n    }\n    .head[_v-6e91ce6e]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .position-bottom[_v-6e91ce6e]{\n            position:absolute;\n            bottom:0;\n            left:0;\n        }\n        .min-height[_v-6e91ce6e]{\n            height:3em;\n        }\n        \n", ""]);
+	exports.push([module.id, "\n    .white[_v-97e1efca]{\n        background:#fff;\n    }\n    .gray[_v-97e1efca]{\n        color:#aaa;\n    }\n    .head[_v-97e1efca]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n        .position-bottom[_v-97e1efca]{\n            position:absolute;\n            bottom:0;\n            left:0;\n        }\n        .min-height[_v-97e1efca]{\n            height:3em;\n        }\n        \n", ""]);
 
 	// exports
 
@@ -14850,7 +14850,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6e91ce6e=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6e91ce6e=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6e91ce6e=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6e91ce6e=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6e91ce6e=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡时间：</span><span _v-6e91ce6e=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\"><span class=\"gray\" _v-6e91ce6e=\"\">项目名称：</span><span _v-6e91ce6e=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6e91ce6e=\"\">\n            <span class=\"gray\" _v-6e91ce6e=\"\">打卡地点：</span>\n            <span _v-6e91ce6e=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-6e91ce6e=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"white\" _v-6e91ce6e=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(data)\" _v-6e91ce6e=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-6e91ce6e=\"\">\n        <span class=\"fa fa-send-o\" _v-6e91ce6e=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-6e91ce6e=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-97e1efca=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-97e1efca=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-97e1efca=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-97e1efca=\"\">签到</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-97e1efca=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-97e1efca=\"\">\n            <span class=\"gray\" _v-97e1efca=\"\">打卡时间：</span><span _v-97e1efca=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-97e1efca=\"\"><span class=\"gray\" _v-97e1efca=\"\">项目名称：</span><span _v-97e1efca=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-97e1efca=\"\">\n            <span class=\"gray\" _v-97e1efca=\"\">打卡地点：</span>\n            <span _v-97e1efca=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-97e1efca=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"white\" _v-97e1efca=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(data)\" _v-97e1efca=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-97e1efca=\"\">\n        <span class=\"fa fa-send-o\" _v-97e1efca=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-97e1efca=\"\">提交</div>\n</div>\n";
 
 /***/ },
 /* 54 */
@@ -14880,7 +14880,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-42451226/details.vue"
+	  var id = "_v-6b953382/details.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -14904,8 +14904,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-42451226&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./details.vue", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-42451226&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./details.vue");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6b953382&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./details.vue", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6b953382&scoped=true!./../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./details.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -14923,7 +14923,7 @@
 
 
 	// module
-	exports.push([module.id, "\n    .white[_v-42451226]{\n        background:#fff;\n    }\n    .gray[_v-42451226]{\n        color:#aaa;\n    }\n    .head[_v-42451226]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n", ""]);
+	exports.push([module.id, "\n    .white[_v-6b953382]{\n        background:#fff;\n    }\n    .gray[_v-6b953382]{\n        color:#aaa;\n    }\n    .head[_v-6b953382]{\n\t\t\tbackground:#f6fdff;\n\t\t}\n", ""]);
 
 	// exports
 
@@ -14987,7 +14987,7 @@
 /* 58 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-42451226=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-42451226=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-42451226=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-42451226=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-42451226=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-42451226=\"\">\n            <span class=\"gray\" _v-42451226=\"\">打卡时间：</span><span _v-42451226=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-42451226=\"\"><span class=\"gray\" _v-42451226=\"\">项目名称：</span><span _v-42451226=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-42451226=\"\">\n            <span class=\"gray\" _v-42451226=\"\">打卡地点：</span>\n            <span _v-42451226=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"ub ub-ver\" _v-42451226=\"\">\n            <div class=\"ub-f1\" _v-42451226=\"\">备注：</div>\n            <div class=\"ub-f1\" _v-42451226=\"\">打卡测试.........</div>\n        </div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-6b953382=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-6b953382=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-6b953382=\"\"></div>\n\t\t\t</div>\n\t\t\t<h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-6b953382=\"\">上班打卡</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-6b953382=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-6b953382=\"\">\n            <span class=\"gray\" _v-6b953382=\"\">打卡时间：</span><span _v-6b953382=\"\">12:00</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-6b953382=\"\"><span class=\"gray\" _v-6b953382=\"\">项目名称：</span><span _v-6b953382=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-6b953382=\"\">\n            <span class=\"gray\" _v-6b953382=\"\">打卡地点：</span>\n            <span _v-6b953382=\"\">广东省珠海市香洲区翠微西路8号</span>\n        </div>\n        <div class=\"ub ub-ver\" _v-6b953382=\"\">\n            <div class=\"ub-f1\" _v-6b953382=\"\">备注：</div>\n            <div class=\"ub-f1\" _v-6b953382=\"\">打卡测试.........</div>\n        </div>\n";
 
 /***/ }
 /******/ ]);
