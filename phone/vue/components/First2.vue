@@ -91,6 +91,9 @@
                    latitude: datas.latitude
                };
                uexBaiduMap.reverseGeocode(json, function(error,data) {
+                   if(data.address==undefined){
+                        self.address="当前位置定位错误...."
+                   }
                     self.isok=false;
                     self.address=data.address;
               });
