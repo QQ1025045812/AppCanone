@@ -14566,7 +14566,7 @@
 	//         <div class="ub uinn white umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
 	//         <div class="ub uinn white umar-t">
 	//             <span class="gray">打卡地点：</span>
-	//             <span>{{address}}</span>
+	//             <span v-bind:class="{'fa fa-spinner fa-spin':isok}">{{address}}</span>
 	//         </div>
 	//         <div class="uba bc-border uinput ub ub-f1 umar-t">
 	//     <textarea placeholder="备注....." type="text" class="ub-f1 white" v-model="note"></textarea>
@@ -14586,7 +14586,8 @@
 	            note: '',
 	            time: getSeconds(),
 	            data: this.$route.params.time,
-	            nochange: this.$route.params.time
+	            nochange: this.$route.params.time,
+	            isok: true
 	        };
 	    },
 	    methods: {
@@ -14618,17 +14619,17 @@
 	        } else {
 	            this.data = "上班打卡";
 	        };
-	        uexBaiduMap.getCurrentLocation();
-	        uexBaiduMap.cbCurrentLocation = function (data) {
-	            var datas = JSON.parse(data);
-	            var json = {
-	                longitude: datas.longitude,
-	                latitude: datas.latitude
-	            };
-	            uexBaiduMap.reverseGeocode(json, function (error, data) {
-	                self.address = data.address;
-	            });
-	        };
+	        /*uexBaiduMap.getCurrentLocation();
+	        uexBaiduMap.cbCurrentLocation = function(data){
+	           var datas=JSON.parse(data);
+	           var json={
+	               longitude: datas.longitude,
+	               latitude: datas.latitude
+	           };
+	           uexBaiduMap.reverseGeocode(json, function(error,data) {
+	                self.address=data.address;
+	          });
+	        }*/
 	    }
 	};
 	// </script>
@@ -14653,7 +14654,7 @@
 /* 48 */
 /***/ function(module, exports) {
 
-	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-7d536e35=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-7d536e35=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-7d536e35=\"\"></div>\n\t\t\t</div>\n            <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-7d536e35=\"\">{{data}}</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-7d536e35=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡时间：</span><span _v-7d536e35=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\"><span class=\"gray\" _v-7d536e35=\"\">项目名称：</span><span _v-7d536e35=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡地点：</span>\n            <span _v-7d536e35=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-7d536e35=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" v-model=\"note\" _v-7d536e35=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(nochange)\" _v-7d536e35=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-7d536e35=\"\">\n        <span class=\"fa fa-send-o\" _v-7d536e35=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-7d536e35=\"\">提交</div>\n</div>\n";
+	module.exports = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    <div id=\"header\" class=\"uh bc-text-head ub white\" _v-7d536e35=\"\">\n\t\t\t<div class=\"nav-btn \" id=\"nav-left\" _v-7d536e35=\"\">\n\t\t\t\t<div class=\"fa fa-angle-left fa-2x\" v-on:click=\"history()\" _v-7d536e35=\"\"></div>\n\t\t\t</div>\n            <h1 class=\"ut ub-f1 ulev-3 ut-s tx-c\" tabindex=\"0\" _v-7d536e35=\"\">{{data}}</h1>\n\t\t\t<div class=\"nav-btn\" id=\"nav-right\" _v-7d536e35=\"\">\n\t\t\t</div>\n    </div>\n    <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡时间：</span><span _v-7d536e35=\"\">{{time}}</span>\n        </div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\"><span class=\"gray\" _v-7d536e35=\"\">项目名称：</span><span _v-7d536e35=\"\">项目项目</span></div>\n        <div class=\"ub uinn white umar-t\" _v-7d536e35=\"\">\n            <span class=\"gray\" _v-7d536e35=\"\">打卡地点：</span>\n            <span v-bind:class=\"{'fa fa-spinner fa-spin':isok}\" _v-7d536e35=\"\">{{address}}</span>\n        </div>\n        <div class=\"uba bc-border uinput ub ub-f1 umar-t\" _v-7d536e35=\"\">\n    <textarea placeholder=\"备注.....\" type=\"text\" class=\"ub-f1 white\" v-model=\"note\" _v-7d536e35=\"\"></textarea>\n</div>\n<div class=\"ub ubt uh ub-ver white gray position-bottom\" v-on:click=\"savedata(nochange)\" _v-7d536e35=\"\">\n    <div class=\"ub-f1 tx-c uinn gray\" _v-7d536e35=\"\">\n        <span class=\"fa fa-send-o\" _v-7d536e35=\"\"></span>\n    </div>\n    <div class=\"ub-f1 tx-c\" _v-7d536e35=\"\">提交</div>\n</div>\n";
 
 /***/ },
 /* 49 */

@@ -30,7 +30,7 @@
         <div class="ub uinn white umar-t"><span class="gray">项目名称：</span><span>项目项目</span></div>
         <div class="ub uinn white umar-t">
             <span class="gray">打卡地点：</span>
-            <span>{{address}}</span>
+            <span v-bind:class="{'fa fa-spinner fa-spin':isok}">{{address}}</span>
         </div>
         <div class="uba bc-border uinput ub ub-f1 umar-t">
     <textarea placeholder="备注....." type="text" class="ub-f1 white" v-model="note"></textarea>
@@ -51,6 +51,7 @@
                 time:getSeconds(),
                 data:this.$route.params.time,
                 nochange:this.$route.params.time,
+                isok:true,
             }
         },
         methods:{
@@ -84,6 +85,7 @@
             };
             uexBaiduMap.getCurrentLocation();
             uexBaiduMap.cbCurrentLocation = function(data){
+                self.isok=false;
                var datas=JSON.parse(data);
                var json={
                    longitude: datas.longitude,
