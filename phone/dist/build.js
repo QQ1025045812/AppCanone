@@ -14629,9 +14629,10 @@
 	            uexBaiduMap.reverseGeocode(json, function (error, data) {
 	                if (data.address == undefined) {
 	                    self.address = "当前位置定位错误....";
+	                } else {
+	                    self.address = data.address;
 	                }
 	                self.isok = false;
-	                self.address = data.address;
 	            });
 	        };
 	    }
