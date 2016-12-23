@@ -85,13 +85,13 @@
             };
             uexBaiduMap.getCurrentLocation();
             uexBaiduMap.cbCurrentLocation = function(data){
-                self.isok=false;
                var datas=JSON.parse(data);
                var json={
                    longitude: datas.longitude,
                    latitude: datas.latitude
                };
                uexBaiduMap.reverseGeocode(json, function(error,data) {
+                    self.isok=false;
                     self.address=data.address;
               });
             }
